@@ -86,13 +86,17 @@
     .sidebar-top { }
     
     .sidebar-logo {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
+      margin-bottom: 2rem;
       font-size: 1.5rem;
       font-weight: 600;
       color: var(--primary);
-      margin-bottom: 2rem;
+    }
+    .sidebar-logo a {
+      display: flex; 
+      align-items: center; 
+      gap: 0.5rem; 
+      text-decoration: none; 
+      color: var(--primary);
     }
     
     .nav-item {
@@ -708,9 +712,13 @@
   <!-- Sidebar Navigation -->
   <nav class="sidebar">
     <div class="sidebar-top">
+      
+      <!-- Updated logo block with link to index.html -->
       <div class="sidebar-logo">
-        <i href="login.html" class="fas fa-layer-group"></i>
-        <span href="login.html" >Shelf Shifter</span>
+        <a href="index.html">
+          <i class="fas fa-layer-group"></i>
+          <span>Shelf Shifter</span>
+        </a>
       </div>
       
       <!-- Navigation Order: Dashboard, Tasks, Store Layout, Inventory, Analytics, Settings -->
@@ -738,6 +746,13 @@
         <i class="fas fa-cog"></i>
         <span>Settings</span>
       </div>
+      
+      <!-- New Sign Up button under Settings -->
+      <div class="nav-item" onclick="window.location.href='index.html#pricing'">
+        <i class="fas fa-user-plus"></i>
+        <span>Sign Up</span>
+      </div>
+      
     </div>
     
     <!-- AI Assistant Button -->
@@ -1655,8 +1670,11 @@
         navItems.forEach(nav => nav.classList.remove('active'));
         item.classList.add('active');
         pages.forEach(page => page.style.display = 'none');
-        const targetId = item.getAttribute('data-target');
-        document.getElementById(targetId).style.display = 'block';
+        // if we used onclick="window.location.href='index.html#pricing'" it won't show a page here, so skip data-target logic
+        if (item.hasAttribute('data-target')) {
+          const targetId = item.getAttribute('data-target');
+          document.getElementById(targetId).style.display = 'block';
+        }
       });
     });
     
