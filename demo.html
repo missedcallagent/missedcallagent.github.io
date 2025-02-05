@@ -679,6 +679,59 @@
     }
     
     /* ----------------------------- */
+    /* New Sign Up Page Styles */
+    #signup {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 80vh;
+      padding: 2rem;
+      background-color: var(--gray-50);
+    }
+    #signup .signup-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      text-align: center;
+      max-width: 500px;
+      width: 100%;
+    }
+    #signup h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--secondary);
+    }
+    #signup p {
+      font-size: 1.125rem;
+      margin-bottom: 1.5rem;
+      color: var(--secondary);
+    }
+    #signup ul {
+      text-align: left;
+      margin-bottom: 1.5rem;
+      padding-left: 1.5rem;
+    }
+    #signup ul li {
+      margin-bottom: 0.75rem;
+      font-size: 1rem;
+      color: var(--secondary);
+    }
+    #signup button {
+      padding: 0.75rem 1.5rem;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.2s;
+    }
+    #signup button:hover {
+      background: var(--primary-dark);
+    }
+    
+    /* ----------------------------- */
     /* Responsive Adjustments */
     @media (max-width: 768px) {
       .sidebar {
@@ -747,8 +800,8 @@
         <span>Settings</span>
       </div>
       
-      <!-- New Sign Up button under Settings -->
-      <div class="nav-item" onclick="window.location.href='index.html#pricing'">
+      <!-- Updated Sign Up button now uses data-target="signup" -->
+      <div class="nav-item" data-target="signup">
         <i class="fas fa-user-plus"></i>
         <span>Sign Up</span>
       </div>
@@ -1632,6 +1685,24 @@
         </div>
       </div>
     </section>
+    
+    <!-- New Sign Up Page -->
+    <section id="signup" class="page">
+      <div class="signup-card">
+        <h1>Join Shelf Shifter Today</h1>
+        <p>
+          Transform your retail experience with AI-powered insights and seamless POS data integration.
+        </p>
+        <h2>Main Features</h2>
+        <ul>
+          <li><strong>Smart Shelf Placement:</strong> Optimize your product displays for maximum sales.</li>
+          <li><strong>Data Integration:</strong> Easily connect with leading POS systems.</li>
+          <li><strong>Real-Time Dashboard:</strong> Access actionable insights at a glance.</li>
+          <li><strong>Risk-Free Trial:</strong> Enjoy a 14‑day free trial with no credit card required.</li>
+        </ul>
+        <button onclick="window.location.href='index.html#pricing'">Start Free Trial</button>
+      </div>
+    </section>
   </main>
   
   <!-- AI Assistant Modal Popup -->
@@ -1670,7 +1741,7 @@
         navItems.forEach(nav => nav.classList.remove('active'));
         item.classList.add('active');
         pages.forEach(page => page.style.display = 'none');
-        // if we used onclick="window.location.href='index.html#pricing'" it won't show a page here, so skip data-target logic
+        // If the nav item has a data-target attribute, show that page.
         if (item.hasAttribute('data-target')) {
           const targetId = item.getAttribute('data-target');
           document.getElementById(targetId).style.display = 'block';
@@ -1923,7 +1994,7 @@
       // Make all table cells editable.
       inventoryTable.querySelectorAll('tbody td').forEach(td => {
         td.setAttribute('contenteditable', 'true');
-        td.style.border = "1px dashed var(--primary)"; // Visual cue for editing.
+        td.style.border = "1px dashed var(--primary)";
       });
       editInventoryBtn.style.display = 'none';
       saveInventoryBtn.style.display = 'inline-block';
