@@ -792,8 +792,8 @@
                 action="https://script.google.com/macros/s/AKfycbwfICumV-Q3h2IXQ4V7P1w8RN-daeNiH3r95a3nRGUUL6jNAIsoAf-ZPBt4DjluQl8LxQ/exec"
                 target="hidden_iframe"
                 onsubmit="
-                    gtag('event','Form_Submission',{event_category:'Lead',event_label:'Early Access'});
-                    fbq('track','CompleteRegistration');
+               <!-- gtag('event','Form_Submission',{event_category:'Lead',event_label:'Early Access'});
+                    fbq('track','CompleteRegistration'); -->
                     document.getElementById('timestamp').value = new Date().toISOString();
                     setTimeout(function() { window.location.href = 'signupconfrimed.html'; }, 500);
                     submitted=true;">
