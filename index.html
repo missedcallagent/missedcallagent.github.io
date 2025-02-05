@@ -851,6 +851,11 @@
         if (target) {
           target.scrollIntoView({ behavior: 'smooth' });
         }
+        // Collapse mobile nav if it's open
+        var mobileNav = document.getElementById('mobile-nav');
+        if (mobileNav.classList.contains('active')) {
+          mobileNav.classList.remove('active');
+        }
       });
     });
 
