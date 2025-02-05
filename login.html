@@ -17,6 +17,7 @@
       --text-light: #777777;
       --footer-bg: #FF7E5F;
     }
+
     /* Reset & Base Styles */
     * {
       margin: 0;
@@ -32,6 +33,7 @@
       align-items: center;
       height: 100vh;
     }
+
     /* Login Card Styles */
     .login-card {
       background: white;
@@ -40,6 +42,7 @@
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
       max-width: 400px;
       width: 100%;
+      position: relative; /* for positioning the spinner */
     }
     .login-card h2 {
       text-align: center;
@@ -99,6 +102,23 @@
       margin-top: 0.5rem;
       display: none;
     }
+
+    /* Loading Spinner */
+    .spinner {
+      /* Position the spinner in the center below the button, you can adjust as needed */
+      margin: 20px auto 0;
+      width: 40px;
+      height: 40px;
+      border: 5px solid rgba(255, 126, 95, 0.3);
+      border-top: 5px solid var(--primary-accent);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0%   { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
   </style>
 </head>
 <body>
@@ -111,7 +131,6 @@
         id="email"
         class="form-input"
         placeholder="Email"
-        value=""
         required
       />
     </div>
@@ -121,11 +140,14 @@
         id="password"
         class="form-input"
         placeholder="Password"
-        value=""
         required
       />
     </div>
     <button class="btn btn-primary" id="login-btn">Log In</button>
+
+    <!-- Loading Spinner (Hidden by Default) -->
+    <div id="loading-spinner" class="spinner" style="display: none;"></div>
+
     <div class="forgot-password">
       <a href="#" id="forgot-password">Forgot Password?</a>
     </div>
@@ -139,16 +161,25 @@
       const email = document.getElementById('email').value.trim();
       const password = document.getElementById('password').value;
       const errorMessage = document.getElementById('error-message');
-      
+      const spinner = document.getElementById('loading-spinner');
+
       // Check if the credentials match
       if (email === "test@email.com" && password === "1234") {
-        // On successful login, redirect to demo.html
-        window.location.href = "demo.html";
+        // Show the spinner
+        spinner.style.display = "block";
+
+        // Disable the login button to prevent multiple clicks
+        this.disabled = true;
+
+        // Delay redirection by 1 second
+        setTimeout(() => {
+          window.location.href = "demo.html";
+        }, 1000);
       } else {
         errorMessage.style.display = "block";
       }
     });
-    
+
     // Forgot Password action
     document.getElementById('forgot-password').addEventListener('click', function(e) {
       e.preventDefault();
