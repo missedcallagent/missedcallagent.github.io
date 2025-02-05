@@ -11,11 +11,11 @@
       --primary-accent: #FF7E5F;
       --secondary-accent: #FEB47B;
       --header-gradient: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent));
-      --background: #FFF8F0;      /* Warm white background */
-      --light-gray: #F7ECE1;      /* Warm light gray for sections */
+      --background: #FFF8F0;
+      --light-gray: #F7ECE1;
       --text-dark: #333333;
       --text-light: #777777;
-      --footer-bg: #FF7E5F;       /* Footer matches primary accent */
+      --footer-bg: #FF7E5F;
     }
     /* Reset & Base Styles */
     * {
@@ -190,19 +190,17 @@
       padding: 40px 0;
       background-color: var(--background);
     }
-
     .social-proof-header {
       text-align: center;
-      font-size: 2rem;           /* Adjust as needed */
-      color: var(--primary-accent); /* Uses your primary accent color */
-      margin-bottom: 20px;       /* Provides space between the header and carousel */
+      font-size: 2rem;
+      color: var(--primary-accent);
+      margin-bottom: 20px;
       font-weight: bold;
     }
     .carousel-track {
       display: flex;
       gap: 20px;
       padding: 0 10px;
-      /* Animation for desktop only */
       animation: slide 40s linear infinite;
     }
     .carousel-item {
@@ -223,50 +221,149 @@
       font-weight: bold;
       font-size: 0.9rem;
     }
-    /* Keyframes for endless carousel animation.
-       Total width of first 10 items = (10 * 220) + (9 * 20) = 2200 + 180 = 2380px */
     @keyframes slide {
       0% { transform: translateX(0); }
       100% { transform: translateX(-2380px); }
     }
-    /* Pricing Section (Always Displaying Signup Form) */
+    /* Plan Comparison Chart Section */
+    .plan-comparison {
+      padding: 60px 15px;
+      background-color: var(--background);
+    }
+    .plan-comparison h2 {
+      text-align: center;
+      color: var(--primary-accent);
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
+    }
+    .plan-comparison table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0 auto;
+      max-width: 900px;
+      overflow-x: auto;
+    }
+    .plan-comparison th, .plan-comparison td {
+      border: 1px solid #cbd5e1;
+      padding: 1rem;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+    .plan-comparison th {
+      background-color: #F7ECE1;
+      color: #333333;
+    }
+    .plan-comparison tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    .plan-comparison .feature {
+      text-align: left;
+      font-weight: 600;
+      background-color: #e2e8f0;
+    }
+    .plan-comparison .checkmark {
+      color: #22c55e;
+      font-size: 1.2rem;
+    }
+    .plan-comparison .dash {
+      color: #ef4444;
+      font-size: 1.2rem;
+    }
+    /* Pricing Section (Plan Selection Popup) */
     .pricing {
       background-color: var(--light-gray);
       padding: 80px 0;
       text-align: center;
+    }
+    .pricing h2 {
+      margin-bottom: 2rem;
+      color: var(--primary-accent);
+      font-size: 2rem;
+    }
+    .pricing-cards {
       display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
       justify-content: center;
-      align-items: center;
     }
     .pricing-card {
       background: white;
       border-radius: 12px;
-      padding: 40px;
+      padding: 30px;
       text-align: center;
-      max-width: 400px;
+      max-width: 300px;
       margin: 0 auto;
       box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-      position: relative;
-      overflow: hidden;
     }
-    .price {
-      font-size: 2.5rem;
+    .pricing-card h3 {
+      font-size: 1.5rem;
+      color: var(--primary-accent);
+      margin-bottom: 10px;
+    }
+    .pricing-card .price {
+      font-size: 2rem;
       font-weight: 700;
       color: var(--primary-accent);
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
-    .price-details {
-      color: var(--text-light);
-      margin-bottom: 30px;
+    .pricing-card p {
+      font-size: 0.9rem;
+      color: var(--text-dark);
+      margin-bottom: 15px;
+      line-height: 1.4;
     }
-    /* Always-visible signup form */
-    .signup-form {
-      display: block;
+    .signup-btn {
+      padding: 0.75rem 1.5rem;
+      background: var(--primary-accent);
+      color: white;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s ease;
     }
-    /* Extra spacing between email input and submit button */
-    .signup-form button {
-      margin-top: 1rem;
+    .signup-btn:hover {
+      background: var(--primary-dark);
     }
+    /* Popup Modal for Email Signup */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 200;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    }
+    .modal h2 {
+      margin-bottom: 1rem;
+      color: var(--primary-accent);
+      font-size: 1.5rem;
+    }
+    .modal .close-modal {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      background: transparent;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--text-dark);
+    }
+    /* Updated Form Styles */
     .form-input {
       width: 100%;
       padding: 0.75rem;
@@ -278,6 +375,50 @@
     .form-input:focus {
       border-color: var(--primary-accent);
       outline: none;
+    }
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    /* Sign Up Page (Dedicated) */
+    .signup-content {
+      text-align: center;
+      padding: 3rem 1rem;
+    }
+    .signup-content h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--primary-accent);
+    }
+    .signup-content p {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      color: var(--text-dark);
+    }
+    .signup-features {
+      margin: 2rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+    }
+    .signup-features div {
+      max-width: 600px;
+      font-size: 1rem;
+      color: var(--text-dark);
+      text-align: left;
+    }
+    .signup-btn-dedicated {
+      padding: 0.75rem 1.5rem;
+      background: var(--primary-accent);
+      color: white;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+    }
+    .signup-btn-dedicated:hover {
+      background: var(--primary-dark);
     }
     /* Footer */
     footer {
@@ -302,9 +443,8 @@
         right: 0;
         z-index: 1000;
       }
-      /* Add top padding to body so content doesn't hide behind fixed header */
       body {
-        padding-top: 80px; /* Adjust this value based on header height */
+        padding-top: 80px;
       }
       nav {
         display: none;
@@ -328,12 +468,17 @@
       .pricing-card {
         margin: 20px auto;
       }
-      /* Disable carousel animation for mobile */
       .carousel-track {
         width: auto;
         animation: none;
         gap: 10px;
         overflow-x: auto;
+      }
+      .plan-comparison table {
+        font-size: 0.8rem;
+      }
+      .pricing-cards {
+        flex-direction: column;
       }
     }
     @media (min-width: 769px) {
@@ -357,16 +502,16 @@
     <nav>
       <ul>
         <li><a href="#features" class="cta-scroll">Features</a></li>
-        <li><a href="#pricing" class="cta-scroll">Pricing</a></li>
-        <li><a href="#pricing" class="cta-scroll">Sign Up</a></li>
+        <li><a href="#plan-comparison" class="cta-scroll">Plans</a></li>
+        <li><a href="#signup" class="cta-scroll">Sign Up</a></li>
         <li><a href="login.html" id="login-link">Log In</a></li>
       </ul>
     </nav>
     <!-- Mobile Navigation -->
     <div class="mobile-nav" id="mobile-nav">
       <a href="#features" class="cta-scroll">Features</a>
-      <a href="#pricing" class="cta-scroll">Pricing</a>
-      <a href="#pricing" class="cta-scroll">Sign Up</a>
+      <a href="#plan-comparison" class="cta-scroll">Plans</a>
+      <a href="#signup" class="cta-scroll">Sign Up</a>
       <a href="#" id="mobile-login-link">Log In</a>
     </div>
   </header>
@@ -379,7 +524,7 @@
         Boost your store’s sales with smart product placement. Shelf Shifter uses your POS data to fine‑tune your shelf layout and merchandising—just like retail giants—to help you make every inch count.
       </p>
       <div class="cta-buttons">
-        <a href="#pricing" class="btn btn-primary cta-scroll">Start Free Trial</a>
+        <a href="#plan-comparison" class="btn btn-primary cta-scroll">View Plans</a>
       </div>
       <!-- Video/GIF Placeholder (responsive) -->
       <img src="ShelfShifterDemo.gif" alt="Product Demo" class="hero-video">
@@ -468,7 +613,7 @@
           <p>"A game changer for managing store layout and increasing efficiency."</p>
           <span>- Robert S.</span>
         </div>
-        <!-- Duplicate the 10 items for seamless loop -->
+        <!-- Duplicate for seamless loop -->
         <div class="carousel-item">
           <p>"Shelf Shifter completely transformed my store layout and boosted my sales!"</p>
           <span>- Emily R.</span>
@@ -513,39 +658,157 @@
     </div>
   </section>
 
-  <!-- Pricing Section (Always Displaying Signup Form) -->
-  <section id="pricing" class="pricing">
+  <!-- Pricing Section (Plan Selection with Popup Email Form) -->
+  <section id="plan-selection" class="pricing">
     <div class="container">
-      <div class="pricing-card">
-        <h2>Simple, Transparent Pricing</h2>
-        <div class="price">
-          $49<span style="font-size: 1rem; font-weight: normal;">/mo</span>
+      <h2>Choose Your Plan</h2>
+      <div class="pricing-cards">
+        <div class="pricing-card">
+          <h3>Basic</h3>
+          <p class="price">$29<span style="font-size: 1rem; font-weight: normal;">/mo</span></p>
+          <p>1 Location<br>Manual drag‑and‑drop layout<br>Basic Analytics</p>
+          <button class="signup-btn" onclick="openSignupPopup('Basic')">Select Basic</button>
         </div>
-        <div class="price-details">14‑Day Free Trial • No credit card required. Cancel anytime.</div>
-        <div class="signup-form" id="signup-form-container">
-          <form
-            id="signupForm"
-            method="POST"
-            action="https://script.google.com/macros/s/AKfycbwfICumV-Q3h2IXQ4V7P1w8RN-daeNiH3r95a3nRGUUL6jNAIsoAf-ZPBt4DjluQl8LxQ/exec"
-            target="hidden_iframe"
-            onsubmit="
-                gtag('event','Form_Submission',{event_category:'Lead',event_label:'Early Access'});
-                fbq('track','CompleteRegistration');
-                document.getElementById('timestamp').value = new Date().toISOString();
-                setTimeout(function() { window.location.href = 'signedup.html'; }, 500);
-                submitted=true;">
-            <div class="form-group">
-              <input type="email" class="form-input" name="Email" placeholder="Email*" required>
-            </div>
-            <input type="hidden" id="timestamp" name="Timestamp">
-            <button type="submit" class="btn btn-primary">
-              <span>Start Free Trial</span>
-            </button>
-          </form>
+        <div class="pricing-card">
+          <h3>Plus</h3>
+          <p class="price">$49<span style="font-size: 1rem; font-weight: normal;">/mo</span></p>
+          <p>Up to 3 Locations<br>Enhanced AI + Limited Predictive Analytics</p>
+          <button class="signup-btn" onclick="openSignupPopup('Plus')">Select Plus</button>
+        </div>
+        <div class="pricing-card">
+          <h3>Pro</h3>
+          <p class="price">$299<span style="font-size: 1rem; font-weight: normal;">/mo</span></p>
+          <p>Unlimited Locations<br>Advanced AI + Full Predictive Analytics<br>Custom Branding & White-labeling</p>
+          <button class="signup-btn" onclick="openSignupPopup('Pro')">Select Pro</button>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- Plan Comparison Chart Section -->
+  <section id="plan-comparison" class="plan-comparison">
+    <h2>Compare Our Plans</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Basic</th>
+          <th>Plus</th>
+          <th>Pro</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="feature">Price</td>
+          <td>$29/month</td>
+          <td>$49/month</td>
+          <td>$299/month</td>
+        </tr>
+        <tr>
+          <td class="feature">Number of Locations</td>
+          <td>1</td>
+          <td>Up to 3</td>
+          <td>Unlimited</td>
+        </tr>
+        <tr>
+          <td class="feature">Store Layout Management</td>
+          <td>Manual drag‑and‑drop<br>Single layout</td>
+          <td>Manual drag‑and‑drop<br>Multi‑Location layout</td>
+          <td>Advanced layouts &amp; AI‑powered<br>Unlimited layout builder</td>
+        </tr>
+        <tr>
+          <td class="feature">Task &amp; Checklist Management</td>
+          <td><span class="checkmark">&#10003;</span></td>
+          <td><span class="checkmark">&#10003;</span></td>
+          <td><span class="checkmark">&#10003;</span></td>
+        </tr>
+        <tr>
+          <td class="feature">Analytics</td>
+          <td>Basic</td>
+          <td>Enhanced AI<br>Limited Predictive Analytics</td>
+          <td>Advanced AI<br>Full Predictive Analytics</td>
+        </tr>
+        <tr>
+          <td class="feature">Inventory Management</td>
+          <td>Single-location inventory</td>
+          <td>Comprehensive multi‑location inventory</td>
+          <td>Comprehensive multi‑location inventory</td>
+        </tr>
+        <tr>
+          <td class="feature">POS Integration Support</td>
+          <td><span class="checkmark">&#10003;</span></td>
+          <td><span class="checkmark">&#10003;</span></td>
+          <td><span class="checkmark">&#10003;</span></td>
+        </tr>
+        <tr>
+          <td class="feature">User &amp; Account Management</td>
+          <td>Single‑user</td>
+          <td>Multi‑user (up to 5 users)</td>
+          <td>Advanced role‑based access</td>
+        </tr>
+        <tr>
+          <td class="feature">Data Exporting</td>
+          <td>Basic export (PDF/CSV)</td>
+          <td>Scheduled reports &amp; export</td>
+          <td>Custom reports &amp; API export</td>
+        </tr>
+        <tr>
+          <td class="feature">Custom Branding / White‑Labeling</td>
+          <td class="dash">&#8212;</td>
+          <td class="dash">&#8212;</td>
+          <td><span class="checkmark">&#10003;</span></td>
+        </tr>
+        <tr>
+          <td class="feature">AI Usage</td>
+          <td>Basic Limited AI queries</td>
+          <td>Limited AI queries</td>
+          <td>Unlimited AI queries</td>
+        </tr>
+        <tr>
+          <td class="feature">Security &amp; Compliance</td>
+          <td><span class="checkmark">&#10003;</span></td>
+          <td><span class="checkmark">&#10003;</span></td>
+          <td><span class="checkmark">&#10003;</span></td>
+        </tr>
+        <!-- New Bottom Row with Signup Buttons -->
+        <tr>
+          <td></td>
+          <td><button class="signup-btn" onclick="openSignupPopup('Basic')">Select Basic</button></td>
+          <td><button class="signup-btn" onclick="openSignupPopup('Plus')">Select Plus</button></td>
+          <td><button class="signup-btn" onclick="openSignupPopup('Pro')">Select Pro</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Popup Modal for Email Signup -->
+  <div class="modal-overlay" id="signup-modal">
+    <div class="modal">
+      <button class="close-modal" id="close-modal">&times;</button>
+      <h2>Start Your 14-Day Free Trial</h2>
+      <form
+        id="signupForm"
+        method="POST"
+        action="https://script.google.com/macros/s/AKfycbwfICumV-Q3h2IXQ4V7P1w8RN-daeNiH3r95a3nRGUUL6jNAIsoAf-ZPBt4DjluQl8LxQ/exec"
+        target="hidden_iframe"
+        onsubmit="
+          gtag('event','Form_Submission',{event_category:'Lead',event_label:'Early Access'});
+          fbq('track','CompleteRegistration');
+          document.getElementById('timestamp').value = new Date().toISOString();
+          setTimeout(function() { window.location.href = 'signupconfirmed.html'; }, 500);
+          submitted=true;">
+        <div class="form-group">
+          <input type="email" class="form-input" name="Email" placeholder="Email*" required>
+        </div>
+        <!-- Hidden input to capture the selected plan -->
+        <input type="hidden" name="Plan" id="plan" value="">
+        <input type="hidden" id="timestamp" name="Timestamp">
+        <button type="submit" class="btn btn-primary">
+          <span>Start Free Trial</span>
+        </button>
+      </form>
+    </div>
+  </div>
 
   <!-- Footer -->
   <footer id="contact">
@@ -561,13 +824,13 @@
 
   <!-- JavaScript -->
   <script>
-    // Smooth scroll for CTA links (features, pricing, sign up)
-    document.querySelectorAll('.cta-scroll').forEach(function(button) {
-      button.addEventListener('click', function(e) {
+    // Smooth scroll for CTA links (features, plans, sign up)
+    document.querySelectorAll('.cta-scroll').forEach(function(link) {
+      link.addEventListener('click', function(e) {
         e.preventDefault();
-        var targetSection = document.querySelector(this.getAttribute('href'));
-        if (targetSection) {
-          targetSection.scrollIntoView({ behavior: 'smooth' });
+        var target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
         }
       });
     });
@@ -586,6 +849,25 @@
     document.getElementById('menu-toggle').addEventListener('click', function() {
       var mobileNav = document.getElementById('mobile-nav');
       mobileNav.classList.toggle('active');
+    });
+
+    // Pricing Popup Logic
+    let selectedPlan = "Basic"; // default plan
+    function openSignupPopup(plan) {
+      selectedPlan = plan;
+      // Set the hidden input value so the plan is sent with the form
+      document.getElementById('plan').value = plan;
+      // Open the modal popup
+      document.getElementById('signup-modal').style.display = "flex";
+    }
+    document.getElementById('close-modal').addEventListener('click', function() {
+      document.getElementById('signup-modal').style.display = "none";
+    });
+    // Close modal if click outside the modal content
+    window.addEventListener('click', function(e) {
+      if (e.target === document.getElementById('signup-modal')) {
+        document.getElementById('signup-modal').style.display = "none";
+      }
     });
   </script>
 </body>
