@@ -532,6 +532,26 @@
       border: none;
       border-radius: 8px;
     }
+    /* NEW: Return-to-Top Button Styles */
+    #return-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: var(--primary-accent);
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity 0.3s ease;
+      z-index: 1000;
+      font-size: 1.25rem;
+      display: none; /* initially hidden */
+    }
+    #return-to-top:hover {
+      opacity: 1;
+    }
   </style>
 </head>
 <body>
@@ -878,6 +898,11 @@
     </div>
   </footer>
   
+  <!-- Return-to-Top Button (Icon) -->
+  <button id="return-to-top" onclick="scrollToTop()">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+  
   <!-- JavaScript -->
   <script>
     // Smooth scroll for CTA links (features, plans, sign up)
@@ -940,6 +965,24 @@
       }, 10);
       // Optionally scroll into view
       demoContainer.scrollIntoView({ behavior: 'smooth' });
+    });
+    
+    // Return-to-Top functionality
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+    
+    // Show/hide the Return-to-Top button on scroll
+    window.addEventListener('scroll', function() {
+      const button = document.getElementById('return-to-top');
+      if (window.pageYOffset > 300) { // change threshold as needed
+        button.style.display = 'block';
+      } else {
+        button.style.display = 'none';
+      }
     });
   </script>
 </body>
