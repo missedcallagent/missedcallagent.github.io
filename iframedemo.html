@@ -1837,73 +1837,102 @@
     
     // DRAG & DROP FUNCTIONALITY.
     function makeDraggable(element) {
-      let offsetX, offsetY, isDragging = false;
-      const container = document.getElementById('layout-base');
-      element.addEventListener('mousedown', (e) => {
-        e.stopPropagation();
-        isDragging = true;
-        const containerRect = container.getBoundingClientRect();
-        const elemRect = element.getBoundingClientRect();
-        offsetX = e.clientX - elemRect.left;
-        offsetY = e.clientY - elemRect.top;
-        element.classList.add('dragging');
-      });
-      document.addEventListener('mousemove', (e) => {
-        if (!isDragging) return;
-        const containerRect = container.getBoundingClientRect();
-        let newLeft = e.clientX - containerRect.left - offsetX;
-        let newTop = e.clientY - containerRect.top - offsetY;
-        const elemRect = element.getBoundingClientRect();
-        const maxLeft = containerRect.width - elemRect.width;
-        const maxTop = containerRect.height - elemRect.height;
-        newLeft = Math.max(0, Math.min(newLeft, maxLeft));
-        newTop = Math.max(0, Math.min(newTop, maxTop));
-        const leftPercent = (newLeft / containerRect.width) * 100;
-        const topPercent = (newTop / containerRect.height) * 100;
-        element.style.left = leftPercent + '%';
-        element.style.top = topPercent + '%';
-      });
-      document.addEventListener('mouseup', () => {
-        if (isDragging) {
-          isDragging = false;
-          element.classList.remove('dragging');
-        }
-      });
-    }
+  let offsetX, offsetY, isDragging = false;
+  const container = document.getElementById('layout-base');
+
+  // Unified start event handler
+  function onStart(e) {
+    isDragging = true;
+    // Use touches[0] for touch events, or the event itself for mouse events.
+    const evt = e.touches ? e.touches[0] : e;
+    const containerRect = container.getBoundingClientRect();
+    const elemRect = element.getBoundingClientRect();
+    offsetX = evt.clientX - elemRect.left;
+    offsetY = evt.clientY - elemRect.top;
+    element.classList.add('dragging');
+    if (e.touches) e.preventDefault(); // Prevent scrolling on touch devices.
+  }
+
+  // Unified move event handler
+  function onMove(e) {
+    if (!isDragging) return;
+    const evt = e.touches ? e.touches[0] : e;
+    const containerRect = container.getBoundingClientRect();
+    let newLeft = evt.clientX - containerRect.left - offsetX;
+    let newTop = evt.clientY - containerRect.top - offsetY;
+    // Ensure the element stays within the container.
+    const elemRect = element.getBoundingClientRect();
+    const maxLeft = containerRect.width - elemRect.width;
+    const maxTop = containerRect.height - elemRect.height;
+    newLeft = Math.max(0, Math.min(newLeft, maxLeft));
+    newTop = Math.max(0, Math.min(newTop, maxTop));
+    // Convert to percentages for responsiveness.
+    element.style.left = (newLeft / containerRect.width) * 100 + '%';
+    element.style.top  = (newTop / containerRect.height) * 100 + '%';
+    if (e.touches) e.preventDefault();
+  }
+
+  // End event handler
+  function onEnd() {
+    isDragging = false;
+    element.classList.remove('dragging');
+  }
+
+  // Mouse events.
+  element.addEventListener('mousedown', onStart);
+  document.addEventListener('mousemove', onMove);
+  document.addEventListener('mouseup', onEnd);
+
+  // Touch events.
+  element.addEventListener('touchstart', onStart, { passive: false });
+  document.addEventListener('touchmove', onMove, { passive: false });
+  document.addEventListener('touchend', onEnd);
+}
     
     // RESIZING FUNCTIONALITY.
-    function makeResizable(element) {
-      let resizer = document.createElement('div');
-      resizer.className = 'resizer';
-      element.appendChild(resizer);
-      let originalWidth = 0, originalHeight = 0, originalMouseX = 0, originalMouseY = 0;
-      resizer.addEventListener('mousedown', function(e) {
-        e.stopPropagation();
-        e.preventDefault();
-        originalWidth = parseFloat(window.getComputedStyle(element, null).getPropertyValue('width').replace('px',''));
-        originalHeight = parseFloat(window.getComputedStyle(element, null).getPropertyValue('height').replace('px',''));
-        originalMouseX = e.clientX;
-        originalMouseY = e.clientY;
-        document.addEventListener('mousemove', resize);
-        document.addEventListener('mouseup', stopResize);
-      });
-      function resize(e) {
-        let width = originalWidth + (e.clientX - originalMouseX);
-        let height = originalHeight + (e.clientY - originalMouseY);
-        width = Math.max(width, 50);
-        height = Math.max(height, 30);
-        const container = document.getElementById('layout-base');
-        const containerRect = container.getBoundingClientRect();
-        let widthPercent = (width / containerRect.width) * 100;
-        let heightPercent = (height / containerRect.height) * 100;
-        element.style.width = widthPercent + '%';
-        element.style.height = heightPercent + '%';
-      }
-      function stopResize() {
-        document.removeEventListener('mousemove', resize);
-        document.removeEventListener('mouseup', stopResize);
-      }
-    }
+   function makeResizable(element) {
+  let resizer = document.createElement('div');
+  resizer.className = 'resizer';
+  element.appendChild(resizer);
+  let originalWidth = 0, originalHeight = 0, originalMouseX = 0, originalMouseY = 0;
+
+  function startResize(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    const evt = e.touches ? e.touches[0] : e;
+    originalWidth = parseFloat(getComputedStyle(element).getPropertyValue('width').replace('px',''));
+    originalHeight = parseFloat(getComputedStyle(element).getPropertyValue('height').replace('px',''));
+    originalMouseX = evt.clientX;
+    originalMouseY = evt.clientY;
+    document.addEventListener('mousemove', resize);
+    document.addEventListener('mouseup', stopResize);
+    document.addEventListener('touchmove', resize, { passive: false });
+    document.addEventListener('touchend', stopResize);
+  }
+
+  function resize(e) {
+    const evt = e.touches ? e.touches[0] : e;
+    let width = originalWidth + (evt.clientX - originalMouseX);
+    let height = originalHeight + (evt.clientY - originalMouseY);
+    width = Math.max(width, 50);
+    height = Math.max(height, 30);
+    const container = document.getElementById('layout-base');
+    const containerRect = container.getBoundingClientRect();
+    element.style.width = (width / containerRect.width) * 100 + '%';
+    element.style.height = (height / containerRect.height) * 100 + '%';
+    if (e.touches) e.preventDefault();
+  }
+
+  function stopResize(e) {
+    document.removeEventListener('mousemove', resize);
+    document.removeEventListener('mouseup', stopResize);
+    document.removeEventListener('touchmove', resize);
+    document.removeEventListener('touchend', stopResize);
+  }
+
+  resizer.addEventListener('mousedown', startResize);
+  resizer.addEventListener('touchstart', startResize, { passive: false });
+}
     
     // Enable drag & resize for each zone.
     function enableZoneInteractions() {
