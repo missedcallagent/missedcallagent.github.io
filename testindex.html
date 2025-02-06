@@ -246,6 +246,11 @@
       100% { transform: translateX(-2380px); }
     }
     /* Plan Comparison Chart Section */
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch; /* enables momentum scrolling on iOS */
+    }
     .plan-comparison {
       padding: 60px 15px;
       background-color: var(--background);
@@ -755,6 +760,7 @@
   <!-- Plan Comparison Chart Section -->
   <section id="plan-comparison" class="plan-comparison">
     <h2>Compare Our Plans</h2>
+    <div class="table-responsive">
     <table>
       <thead>
         <tr>
@@ -845,6 +851,7 @@
         </tr>
       </tbody>
     </table>
+    </div>
   </section>
   
   <!-- Demo Section: Hidden by default; displays the interactive demo via iframe -->
