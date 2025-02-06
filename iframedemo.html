@@ -1,0 +1,2111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shelf Shifter – All Pages (Planogram Focus with Tasks, Store Layout, Inventory, Billing & AI Chat)</title>
+  
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  
+  <style>
+    /* Warm Theme Variables (based on landing page) */
+    :root {
+      --primary: #FF7E5F;         /* Primary Accent */
+      --primary-dark: #E0664D;     /* Darker shade of primary */
+      --secondary: #333333;        /* Dark text */
+      --accent: #FEB47B;           /* Secondary accent */
+      --warning: #eab308;
+      --danger: #ef4444;
+      
+      /* Warm background & card colors */
+      --gray-50: #FFF8F0;          /* Warm white background */
+      --gray-100: #F7ECE1;         /* Light warm gray (used in sidebar) */
+      --gray-200: #fcddbd;
+      --gray-300: #cbd5e1;
+      --gray-400: #94a3b8;
+      --gray-800: #1e293b;
+      
+      /* Base background colors */
+      --body-bg: var(--gray-50);
+      --card-bg: white;
+      --sidebar-bg: var(--gray-100);
+    }
+    
+    /* Dark Mode Overrides – (optional) */
+    body.dark-mode {
+      --primary: #FF7E5F;
+      --primary-dark: #E0664D;
+      --secondary: #e0e0e0;
+      --accent: #FEB47B;
+      --warning: #eab308;
+      --danger: #ef4444;
+      --gray-50: #121212;
+      --gray-100: #1e1e1e;
+      --gray-200: #2c2c2c;
+      --gray-300: #383838;
+      --gray-400: #4f4f4f;
+      --gray-800: #e0e0e0;
+      
+      --body-bg: #121212;
+      --card-bg: #1e1e1e;
+      --sidebar-bg: #1e1e1e;
+    }
+    
+    /* Reset & Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      line-height: 1.5;
+      color: var(--secondary);
+      background-color: var(--body-bg);
+    }
+    
+    /* ----------------------------- */
+    /* SIDEBAR NAVIGATION */
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 250px;
+      background: var(--sidebar-bg);
+      padding: 1rem;
+      border-right: 1px solid var(--gray-200);
+      z-index: 50;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    
+    .sidebar-top { }
+    
+    .sidebar-logo {
+      margin-bottom: 2rem;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+    .sidebar-logo a {
+      display: flex; 
+      align-items: center; 
+      gap: 0.5rem; 
+      text-decoration: none; 
+      color: var(--primary);
+    }
+    
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      color: var(--secondary);
+      text-decoration: none;
+      border-radius: 0.5rem;
+      margin-bottom: 0.5rem;
+      transition: background-color 0.2s;
+      cursor: pointer;
+    }
+    
+    .nav-item:hover,
+    .nav-item.active {
+      background: var(--gray-200);
+      color: var(--primary);
+    }
+    
+    /* AI Assistant Button */
+    .ai-assistant-btn {
+      margin-top: 1rem;
+      padding: 0.75rem 1rem;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-weight: 600;
+      text-align: center;
+      transition: background-color 0.2s;
+    }
+    .ai-assistant-btn:hover {
+      background: var(--primary-dark);
+    }
+    
+    /* ----------------------------- */
+    /* MAIN CONTENT */
+    .main-content {
+      margin-left: 250px;
+      padding: 2rem;
+    }
+    
+    /* Page Header (common) */
+    .header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+    .header h1 {
+      margin-bottom: 0.25rem;
+      color: var(--secondary);
+    }
+    .header p {
+      color: var(--gray-400);
+      font-size: 0.95rem;
+    }
+    
+    /* ----------------------------- */
+    /* DASHBOARD PAGE */
+    .dashboard-tasks {
+      display: grid;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    
+    .task-item {
+      background: var(--card-bg);
+      border-radius: 0.75rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      padding: 1rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      border-left: 6px solid var(--primary);
+      position: relative;
+    }
+    
+    .task-item.high { border-left-color: var(--danger); }
+    .task-item.medium { border-left-color: var(--warning); }
+    .task-item.low { border-left-color: var(--accent); }
+    
+    .task-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .task-header h3 {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+    
+    .task-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      font-size: 0.9rem;
+      color: var(--gray-400);
+    }
+    
+    .employee-assign {
+      margin-top: 0.5rem;
+    }
+    .employee-assign select {
+      padding: 0.35rem 0.5rem;
+      border-radius: 0.25rem;
+      border: 1px solid var(--gray-200);
+      font-size: 0.9rem;
+    }
+    
+    .task-actions {
+      margin-left: auto;
+      display: flex;
+      gap: 0.5rem;
+    }
+    .task-actions button {
+      background: transparent;
+      color: var(--gray-400);
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .task-actions button:hover {
+      color: var(--primary);
+    }
+    
+    /* Planogram Key Metrics Grid (Dashboard Analytics) */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .stat-card {
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    
+    .stat-card h3 {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--gray-400);
+      margin-bottom: 0.5rem;
+    }
+    
+    .stat-value {
+      font-size: 1.75rem;
+      font-weight: 600;
+      color: var(--secondary);
+    }
+    
+    .trend {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
+    .trend.up { color: #119627; } 
+    .trend.down { color: var(--danger); }
+    
+    /* ----------------------------- */
+    /* TASKS PAGE */
+    .tasks-filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    
+    .tasks-filter-bar select {
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      border: 1px solid var(--gray-200);
+    }
+    
+    .tasks-filter-bar button {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+    }
+    .tasks-filter-bar button:hover {
+      background: var(--primary-dark);
+    }
+    
+    .task-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    
+    /* ----------------------------- */
+    /* STORE LAYOUT PAGE (Drag, Drop, Resize & Shelf Count) */
+    .store-layout-container, .store-layout {
+      background: white;
+      border-radius: 0.5rem;
+      height: 600px;
+      overflow: hidden;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+    
+    .layout-base {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+    }
+    
+    .layout-zone {
+      position: absolute;
+      border: 2px solid var(--primary);
+      background: rgba(255,126,95,0.1);
+      border-radius: 0.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      padding: 0.25rem;
+    }
+    
+    .layout-zone:hover {
+      background: rgba(255,126,95,0.2);
+    }
+    
+    .layout-zone.dragging {
+      opacity: 0.7;
+    }
+    
+    /* Resizer handle */
+    .resizer {
+      width: 10px;
+      height: 10px;
+      background: var(--primary);
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      cursor: se-resize;
+    }
+    
+    .edit-layout-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+      margin-right: 0.5rem;
+    }
+    .edit-layout-btn:hover {
+      background: var(--primary-dark);
+    }
+    
+    /* Heatmap overlay */
+    .heatmap-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      pointer-events: none;
+    }
+    
+    /* Zone Detail Sidebar with Shelf Count Controls */
+    #zone-detail-sidebar {
+      position: fixed;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 300px;
+      background: var(--card-bg);
+      box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+      padding: 1rem;
+      display: none;
+      overflow-y: auto;
+      z-index: 100;
+    }
+    
+    #zone-detail-sidebar label {
+      margin-top: 1rem;
+    }
+    #zone-detail-sidebar input[type="number"] {
+      width: 100%;
+      padding: 0.4rem;
+      margin-top: 0.25rem;
+      margin-bottom: 0.5rem;
+      border: 1px solid var(--gray-200);
+      border-radius: 0.25rem;
+      font-size: 0.9rem;
+    }
+    #zone-detail-sidebar button {
+      padding: 0.5rem 1rem;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    
+    #zone-detail-sidebar button:hover {
+      background: var(--primary-dark);
+    }
+    
+    /* ----------------------------- */
+    /* ANALYTICS PAGE (Planogram Approach) */
+    .analytics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    /* ----------------------------- */
+    /* CHART & TABLE STYLES */
+    .charts-section {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .chart-card, .table-card {
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    
+    .chart-placeholder {
+      width: 100%;
+      height: 300px;
+      background: var(--gray-200);
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gray-400);
+      font-size: 1rem;
+      margin-top: 1rem;
+      position: relative;
+    }
+    
+    .sales-trend-chart {
+      width: 100%;
+      height: 300px;
+    }
+    
+    .table-card table {
+      width: 100%;
+      border-collapse: collapse;
+      display: block;
+      overflow-x: auto;
+    }
+    
+    .table-card th,
+    .table-card td {
+      padding: 0.75rem;
+      border-bottom: 1px solid var(--gray-200);
+      font-size: 0.9rem;
+      text-align: left;
+    }
+    
+    /* ----------------------------- */
+    /* SETTINGS PAGE */
+    .settings-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    
+    .settings-card {
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      margin-bottom: 1.5rem;
+    }
+    
+    .settings-card h2 {
+      font-size: 1.125rem;
+      margin-bottom: 1rem;
+      color: var(--secondary);
+    }
+    
+    .settings-card label {
+      display: block;
+      font-size: 0.9rem;
+      margin-bottom: 0.25rem;
+      color: var(--secondary);
+    }
+    
+    .settings-card input[type="text"],
+    .settings-card input[type="email"],
+    .settings-card input[type="password"],
+    .settings-card select {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border: 1px solid var(--gray-200);
+      border-radius: 0.5rem;
+      font-size: 0.9rem;
+    }
+    
+    .settings-card button {
+      padding: 0.5rem 1rem;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    
+    .settings-card button:hover {
+      background: var(--primary-dark);
+    }
+    
+    .settings-full { margin-top: 1.5rem; }
+    
+    /* Billing Settings Card */
+    .billing-card {
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      margin-bottom: 1.5rem;
+    }
+    
+    .billing-card h2 {
+      font-size: 1.125rem;
+      margin-bottom: 1rem;
+      color: var(--secondary);
+    }
+    
+    .billing-card label {
+      display: block;
+      font-size: 0.9rem;
+      margin-bottom: 0.25rem;
+      color: var(--secondary);
+    }
+    
+    .billing-card input[type="text"],
+    .billing-card input[type="tel"] {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border: 1px solid var(--gray-200);
+      border-radius: 0.5rem;
+      font-size: 0.9rem;
+    }
+    
+    /* ----------------------------- */
+    /* INVENTORY PAGE */
+    .table-card {
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+    }
+    
+    /* Add spacing and buttons for Inventory edit functionality */
+    .inventory-controls {
+      margin-bottom: 1rem;
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .inventory-controls button {
+      padding: 0.5rem 1rem;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    
+    .inventory-controls button:hover {
+      background: var(--primary-dark);
+    }
+    
+    /* ----------------------------- */
+    /* AI CHAT MODAL STYLES */
+    #ai-modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    #ai-modal {
+      background: var(--card-bg);
+      width: 90%;
+      max-width: 500px;
+      border-radius: 8px;
+      padding: 1rem;
+      position: relative;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    }
+    
+    #ai-modal h2 {
+      margin-bottom: 1rem;
+      font-size: 1.25rem;
+      color: var(--secondary);
+    }
+    
+    #ai-modal .conversation {
+      height: 200px;
+      overflow-y: auto;
+      background: var(--gray-100);
+      padding: 0.5rem;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      color: var(--secondary);
+    }
+    
+    #ai-modal input[type="text"] {
+      width: 80%;
+      padding: 0.5rem;
+      border: 1px solid var(--gray-200);
+      border-radius: 4px;
+      font-size: 0.9rem;
+    }
+    
+    #ai-modal button.send-btn {
+      padding: 0.5rem 1rem;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      margin-left: 0.5rem;
+    }
+    
+    #ai-modal button.close-modal {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      background: transparent;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--secondary);
+    }
+    
+    /* ----------------------------- */
+    /* Hide all pages by default */
+    .page {
+      display: none;
+    }
+    
+    /* ----------------------------- */
+    /* New Sign Up Page Styles */
+    #signup {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      min-height: 80vh;
+      padding: 2rem;
+      background-color: var(--gray-50);
+    }
+    #signup .signup-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      text-align: center;
+      max-width: 500px;
+      width: 100%;
+    }
+    #signup h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--secondary);
+    }
+    #signup p {
+      font-size: 1.125rem;
+      margin-bottom: 1.5rem;
+      color: var(--secondary);
+    }
+    #signup ul {
+      text-align: left;
+      margin-bottom: 1.5rem;
+      padding-left: 1.5rem;
+    }
+    #signup ul li {
+      margin-bottom: 0.75rem;
+      font-size: 1rem;
+      color: var(--secondary);
+    }
+    #signup button {
+      padding: 0.75rem 1.5rem;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.2s;
+    }
+    #signup button:hover {
+      background: var(--primary-dark);
+    }
+    
+    /* ----------------------------- */
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 64px;
+        padding: 1rem 0.5rem;
+      }
+      
+      .sidebar-logo span,
+      .nav-item span {
+        display: none;
+      }
+      
+      .main-content {
+        margin-left: 64px;
+      }
+      
+      .charts-section,
+      .settings-grid,
+      .analytics-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .table-card table {
+        display: block;
+        overflow-x: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar Navigation -->
+  <nav class="sidebar">
+    <div class="sidebar-top">
+      
+      <!-- Updated logo block with link to index.html -->
+      <div class="sidebar-logo">
+        <a href="#">
+          <i class="fas fa-layer-group"></i>
+          <span>Shelf Shifter</span>
+        </a>
+      </div>
+      
+      <!-- Navigation Order: Dashboard, Tasks, Store Layout, Inventory, Analytics, Settings -->
+      <div class="nav-item active" data-target="dashboard">
+        <i class="fas fa-home"></i>
+        <span>Dashboard</span>
+      </div>
+      <div class="nav-item" data-target="tasks">
+        <i class="fas fa-tasks"></i>
+        <span>Tasks</span>
+      </div>
+      <div class="nav-item" data-target="store-layout">
+        <i class="fas fa-store"></i>
+        <span>Store Layout</span>
+      </div>
+      <div class="nav-item" data-target="inventory">
+        <i class="fas fa-boxes"></i>
+        <span>Inventory</span>
+      </div>
+      <div class="nav-item" data-target="analytics">
+        <i class="fas fa-chart-bar"></i>
+        <span>Analytics</span>
+      </div>
+      <div class="nav-item" data-target="settings">
+        <i class="fas fa-cog"></i>
+        <span>Settings</span>
+      </div>
+      
+      <!-- Updated Sign Up button now uses data-target="signup" -->
+      <div class="nav-item" data-target="signup">
+        <i class="fas fa-user-plus"></i>
+        <span>Sign Up</span>
+      </div>
+      
+    </div>
+    
+    <!-- AI Assistant Button -->
+    
+    <div class="nav-item" id="ai-assistant-btn">
+        <i class="fas fa-robot"></i>
+        <span>AI Assistant</span>
+      </div>
+    
+    <!-- Log Out Button -->
+    <div class="nav-item" onclick="window.location.href='login.html'">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Log Out</span>
+      </div>
+
+  </nav>
+  
+  <!-- Main Content Area -->
+  <main class="main-content">
+    <!-- Dashboard Page -->
+    <section id="dashboard" class="page" style="display: block;">
+      <div class="header">
+        <div>
+          <h1>Good Morning, Sara</h1>
+          <p>Today’s key tasks and metrics to optimize your store layout</p>
+        </div>
+        <button style="display: flex; align-items: center; gap: 0.5rem; background: var(--primary); color: white; border: none; border-radius: 0.5rem; padding: 0.5rem 1rem;">
+          <i class="fas fa-bell"></i>
+          <span>3 New Updates</span>
+        </button>
+      </div>
+      
+      <!-- Dashboard Tasks Section -->
+      <div class="dashboard-tasks">
+        <!-- Task 1 -->
+        <div class="task-item high">
+          <div class="task-header">
+            <h3>Group Seasonal Apparel on a Central Display for Cross-Selling</h3>
+            <div class="task-actions">
+              <button title="Mark Complete"><i class="fas fa-check"></i></button>
+              <button title="Edit Task"><i class="fas fa-pen"></i></button>
+              <button title="Delete Task"><i class="fas fa-trash"></i></button>
+            </div>
+          </div>
+          <p style="font-size: 0.9rem; color: var(--secondary);">
+            Reorganize seasonal apparel by grouping similar items on a central display. This strategy can drive a 12% increase in cross-selling and add roughly $4,000 in extra revenue during peak seasons.
+          </p>
+          <div class="employee-assign">
+            <label for="assign-dash-task-1" style="font-size: 0.8rem; color: var(--gray-400);">Assign Employee:</label>
+            <select id="assign-dash-task-1">
+              <option selected>Unassigned</option>
+              <option>Sara</option>
+              <option>John</option>
+              <option>Emily</option>
+              <option>Mark</option>
+            </select>
+          </div>
+          <div class="task-meta">
+            <span><i class="fas fa-exclamation-circle"></i> Priority: High</span>
+            <span><i class="fas fa-calendar"></i> Due: Today</span>
+          </div>
+        </div>
+        <!-- Task 2 -->
+        <div class="task-item medium">
+          <div class="task-header">
+            <h3>Shift High-Turnover Grocery Items to a Prominent Central Display</h3>
+            <div class="task-actions">
+              <button title="Mark Complete"><i class="fas fa-check"></i></button>
+              <button title="Edit Task"><i class="fas fa-pen"></i></button>
+              <button title="Delete Task"><i class="fas fa-trash"></i></button>
+            </div>
+          </div>
+          <p style="font-size: 0.9rem; color: var(--secondary);">
+            Move fast-selling grocery items from low-visibility areas to a central display to boost conversion by 7%, which can yield an extra $3,500 in monthly revenue.
+          </p>
+          <div class="employee-assign">
+            <label for="assign-dash-task-2" style="font-size: 0.8rem; color: var(--gray-400);">Assign Employee:</label>
+            <select id="assign-dash-task-2">
+              <option selected>Unassigned</option>
+              <option>Sara</option>
+              <option>John</option>
+              <option>Emily</option>
+              <option>Mark</option>
+            </select>
+          </div>
+          <div class="task-meta">
+            <span><i class="fas fa-exclamation-circle"></i> Priority: Medium</span>
+            <span><i class="fas fa-calendar"></i> Due: Today</span>
+          </div>
+        </div>
+        <!-- Task 3 -->
+        <div class="task-item low">
+          <div class="task-header">
+            <h3>Create an Impulse-Buy Display for High-Margin Snacks Near the Register</h3>
+            <div class="task-actions">
+              <button title="Mark Complete"><i class="fas fa-check"></i></button>
+              <button title="Edit Task"><i class="fas fa-pen"></i></button>
+              <button title="Delete Task"><i class="fas fa-trash"></i></button>
+            </div>
+          </div>
+          <p style="font-size: 0.9rem; color: var(--secondary);">
+            Establish a dedicated display for high-margin snacks near the register. This can drive a 10% increase in impulse purchases, translating to an estimated extra $2,000 in weekly revenue.
+          </p>
+          <div class="employee-assign">
+            <label for="assign-dash-task-3" style="font-size: 0.8rem; color: var(--gray-400);">Assign Employee:</label>
+            <select id="assign-dash-task-3">
+              <option selected>Unassigned</option>
+              <option>Sara</option>
+              <option>John</option>
+              <option>Emily</option>
+              <option>Mark</option>
+            </select>
+          </div>
+          <div class="task-meta">
+            <span><i class="fas fa-exclamation-circle"></i> Priority: Low</span>
+            <span><i class="fas fa-calendar"></i> Due: Today</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Planogram Key Metrics Grid -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <h3>Revenue per Display</h3>
+          <div class="stat-value">$1,250</div>
+          <div class="trend up">
+            <i class="fas fa-arrow-up"></i> 8%
+          </div>
+        </div>
+        <div class="stat-card">
+          <h3>Foot Traffic per Display</h3>
+          <div class="stat-value">320</div>
+          <div class="trend up">
+            <i class="fas fa-arrow-up"></i> 10%
+          </div>
+        </div>
+        <div class="stat-card">
+          <h3>Conversion per Display</h3>
+          <div class="stat-value">4.8%</div>
+          <div class="trend down">
+            <i class="fas fa-arrow-down"></i> 1%
+          </div>
+        </div>
+        <div class="stat-card">
+          <h3>Revenue per SqFt</h3>
+          <div class="stat-value">$85</div>
+          <div class="trend up">
+            <i class="fas fa-arrow-up"></i> 5%
+          </div>
+        </div>
+      </div>
+      
+      <!-- Foot Traffic Heat Map (Demo using inline SVG) 
+      <div class="chart-placeholder" style="height:200px;">
+        <svg viewBox="0 0 400 200" width="100%" height="100%">
+          <defs>
+            <linearGradient id="heatGradient">
+              <stop offset="0%" stop-color="rgba(255,126,95,0.5)" />
+              <stop offset="50%" stop-color="rgba(255,255,0,0.5)" />
+              <stop offset="100%" stop-color="rgba(0,255,0,0.5)" />
+            </linearGradient>
+          </defs>
+          <rect width="400" height="200" fill="url(#heatGradient)" />
+        </svg>
+      </div> -->
+    </section>
+    
+    <!-- Tasks Page -->
+    <section id="tasks" class="page">
+      <div class="header">
+        <div>
+          <h1>Store Tasks &amp; Checklists</h1>
+          <p>Manage open tasks manually or via AI suggestions</p>
+        </div>
+      </div>
+      
+      <div class="tasks-filter-bar">
+        <select>
+          <option>All Priorities</option>
+          <option>High</option>
+          <option>Medium</option>
+          <option>Low</option>
+        </select>
+        <select>
+          <option>All Statuses</option>
+          <option>Open</option>
+          <option>In Progress</option>
+          <option>Completed</option>
+        </select>
+        <button>
+          <i class="fas fa-plus"></i>
+          Add Task
+        </button>
+      </div>
+      
+      <div class="task-list">
+        <!-- Task 1 -->
+        <div class="task-item high">
+          <div class="task-header">
+            <h3>Move Premium Accessories from Electronics Shelf 4 to Quick Checkout Shelf 5 </h3>
+            <div class="task-actions">
+              <button title="Mark Complete"><i class="fas fa-check"></i></button>
+              <button title="Edit Task"><i class="fas fa-pen"></i></button>
+              <button title="Delete Task"><i class="fas fa-trash"></i></button>
+            </div>
+          </div>
+          <p style="font-size: 0.9rem; color: var(--secondary);">
+            Relocate high-margin electronic accessories to a dedicated quick checkout shelf. Expected sales increase of 8% may generate an extra $3,000/mo.
+          </p>
+          <div class="employee-assign">
+            <label for="assign-task-1" style="font-size: 0.8rem; color: var(--gray-400);">Assign Employee:</label>
+            <select id="assign-task-1">
+              <option selected>Unassigned</option>
+              <option>Sara</option>
+              <option>John</option>
+              <option>Emily</option>
+              <option>Mark</option>
+            </select>
+          </div>
+          <div class="task-meta">
+            <span><i class="fas fa-exclamation-circle"></i> Priority: High</span>
+            <span><i class="fas fa-calendar"></i> Due: Today</span>
+          </div>
+        </div>
+        <!-- Task 2 -->
+        <div class="task-item medium">
+          <div class="task-header">
+            <h3>Reposition High-Demand Smartphones to Eye-Level on Shelf 2</h3>
+            <div class="task-actions">
+              <button title="Mark Complete"><i class="fas fa-check"></i></button>
+              <button title="Edit Task"><i class="fas fa-pen"></i></button>
+              <button title="Delete Task"><i class="fas fa-trash"></i></button>
+            </div>
+          </div>
+          <p style="font-size: 0.9rem; color: var(--secondary);">
+            Shift featured smartphones from a lower position to eye-level on shelf 2. This can improve visibility by 15% and boost revenue by approximately $5,000 per quarter.
+          </p>
+          <div class="employee-assign">
+            <label for="assign-task-2" style="font-size: 0.8rem; color: var(--gray-400);">Assign Employee:</label>
+            <select id="assign-task-2">
+              <option selected>Unassigned</option>
+              <option>Sara</option>
+              <option>John</option>
+              <option>Emily</option>
+              <option>Mark</option>
+            </select>
+          </div>
+          <div class="task-meta">
+            <span><i class="fas fa-exclamation-circle"></i> Priority: Medium</span>
+            <span><i class="fas fa-calendar"></i> Due: 03/01/2025</span>
+          </div>
+        </div>
+        <!-- Task 3 -->
+<div class="task-item high">
+  <div class="task-header">
+    <h3>Move Men's Classic Denim Jeans to Entrance Display</h3>
+    <div class="task-actions">
+      <button title="Mark Complete"><i class="fas fa-check"></i></button>
+      <button title="Edit Task"><i class="fas fa-pen"></i></button>
+      <button title="Delete Task"><i class="fas fa-trash"></i></button>
+    </div>
+  </div>
+  <p style="font-size: 0.9rem; color: var(--secondary);">
+    Relocate the Men's Classic Denim Jeans from the back section to a prime display at the entrance. This move is expected to enhance product visibility and drive an increase in impulse purchases by approximately 20%.
+  </p>
+  <div class="employee-assign">
+    <label for="assign-task-3" style="font-size: 0.8rem; color: var(--gray-400);">Assign Employee:</label>
+    <select id="assign-task-3">
+      <option selected>Unassigned</option>
+      <option>Sara</option>
+      <option>John</option>
+      <option>Emily</option>
+      <option>Mark</option>
+    </select>
+  </div>
+  <div class="task-meta">
+    <span><i class="fas fa-exclamation-circle"></i> Priority: High</span>
+    <span><i class="fas fa-calendar"></i> Due: 03/28/2025</span>
+  </div>
+</div>
+
+<!-- Task 4 -->
+<div class="task-item medium">
+  <div class="task-header">
+    <h3>Reposition Leather Wallet Collection to Aisle 3 Central Display</h3>
+    <div class="task-actions">
+      <button title="Mark Complete"><i class="fas fa-check"></i></button>
+      <button title="Edit Task"><i class="fas fa-pen"></i></button>
+      <button title="Delete Task"><i class="fas fa-trash"></i></button>
+    </div>
+  </div>
+  <p style="font-size: 0.9rem; color: var(--secondary);">
+    Shift the Leather Wallet Collection to a central display in Aisle 3, near interactive kiosks. This adjustment is projected to improve customer interaction with the product line and boost revenue by around 15%.
+  </p>
+  <div class="employee-assign">
+    <label for="assign-task-4" style="font-size: 0.8rem; color: var(--gray-400);">Assign Employee:</label>
+    <select id="assign-task-4">
+      <option selected>Unassigned</option>
+      <option>Sara</option>
+      <option>John</option>
+      <option>Emily</option>
+      <option>Mark</option>
+    </select>
+  </div>
+  <div class="task-meta">
+    <span><i class="fas fa-exclamation-circle"></i> Priority: Medium</span>
+    <span><i class="fas fa-calendar"></i> Due: 05/26/2025</span>
+  </div>
+</div>
+
+<!-- Task 5 -->
+<div class="task-item high">
+  <div class="task-header">
+    <h3>Revamp Seasonal Endcap with Swimsuits and Short Sleeves T-Shirts</h3>
+    <div class="task-actions">
+      <button title="Mark Complete"><i class="fas fa-check"></i></button>
+      <button title="Edit Task"><i class="fas fa-pen"></i></button>
+      <button title="Delete Task"><i class="fas fa-trash"></i></button>
+    </div>
+  </div>
+  <p style="font-size: 0.9rem; color: var(--secondary);">
+    Update the holiday endcap display by featuring summer swim attire. This seasonal refresh aims to capture summer shoppers’ interest and can increase seasonal sales by up to 30%. Trends this year point to pineapple print being a big win.
+  </p>
+  <div class="employee-assign">
+    <label for="assign-task-5" style="font-size: 0.8rem; color: var(--gray-400);">Assign Employee:</label>
+    <select id="assign-task-5">
+      <option selected>Unassigned</option>
+      <option>Sara</option>
+      <option>John</option>
+      <option>Emily</option>
+      <option>Mark</option>
+    </select>
+  </div>
+  <div class="task-meta">
+    <span><i class="fas fa-exclamation-circle"></i> Priority: High</span>
+    <span><i class="fas fa-calendar"></i> Due: 06/18/2025</span>
+  </div>
+</div>
+
+        <!-- Task 6 -->
+        <div class="task-item low">
+          <div class="task-header">
+            <h3>Consolidate Clearance Items to a Front-Facing Display</h3>
+            <div class="task-actions">
+              <button title="Mark Complete"><i class="fas fa-check"></i></button>
+              <button title="Edit Task"><i class="fas fa-pen"></i></button>
+              <button title="Delete Task"><i class="fas fa-trash"></i></button>
+            </div>
+          </div>
+          <p style="font-size: 0.9rem; color: var(--secondary);">
+            Gather clearance or slow-moving items into one well-lit, front-facing display to improve conversion by 10%, netting an extra $2,500 in monthly revenue.
+          </p>
+          <div class="employee-assign">
+            <label for="assign-task-3" style="font-size: 0.8rem; color: var(--gray-400);">Assign Employee:</label>
+            <select id="assign-task-3">
+              <option selected>Unassigned</option>
+              <option>Sara</option>
+              <option>John</option>
+              <option>Emily</option>
+              <option>Mark</option>
+            </select>
+          </div>
+          <div class="task-meta">
+            <span><i class="fas fa-exclamation-circle"></i> Priority: Low</span>
+            <span><i class="fas fa-calendar"></i> Due: 08/05/2025</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Store Layout Page -->
+    <section id="store-layout" class="page">
+      <div class="header">
+        <div>
+          <h1>Store Layout</h1>
+          <p>Manage and optimize your digital floor plan</p>
+        </div>
+        <div style="display: flex; gap: 1rem; align-items: center;">
+          <button class="edit-layout-btn"><i class="fas fa-edit"></i> Edit Layout</button>
+          <button class="edit-layout-btn" id="add-zone-btn"><i class="fas fa-plus"></i> Add Zone</button>
+          <button class="edit-layout-btn" id="ai-recommend-btn"><i class="fas fa-robot"></i> AI Recommendations</button>
+          <button class="edit-layout-btn" id="toggle-heatmap-btn"><i class="fas fa-fire"></i> Toggle Heatmap</button>
+        </div>
+      </div>
+      <div class="store-layout">
+        <div class="layout-base" id="layout-base">
+          <div class="layout-zone" data-zone="Electronics" style="top: 10%; left: 10%; width: 20%; height: 30%;">Electronics</div>
+          <div class="layout-zone" data-zone="Apparel" style="top: 10%; left: 35%; width: 25%; height: 30%;">Apparel</div>
+          <div class="layout-zone" data-zone="Home Goods" style="top: 45%; left: 10%; width: 30%; height: 25%;">Home Goods</div>
+          <div class="layout-zone" data-zone="Accessories" style="top: 45%; left: 45%; width: 20%; height: 25%;">Accessories</div>
+          <div class="layout-zone" data-zone="Checkout Area" style="top: 75%; left: 10%; width: 55%; height: 15%;">Checkout Area</div>
+        </div>
+        <div class="heatmap-overlay" id="heatmap-overlay" style="display:none;">
+          <canvas id="heatmap-canvas" width="800" height="600" style="width: 100%; height: 100%;"></canvas>
+        </div>
+      </div>
+      
+      <div class="stats-grid" id="zone-performance-grid">
+        <!-- Dynamic zone performance cards will be inserted here -->
+      </div>
+      
+      <!-- Zone Detail Sidebar with Shelf Count Controls -->
+      <div id="zone-detail-sidebar">
+        <h2 id="zone-name">Zone Details</h2>
+        <p id="zone-description">Description will appear here.</p>
+        <div id="zone-metrics">
+          <p><strong>Foot Traffic:</strong> <span id="zone-foot-traffic">N/A</span></p>
+          <p><strong>Conversion Rate:</strong> <span id="zone-conversion">N/A</span></p>
+          <p><strong>Sales:</strong> <span id="zone-sales">N/A</span></p>
+          <p><strong>Shelves:</strong> <span id="zone-shelves-display">N/A</span></p>
+        </div>
+        <label for="zone-shelves">Set Number of Shelves:</label>
+        <input type="number" id="zone-shelves" min="1" value="1">
+        <button id="save-shelf-btn">Save Shelves</button>
+        <div style="margin-top: 1rem; display: flex; gap: 1rem;">
+          <button id="delete-zone-btn" style="background: var(--danger); color: white; border: none; padding: 0.5rem 1rem; border-radius: 0.5rem; cursor: pointer;">Delete Zone</button>
+          <button id="close-zone-detail" style="background: var(--primary); color: white; border: none; padding: 0.5rem 1rem; border-radius: 0.5rem; cursor: pointer;">Close</button>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Inventory Page -->
+    <section id="inventory" class="page">
+      <div class="header">
+        <div>
+          <h1>Inventory</h1>
+          <p>Manage your items and track inventory performance</p>
+        </div>
+      </div>
+      <div class="inventory-controls">
+        <button id="edit-inventory-btn">Edit Inventory</button>
+        <button id="save-inventory-btn" style="display:none;">Save Inventory</button>
+      </div>
+      <div class="table-card">
+        <h2>Inventory List</h2>
+        <p style="color: var(--gray-400); font-size: 0.9rem;">30 Demo Items</p>
+        <div style="overflow-x: auto;">
+          <table id="inventory-table">
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Display</th>
+                <th>Shelf</th>
+                <th>Sales Price</th>
+                <th>Cost</th>
+                <th>Profit</th>
+                <th>Item Size (inches)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- 30 Demo Rows -->
+              <tr>
+                <td>Item 1</td>
+                <td>Electronics</td>
+                <td>1</td>
+                <td>$19.99</td>
+                <td>$10.00</td>
+                <td>$9.99</td>
+                <td>8</td>
+              </tr>
+              <tr>
+                <td>Item 2</td>
+                <td>Apparel</td>
+                <td>2</td>
+                <td>$29.99</td>
+                <td>$15.00</td>
+                <td>$14.99</td>
+                <td>10</td>
+              </tr>
+              <tr>
+                <td>Item 3</td>
+                <td>Home Goods</td>
+                <td>1</td>
+                <td>$39.99</td>
+                <td>$20.00</td>
+                <td>$19.99</td>
+                <td>12</td>
+              </tr>
+              <tr>
+                <td>Item 4</td>
+                <td>Accessories</td>
+                <td>3</td>
+                <td>$9.99</td>
+                <td>$5.00</td>
+                <td>$4.99</td>
+                <td>6</td>
+              </tr>
+              <tr>
+                <td>Item 5</td>
+                <td>Checkout Area</td>
+                <td>1</td>
+                <td>$49.99</td>
+                <td>$25.00</td>
+                <td>$24.99</td>
+                <td>14</td>
+              </tr>
+              <tr>
+                <td>Item 6</td>
+                <td>Electronics</td>
+                <td>2</td>
+                <td>$24.99</td>
+                <td>$12.00</td>
+                <td>$12.99</td>
+                <td>9</td>
+              </tr>
+              <tr>
+                <td>Item 7</td>
+                <td>Apparel</td>
+                <td>1</td>
+                <td>$34.99</td>
+                <td>$18.00</td>
+                <td>$16.99</td>
+                <td>11</td>
+              </tr>
+              <tr>
+                <td>Item 8</td>
+                <td>Home Goods</td>
+                <td>2</td>
+                <td>$44.99</td>
+                <td>$22.00</td>
+                <td>$22.99</td>
+                <td>13</td>
+              </tr>
+              <tr>
+                <td>Item 9</td>
+                <td>Accessories</td>
+                <td>1</td>
+                <td>$14.99</td>
+                <td>$7.50</td>
+                <td>$7.49</td>
+                <td>7</td>
+              </tr>
+              <tr>
+                <td>Item 10</td>
+                <td>Checkout Area</td>
+                <td>2</td>
+                <td>$54.99</td>
+                <td>$27.00</td>
+                <td>$27.99</td>
+                <td>15</td>
+              </tr>
+              <tr>
+                <td>Item 11</td>
+                <td>Electronics</td>
+                <td>1</td>
+                <td>$21.99</td>
+                <td>$11.00</td>
+                <td>$10.99</td>
+                <td>8</td>
+              </tr>
+              <tr>
+                <td>Item 12</td>
+                <td>Apparel</td>
+                <td>2</td>
+                <td>$31.99</td>
+                <td>$16.00</td>
+                <td>$15.99</td>
+                <td>10</td>
+              </tr>
+              <tr>
+                <td>Item 13</td>
+                <td>Home Goods</td>
+                <td>1</td>
+                <td>$41.99</td>
+                <td>$21.00</td>
+                <td>$20.99</td>
+                <td>12</td>
+              </tr>
+              <tr>
+                <td>Item 14</td>
+                <td>Accessories</td>
+                <td>3</td>
+                <td>$11.99</td>
+                <td>$6.00</td>
+                <td>$5.99</td>
+                <td>6</td>
+              </tr>
+              <tr>
+                <td>Item 15</td>
+                <td>Checkout Area</td>
+                <td>1</td>
+                <td>$51.99</td>
+                <td>$26.00</td>
+                <td>$25.99</td>
+                <td>14</td>
+              </tr>
+              <tr>
+                <td>Item 16</td>
+                <td>Electronics</td>
+                <td>2</td>
+                <td>$22.99</td>
+                <td>$11.50</td>
+                <td>$11.49</td>
+                <td>8</td>
+              </tr>
+              <tr>
+                <td>Item 17</td>
+                <td>Apparel</td>
+                <td>1</td>
+                <td>$32.99</td>
+                <td>$17.00</td>
+                <td>$15.99</td>
+                <td>10</td>
+              </tr>
+              <tr>
+                <td>Item 18</td>
+                <td>Home Goods</td>
+                <td>2</td>
+                <td>$42.99</td>
+                <td>$22.00</td>
+                <td>$20.99</td>
+                <td>12</td>
+              </tr>
+              <tr>
+                <td>Item 19</td>
+                <td>Accessories</td>
+                <td>1</td>
+                <td>$12.99</td>
+                <td>$6.50</td>
+                <td>$6.49</td>
+                <td>7</td>
+              </tr>
+              <tr>
+                <td>Item 20</td>
+                <td>Checkout Area</td>
+                <td>2</td>
+                <td>$56.99</td>
+                <td>$28.00</td>
+                <td>$28.99</td>
+                <td>15</td>
+              </tr>
+              <tr>
+                <td>Item 21</td>
+                <td>Electronics</td>
+                <td>1</td>
+                <td>$23.99</td>
+                <td>$12.00</td>
+                <td>$11.99</td>
+                <td>8</td>
+              </tr>
+              <tr>
+                <td>Item 22</td>
+                <td>Apparel</td>
+                <td>2</td>
+                <td>$33.99</td>
+                <td>$18.00</td>
+                <td>$15.99</td>
+                <td>10</td>
+              </tr>
+              <tr>
+                <td>Item 23</td>
+                <td>Home Goods</td>
+                <td>1</td>
+                <td>$43.99</td>
+                <td>$23.00</td>
+                <td>$20.99</td>
+                <td>12</td>
+              </tr>
+              <tr>
+                <td>Item 24</td>
+                <td>Accessories</td>
+                <td>3</td>
+                <td>$13.99</td>
+                <td>$7.00</td>
+                <td>$6.99</td>
+                <td>6</td>
+              </tr>
+              <tr>
+                <td>Item 25</td>
+                <td>Checkout Area</td>
+                <td>1</td>
+                <td>$57.99</td>
+                <td>$29.00</td>
+                <td>$28.99</td>
+                <td>15</td>
+              </tr>
+              <tr>
+                <td>Item 26</td>
+                <td>Electronics</td>
+                <td>2</td>
+                <td>$24.99</td>
+                <td>$12.50</td>
+                <td>$12.49</td>
+                <td>8</td>
+              </tr>
+              <tr>
+                <td>Item 27</td>
+                <td>Apparel</td>
+                <td>1</td>
+                <td>$34.99</td>
+                <td>$18.50</td>
+                <td>$16.49</td>
+                <td>10</td>
+              </tr>
+              <tr>
+                <td>Item 28</td>
+                <td>Home Goods</td>
+                <td>2</td>
+                <td>$44.99</td>
+                <td>$22.50</td>
+                <td>$22.49</td>
+                <td>12</td>
+              </tr>
+              <tr>
+                <td>Item 29</td>
+                <td>Accessories</td>
+                <td>1</td>
+                <td>$14.99</td>
+                <td>$7.50</td>
+                <td>$7.49</td>
+                <td>7</td>
+              </tr>
+              <tr>
+                <td>Item 30</td>
+                <td>Checkout Area</td>
+                <td>2</td>
+                <td>$59.99</td>
+                <td>$30.00</td>
+                <td>$29.99</td>
+                <td>15</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Analytics Page (Planogram Analytics) -->
+    <section id="analytics" class="page">
+      <div class="header">
+        <div>
+          <h1>Planogram Analytics</h1>
+          <p>Deep, actionable insights to optimize your in-store displays</p>
+        </div>
+        <select style="padding: 0.5rem; border-radius: 0.5rem; border: 1px solid var(--gray-200);">
+          <option>Today</option>
+          <option>Last 7 Days</option>
+          <option>Last 30 Days</option>
+          <option>Last 90 Days</option>
+        </select>
+      </div>
+      
+      <!-- Planogram Metrics Grid -->
+      <div class="analytics-grid">
+        <div class="stat-card">
+          <h3>Revenue per Display</h3>
+          <div class="stat-value">$1,250</div>
+          <div class="trend up">
+            <i class="fas fa-arrow-up"></i> 8% increase
+          </div>
+        </div>
+        <div class="stat-card">
+          <h3>Revenue per SqFt</h3>
+          <div class="stat-value">$85</div>
+          <div class="trend up">
+            <i class="fas fa-arrow-up"></i> 5% increase
+          </div>
+        </div>
+        <div class="stat-card">
+          <h3>Highest Performing Display</h3>
+          <div class="stat-value">Checkout Area</div>
+          <div class="trend up">
+            <i class="fas fa-arrow-up"></i> $3,500
+          </div>
+        </div>
+        <div class="stat-card">
+          <h3>Highest Performing Shelf</h3>
+          <div class="stat-value">Electronics - Shelf 2</div>
+          <div class="trend up">
+            <i class="fas fa-arrow-up"></i> $2,100
+          </div>
+        </div>
+        <div class="stat-card">
+          <h3>Foot Traffic per Display</h3>
+          <div class="stat-value">320</div>
+          <div class="trend up">
+            <i class="fas fa-arrow-up"></i> 10% increase
+          </div>
+        </div>
+        <div class="stat-card">
+          <h3>Conversion per Display</h3>
+          <div class="stat-value">4.8%</div>
+          <div class="trend down">
+            <i class="fas fa-arrow-down"></i> 1% decrease
+          </div>
+        </div>
+      </div>
+      
+      <!-- Updated Charts Section -->
+      <div class="charts-section">
+        <div class="chart-card">
+          <h2>Sales Trend by Display</h2>
+          <p style="color: var(--gray-400); font-size: 0.9rem;">
+            Compare sales performance across your displays over time.
+          </p>
+          <div class="chart-placeholder">
+            <svg class="sales-trend-chart" viewBox="0 0 500 300">
+              <rect x="40" y="140" width="40" height="160" fill="var(--primary)"></rect>
+              <rect x="120" y="110" width="40" height="190" fill="var(--primary)"></rect>
+              <rect x="200" y="170" width="40" height="130" fill="var(--primary)"></rect>
+              <rect x="280" y="90" width="40" height="210" fill="var(--primary)"></rect>
+              <rect x="360" y="150" width="40" height="150" fill="var(--primary)"></rect>
+            </svg>
+          </div>
+        </div>
+        <div class="table-card">
+          <h2>Top Performing Displays</h2>
+          <p style="color: var(--gray-400); font-size: 0.9rem;">Ranked by revenue per display</p>
+          <div style="overflow-x: auto;">
+            <table>
+              <thead>
+                <tr>
+                  <th>Display</th>
+                  <th>Revenue</th>
+                  <th>SQFT</th>
+                  <th>Revenue/SQFT</th>
+                  <th>Foot Traffic</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Checkout Area</td>
+                  <td>$3,500</td>
+                  <td>200</td>
+                  <td>$17.50</td>
+                  <td>450</td>
+                </tr>
+                <tr>
+                  <td>Electronics</td>
+                  <td>$2,800</td>
+                  <td>180</td>
+                  <td>$15.56</td>
+                  <td>380</td>
+                </tr>
+                <tr>
+                  <td>Apparel</td>
+                  <td>$2,100</td>
+                  <td>150</td>
+                  <td>$14.00</td>
+                  <td>320</td>
+                </tr>
+                <tr>
+                  <td>Home Goods</td>
+                  <td>$1,900</td>
+                  <td>160</td>
+                  <td>$11.88</td>
+                  <td>280</td>
+                </tr>
+                <tr>
+                  <td>Accessories</td>
+                  <td>$1,200</td>
+                  <td>100</td>
+                  <td>$12.00</td>
+                  <td>220</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Settings Page -->
+    <section id="settings" class="page">
+      <div class="header">
+        <div>
+          <h1>Settings</h1>
+          <p>Update your profile, manage integrations, billing, and more</p>
+        </div>
+      </div>
+      
+      <!-- Theme Settings Card -->
+      <div class="theme-settings settings-card">
+        <h2>Theme Settings</h2>
+        <label for="theme-mode">Select Theme</label>
+        <select id="theme-mode">
+          <option value="light" selected>Light</option>
+          <option value="dark">Dark</option>
+        </select>
+        <button id="update-theme">Apply Theme</button>
+      </div>
+      
+      <div class="settings-grid">
+        <div class="settings-card">
+          <h2>Account Settings</h2>
+          <label for="account-name">Name</label>
+          <input type="text" id="account-name" placeholder="Your Name" value="Sara">
+          <label for="account-email">Email</label>
+          <input type="email" id="account-email" placeholder="you@example.com" value="sara@example.com">
+          <label for="account-password">Password</label>
+          <input type="password" id="account-password" placeholder="••••••••">
+          <button>Update Account</button>
+        </div>
+        <div class="settings-card">
+          <h2>Integrations</h2>
+          <label for="pos-integration">POS System</label>
+          <select id="pos-integration">
+            <option selected>Clover</option>
+            <option>Square</option>
+            <option>Lightspeed</option>
+          </select>
+          <label for="iot-integration">Foot Traffic Sensors</label>
+          <select id="iot-integration">
+            <option selected>Dor</option>
+            <option>RetailNext</option>
+            <option>Other</option>
+          </select>
+          <label for="inventory-sync">Inventory Sync</label>
+          <select id="inventory-sync">
+            <option selected>Enabled</option>
+            <option>Disabled</option>
+          </select>
+          <button>Save Integrations</button>
+        </div>
+      </div>
+      
+      <!-- Billing Settings Card -->
+      <div class="billing-card">
+        <h2>Billing Settings</h2>
+        <label for="payment-method">Payment Method</label>
+        <input type="text" id="payment-method" placeholder="e.g., Visa **** 1234" value="Visa **** 1234">
+        <label for="billing-address">Billing Address</label>
+        <input type="text" id="billing-address" placeholder="Your Billing Address" value="123 Main St, Anytown, USA">
+        <label for="subscription-plan">Subscription Plan</label>
+        <select id="subscription-plan">
+          <option selected>Pro - $299/mo</option>
+          <option>Plus - $99/mo</option>
+          <option>Basic - $49/mo</option>
+        </select>
+        <button>Update Billing</button>
+      </div>
+      
+      <div class="settings-grid">
+        <div class="settings-card settings-full">
+          <h2>Notification Preferences</h2>
+          <label for="notif-email">Email Notifications</label>
+          <select id="notif-email">
+            <option selected>Enabled</option>
+            <option>Disabled</option>
+          </select>
+          <label for="notif-sms">SMS Notifications</label>
+          <select id="notif-sms">
+            <option>Enabled</option>
+            <option selected>Disabled</option>
+          </select>
+          <label for="notif-daily">Daily Summary</label>
+          <select id="notif-daily">
+            <option>Enabled</option>
+            <option selected>Disabled</option>
+          </select>
+          <button>Update Notifications</button>
+        </div>
+        <div class="settings-card settings-full">
+          <h2>Store Preferences</h2>
+          <label for="layout-mode">Default Layout Mode</label>
+          <select id="layout-mode">
+            <option selected>AI-Optimized</option>
+            <option>Manual</option>
+          </select>
+          <label for="report-frequency">Reporting Frequency</label>
+          <select id="report-frequency">
+            <option selected>Daily</option>
+            <option>Weekly</option>
+            <option>Monthly</option>
+          </select>
+          <label for="currency">Currency</label>
+          <select id="currency">
+            <option selected>USD</option>
+            <option>EUR</option>
+            <option>GBP</option>
+          </select>
+          <button>Save Preferences</button>
+        </div>
+      </div>
+    </section>
+    
+    <!-- New Sign Up Page -->
+    <section id="signup" class="page">
+      <div class="signup-card">
+        <h1>Join Shelf Shifter Today</h1>
+        <p>
+          Boost revenue by transforming your product layout strategy with AI-powered insights and seamless POS integrations.
+        </p>
+        <h2>Main Features</h2>
+        <ul>
+          <li><strong>Smart Shelf Placement:</strong> Optimize your product displays for maximum sales.</li>
+          <li><strong>Data Integration:</strong> Easily connect with leading POS systems.</li>
+          <li><strong>Real-Time Dashboard:</strong> Access specific and actionable insights at a glance.</li>
+          <li><strong>Risk-Free Trial:</strong> Enjoy a 14‑day free trial with no credit card required.</li>
+        </ul>
+        <button onclick="window.location.href='testindex.html#pricing'">Start Free Trial</button>
+      </div>
+    </section>
+  </main>
+  
+  <!-- AI Assistant Modal Popup -->
+  <div id="ai-modal-overlay">
+    <div id="ai-modal">
+      <button class="close-modal" id="close-ai-modal">&times;</button>
+      <h2>AI Assistant Chat</h2>
+      <div class="conversation" id="ai-conversation">
+        <p><strong>AI:</strong> Hi there! How can I help you optimize your store today?</p>
+      </div>
+      <div>
+        <input type="text" id="ai-input" placeholder="Type your message here...">
+        <button class="send-btn" id="ai-send">Send</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- JavaScript -->
+  <script>
+    // Global zone data for dummy performance metrics and details.
+    const zoneData = {
+      'Electronics': { description: 'High-tech gadgets and devices.', footTraffic: '1200', conversion: '5%', sales: '$8,000', shelves: 3 },
+      'Apparel': { description: 'Clothing and accessories.', footTraffic: '900', conversion: '7%', sales: '$6,500', shelves: 2 },
+      'Home Goods': { description: 'Furniture and decor.', footTraffic: '600', conversion: '4%', sales: '$4,200', shelves: 4 },
+      'Accessories': { description: 'Supplementary items and add-ons.', footTraffic: '400', conversion: '3%', sales: '$2,100', shelves: 1 },
+      'Checkout Area': { description: 'Impulse buys and last-minute offers.', footTraffic: '1500', conversion: '8%', sales: '$10,000', shelves: 1 }
+    };
+    
+    let currentZoneElement = null;
+    
+    // Navigation: Switch pages.
+    const navItems = document.querySelectorAll('.nav-item');
+    const pages = document.querySelectorAll('.page');
+    navItems.forEach(item => {
+      item.addEventListener('click', () => {
+        navItems.forEach(nav => nav.classList.remove('active'));
+        item.classList.add('active');
+        pages.forEach(page => page.style.display = 'none');
+        // If the nav item has a data-target attribute, show that page.
+        if (item.hasAttribute('data-target')) {
+          const targetId = item.getAttribute('data-target');
+          document.getElementById(targetId).style.display = 'block';
+        }
+      });
+    });
+    
+    // Theme Settings.
+    const updateThemeBtn = document.getElementById('update-theme');
+    updateThemeBtn.addEventListener('click', () => {
+      const themeSelect = document.getElementById('theme-mode');
+      if (themeSelect.value === 'dark') {
+        document.body.classList.add('dark-mode');
+      } else {
+        document.body.classList.remove('dark-mode');
+      }
+    });
+    
+    // DRAG & DROP FUNCTIONALITY.
+    function makeDraggable(element) {
+      let offsetX, offsetY, isDragging = false;
+      const container = document.getElementById('layout-base');
+      element.addEventListener('mousedown', (e) => {
+        e.stopPropagation();
+        isDragging = true;
+        const containerRect = container.getBoundingClientRect();
+        const elemRect = element.getBoundingClientRect();
+        offsetX = e.clientX - elemRect.left;
+        offsetY = e.clientY - elemRect.top;
+        element.classList.add('dragging');
+      });
+      document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        const containerRect = container.getBoundingClientRect();
+        let newLeft = e.clientX - containerRect.left - offsetX;
+        let newTop = e.clientY - containerRect.top - offsetY;
+        const elemRect = element.getBoundingClientRect();
+        const maxLeft = containerRect.width - elemRect.width;
+        const maxTop = containerRect.height - elemRect.height;
+        newLeft = Math.max(0, Math.min(newLeft, maxLeft));
+        newTop = Math.max(0, Math.min(newTop, maxTop));
+        const leftPercent = (newLeft / containerRect.width) * 100;
+        const topPercent = (newTop / containerRect.height) * 100;
+        element.style.left = leftPercent + '%';
+        element.style.top = topPercent + '%';
+      });
+      document.addEventListener('mouseup', () => {
+        if (isDragging) {
+          isDragging = false;
+          element.classList.remove('dragging');
+        }
+      });
+    }
+    
+    // RESIZING FUNCTIONALITY.
+    function makeResizable(element) {
+      let resizer = document.createElement('div');
+      resizer.className = 'resizer';
+      element.appendChild(resizer);
+      let originalWidth = 0, originalHeight = 0, originalMouseX = 0, originalMouseY = 0;
+      resizer.addEventListener('mousedown', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        originalWidth = parseFloat(window.getComputedStyle(element, null).getPropertyValue('width').replace('px',''));
+        originalHeight = parseFloat(window.getComputedStyle(element, null).getPropertyValue('height').replace('px',''));
+        originalMouseX = e.clientX;
+        originalMouseY = e.clientY;
+        document.addEventListener('mousemove', resize);
+        document.addEventListener('mouseup', stopResize);
+      });
+      function resize(e) {
+        let width = originalWidth + (e.clientX - originalMouseX);
+        let height = originalHeight + (e.clientY - originalMouseY);
+        width = Math.max(width, 50);
+        height = Math.max(height, 30);
+        const container = document.getElementById('layout-base');
+        const containerRect = container.getBoundingClientRect();
+        let widthPercent = (width / containerRect.width) * 100;
+        let heightPercent = (height / containerRect.height) * 100;
+        element.style.width = widthPercent + '%';
+        element.style.height = heightPercent + '%';
+      }
+      function stopResize() {
+        document.removeEventListener('mousemove', resize);
+        document.removeEventListener('mouseup', stopResize);
+      }
+    }
+    
+    // Enable drag & resize for each zone.
+    function enableZoneInteractions() {
+      const zones = document.querySelectorAll('.layout-zone');
+      zones.forEach(zone => {
+        if (!zone.dataset.draggableAttached) {
+          makeDraggable(zone);
+          zone.dataset.draggableAttached = true;
+        }
+        if (!zone.dataset.resizableAttached) {
+          makeResizable(zone);
+          zone.dataset.resizableAttached = true;
+        }
+      });
+    }
+    
+    enableZoneInteractions();
+    
+    // STORE LAYOUT INTERACTIONS.
+    function zoneClickHandler(event) {
+      event.stopPropagation();
+      currentZoneElement = event.currentTarget;
+      const zoneName = currentZoneElement.getAttribute('data-zone');
+      const data = zoneData[zoneName] || { description: 'No data available.', footTraffic: 'N/A', conversion: 'N/A', sales: 'N/A', shelves: 1 };
+      document.getElementById('zone-name').textContent = zoneName;
+      document.getElementById('zone-description').textContent = data.description;
+      document.getElementById('zone-foot-traffic').textContent = data.footTraffic;
+      document.getElementById('zone-conversion').textContent = data.conversion;
+      document.getElementById('zone-sales').textContent = data.sales;
+      document.getElementById('zone-shelves-display').textContent = data.shelves || 'N/A';
+      document.getElementById('zone-shelves').value = data.shelves || 1;
+      document.getElementById('zone-detail-sidebar').style.display = 'block';
+    }
+    
+    document.querySelectorAll('.layout-zone').forEach(zone => {
+      zone.addEventListener('click', zoneClickHandler);
+    });
+    
+    const deleteZoneBtn = document.getElementById('delete-zone-btn');
+    deleteZoneBtn.addEventListener('click', () => {
+      if (currentZoneElement) {
+        currentZoneElement.parentNode.removeChild(currentZoneElement);
+        document.getElementById('zone-detail-sidebar').style.display = 'none';
+        updateZonePerformanceGrid();
+      }
+    });
+    
+    const closeZoneDetailBtn = document.getElementById('close-zone-detail');
+    closeZoneDetailBtn.addEventListener('click', () => {
+      document.getElementById('zone-detail-sidebar').style.display = 'none';
+    });
+    
+    const aiRecommendBtn = document.getElementById('ai-recommend-btn');
+    aiRecommendBtn.addEventListener('click', () => {
+      alert('AI Recommendations Applied: Zones have been optimized based on sales and foot traffic data.');
+      document.querySelectorAll('.layout-zone').forEach(zone => {
+        zone.style.borderColor = 'var(--primary-dark)';
+      });
+    });
+    
+    function updateZonePerformanceGrid() {
+      const grid = document.getElementById('zone-performance-grid');
+      let html = '';
+      const zones = document.querySelectorAll('.layout-zone');
+      zones.forEach(zone => {
+        const zoneName = zone.getAttribute('data-zone');
+        const data = zoneData[zoneName] || { footTraffic: 'N/A', conversion: 'N/A', sales: 'N/A', shelves: 'N/A' };
+        html += `
+          <div class="stat-card">
+            <h3>${zoneName}</h3>
+            <div>Foot Traffic: ${data.footTraffic}</div>
+            <div>Conversion: ${data.conversion}</div>
+            <div>Sales: ${data.sales}</div>
+            <div>Shelves: ${data.shelves || 'N/A'}</div>
+          </div>
+        `;
+      });
+      grid.innerHTML = html;
+    }
+    
+    const addZoneBtn = document.getElementById('add-zone-btn');
+    addZoneBtn.addEventListener('click', () => {
+      const zoneName = prompt("Enter new zone name:");
+      if (zoneName) {
+        const layoutBase = document.getElementById('layout-base');
+        const newZone = document.createElement('div');
+        newZone.className = 'layout-zone';
+        newZone.setAttribute('data-zone', zoneName);
+        newZone.style.top = '50%';
+        newZone.style.left = '50%';
+        newZone.style.width = '20%';
+        newZone.style.height = '20%';
+        newZone.textContent = zoneName;
+        layoutBase.appendChild(newZone);
+        newZone.addEventListener('click', zoneClickHandler);
+        makeDraggable(newZone);
+        newZone.dataset.draggableAttached = true;
+        makeResizable(newZone);
+        newZone.dataset.resizableAttached = true;
+        zoneData[zoneName] = { shelves: 1 };
+        updateZonePerformanceGrid();
+      }
+    });
+    
+    // Shelf Count Saving.
+    document.getElementById('save-shelf-btn').addEventListener('click', function() {
+      if (currentZoneElement) {
+        const zoneName = currentZoneElement.getAttribute('data-zone');
+        const shelfCount = document.getElementById('zone-shelves').value;
+        if (!zoneData[zoneName]) {
+          zoneData[zoneName] = {};
+        }
+        zoneData[zoneName].shelves = shelfCount;
+        document.getElementById('zone-shelves-display').textContent = shelfCount;
+        alert("Shelf count saved for " + zoneName + ": " + shelfCount);
+        updateZonePerformanceGrid();
+      }
+    });
+    
+    // AI Assistant Modal Popup functionality.
+    const aiAssistantBtn = document.getElementById('ai-assistant-btn');
+    const aiModalOverlay = document.getElementById('ai-modal-overlay');
+    const closeAiModalBtn = document.getElementById('close-ai-modal');
+    const aiSendBtn = document.getElementById('ai-send');
+    const aiInput = document.getElementById('ai-input');
+    const aiConversation = document.getElementById('ai-conversation');
+    
+    aiAssistantBtn.addEventListener('click', () => {
+      aiModalOverlay.style.display = 'flex';
+      aiInput.focus();
+    });
+    
+    closeAiModalBtn.addEventListener('click', () => {
+      aiModalOverlay.style.display = 'none';
+    });
+    
+    aiSendBtn.addEventListener('click', sendAiMessage);
+    aiInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        sendAiMessage();
+      }
+    });
+    
+    function sendAiMessage() {
+      const message = aiInput.value.trim();
+      if (message !== '') {
+        aiConversation.innerHTML += `<p><strong>You:</strong> ${message}</p>`;
+        aiInput.value = '';
+        setTimeout(() => {
+          aiConversation.innerHTML += `<p><strong>AI:</strong> Thanks for your question. I recommend reviewing your display metrics for targeted improvements.</p>`;
+          aiConversation.scrollTop = aiConversation.scrollHeight;
+        }, 800);
+        aiConversation.scrollTop = aiConversation.scrollHeight;
+      }
+    }
+    
+    // Inventory Edit Functionality.
+    const editInventoryBtn = document.getElementById('edit-inventory-btn');
+    const saveInventoryBtn = document.getElementById('save-inventory-btn');
+    const inventoryTable = document.getElementById('inventory-table');
+    
+    editInventoryBtn.addEventListener('click', () => {
+      // Make all table cells editable.
+      inventoryTable.querySelectorAll('tbody td').forEach(td => {
+        td.setAttribute('contenteditable', 'true');
+        td.style.border = "1px dashed var(--primary)";
+      });
+      editInventoryBtn.style.display = 'none';
+      saveInventoryBtn.style.display = 'inline-block';
+    });
+    
+    saveInventoryBtn.addEventListener('click', () => {
+      // Remove editing attributes.
+      inventoryTable.querySelectorAll('tbody td').forEach(td => {
+        td.removeAttribute('contenteditable');
+        td.style.border = "none";
+      });
+      saveInventoryBtn.style.display = 'none';
+      editInventoryBtn.style.display = 'inline-block';
+      alert("Inventory changes have been saved.");
+    });
+  </script>
+</body>
+</html>
