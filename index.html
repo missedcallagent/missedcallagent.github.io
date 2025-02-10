@@ -228,21 +228,27 @@
          and a negative top margin so the faded top overlaps the hero container. */
       @media (max-width: 768px) {
         .hero {
+          position: relative;
           flex-direction: column; /* Stack hero content vertically on mobile */
         }
         .hero-text {
           width: 100%; /* Allow hero text to take full width on mobile */
           text-align: left; /* Keep text left-aligned */
+          position: relative;
+          z-index: 2;
         }
         .hero-subtext {
           display: none; /* Hide additional subtext on mobile for clarity */
         }
         .hero-image-container {
-          position: relative; /* Position image container normally */
+          position: absolute; /* Position image container normally */
+          top: 0;
           left: 0; /* Align image container to the left */
           width: 100%; /* Make the image container full width */
+          height: 100%;
+          z-index: 1;
           aspect-ratio: 9/16; /* Maintain a 9:16 aspect ratio for the container */
-          margin-top: 400px; /* Use negative margin to overlap the hero section */
+          margin-top: 0; /* Use negative margin to overlap the hero section */
         }
         .hero-image-container img {
           width: 100%; /* Full width image */
