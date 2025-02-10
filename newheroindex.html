@@ -180,48 +180,22 @@
       color: var(--text-dark);
       margin-bottom: 30px;
     }
-    /* Desktop: Image Container occupies right half with a fixed 16:9 aspect ratio */
-    @media (min-width: 769px) {
-      .hero-image-container {
-        position: absolute;
-        top: 50%;
-        right: 0;
-        width: 50%;
-        transform: translateY(-50%);
-        aspect-ratio: 16/9;
-        overflow: hidden;
-      }
-      .hero-image-container img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        /* Desktop gradient: left edge fades out */
-        -webkit-mask-image: linear-gradient(to right, transparent 0%, black 40%, black 100%);
-        mask-image: linear-gradient(to right, transparent 0%, black 40%, black 100%);
-      }
+    /* Desktop: Image Container occupies right half with left gradient mask */
+    .hero-image-container {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 50%;
+      overflow: hidden;
     }
-    /* Mobile: Hero text takes full width and image container uses 9:16 aspect ratio with a top fade-out */
-    @media (max-width: 768px) {
-      .hero {
-        flex-direction: column;
-      }
-      .hero-text {
-        width: 100%;
-        text-align: left;
-      }
-      .hero-image-container {
-        position: relative;
-        left: 0;
-        width: 100%;
-        aspect-ratio: 9/16;
-      }
-      .hero-image-container img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 40%, black 100%);
-        mask-image: linear-gradient(to bottom, transparent 0%, black 40%, black 100%);
-      }
+    .hero-image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      /* Desktop gradient: left edge fades out */
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 40%, black 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 40%, black 100%);
     }
     /* Features Section */
     .features {
