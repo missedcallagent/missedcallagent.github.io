@@ -1021,7 +1021,7 @@
       
       // Pricing Popup Logic for email signup modal
       let selectedPlan = "Basic"; // default plan
-      function openSignupPopup(plan) {
+      window.openSignupPopup = function(plan) {
         selectedPlan = plan;
         document.getElementById('plan').value = plan;
         document.getElementById('signup-modal').style.display = "flex";
