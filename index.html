@@ -932,7 +932,7 @@
       <!-- New Interactive Demo Button (centered) -->
       <div class="interactive-demo-container">
         <!-- Button to trigger the interactive demo view -->
-        <a href="#" id="tryDemoButton" class="btn btn-primary">Try Our Interactive Demo</a>
+        <a href="#" id="tryDemoButton" class="btn btn-primary try-demo-button">Try Our Interactive Demo</a>
       </div>
     </section>
     
@@ -1178,16 +1178,25 @@
         
         // Demo Button: Reveal the Demo iframe section when clicked
         document.querySelectorAll('.try-demo-button').forEach(function(button) {
-          button.addEventListener('click', function(e) {
-            e.preventDefault();
-            var demoContainer = document.getElementById('demo-container');
-            demoContainer.style.display = 'block'; // Make the demo container visible
-            setTimeout(function() {
-              demoContainer.style.opacity = 1; // Fade in the demo container
-            }, 10);
-            demoContainer.scrollIntoView({ behavior: 'smooth' }); // Scroll smoothly to the demo container
+            button.addEventListener('click', function(e) {
+              e.preventDefault();
+              
+              // Close the mobile navigation menu if it is open
+              var mobileNav = document.getElementById('mobile-nav');
+              if (mobileNav && mobileNav.classList.contains('active')) {
+                mobileNav.classList.remove('active');
+              }
+              
+              // Reveal the demo container and scroll to it
+              var demoContainer = document.getElementById('demo-container');
+              demoContainer.style.display = 'block'; // Make the demo container visible
+              setTimeout(function() {
+                demoContainer.style.opacity = 1; // Fade in the demo container
+              }, 10);
+              demoContainer.scrollIntoView({ behavior: 'smooth' });
+            });
           });
-        });
+
 
         
         // Optional "Try Interactive Demo" button event handler
