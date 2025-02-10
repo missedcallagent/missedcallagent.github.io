@@ -146,7 +146,7 @@
       background: var(--primary-accent);
       color: white;
     }
-    /* Updated Hero Section with GIFs */
+    /* Updated Hero Section with JPG Images */
     .hero {
       position: relative;
       display: flex;
@@ -160,6 +160,7 @@
       z-index: 2;
       flex: 1;
       padding: 20px;
+      text-align: left;
     }
     .hero-text .hero-kicker {
       font-size: 1rem;
@@ -177,20 +178,20 @@
       color: var(--text-dark);
       margin-bottom: 30px;
     }
-    /* GIF Container: Positioned on the right with a left fade-out */
-    .hero-video-container {
+    /* Desktop: Image Container occupies right half with left gradient mask */
+    .hero-image-container {
       position: absolute;
       top: 0;
       right: 0;
       bottom: 0;
-      left: 50%; /* Desktop: occupies right half */
+      left: 50%;
       overflow: hidden;
     }
-    .hero-video-container img {
+    .hero-image-container img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      /* Apply gradient mask: left side fades to transparency */
+      /* Desktop gradient: left edge fades out */
       -webkit-mask-image: linear-gradient(to right, transparent 0%, black 40%, black 100%);
       mask-image: linear-gradient(to right, transparent 0%, black 40%, black 100%);
     }
@@ -521,35 +522,27 @@
       .mobile-nav.active {
         display: flex;
       }
+      /* On mobile, stack hero content (column layout) and top-justify text */
       .hero {
         flex-direction: column;
       }
-      .hero-text h1 {
-        font-size: 2rem;
+      .hero-text {
+        text-align: left;
       }
-      .features-grid {
-        grid-template-columns: 1fr;
-      }
-      .pricing-card {
-        margin: 20px auto;
-      }
-      .carousel-track {
-        width: auto;
-        animation: none;
-        gap: 10px;
-        overflow-x: auto;
-      }
-      .plan-comparison table {
-        font-size: 0.8rem;
-      }
-      .pricing-cards {
-        flex-direction: column;
-      }
-      .hero-video-container {
+      /* Mobile: Image container fills width, placed below text, with top fade-out */
+      .hero-image-container {
         position: relative;
         left: 0;
         width: 100%;
-        height: 300px;
+        height: 300px; /* Fixed height for mobile image */
+      }
+      .hero-image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        /* Mobile gradient: top edge fades out */
+        -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 40%, black 100%);
+        mask-image: linear-gradient(to bottom, transparent 0%, black 40%, black 100%);
       }
     }
     @media (min-width: 769px) {
@@ -621,7 +614,7 @@
     </div>
   </header>
   
-  <!-- Updated Hero Section with GIFs -->
+  <!-- Updated Hero Section with JPG Images -->
   <section class="hero">
     <div class="container hero-content">
       <!-- Text Column -->
@@ -636,11 +629,11 @@
           <a href="#plan-comparison" class="btn btn-secondary cta-scroll">Compare Plans</a>
         </div>
       </div>
-      <!-- GIF Container: Using a picture element for desktop and mobile GIFs -->
-      <div class="hero-video-container">
+      <!-- Image Container using <picture> for desktop/mobile JPGs -->
+      <div class="hero-image-container">
         <picture>
-          <source media="(max-width: 768px)" srcset="Herovideo_mobile.gif">
-          <img src="Herovideo.gif" alt="Hero Animation">
+          <source media="(max-width: 768px)" srcset="Heroimage_mobile.jpg">
+          <img src="Heroimage.jpg" alt="Hero Image">
         </picture>
       </div>
     </div>
