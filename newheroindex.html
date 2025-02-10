@@ -981,11 +981,6 @@
     </div>
   </footer>
   
-  <!-- Return-to-Top Button -->
-  <button id="return-to-top" onclick="scrollToTop()">
-    <i class="fas fa-arrow-up"></i>
-  </button>
-  
   <!-- JavaScript -->
   <script>
     // Smooth scroll for CTA links
@@ -1062,14 +1057,15 @@
       });
     }
     window.addEventListener('scroll', function() {
+      const heroHeight = document.querySelector('.hero').offsetHeight; //Get hero height
       const button = document.getElementById('return-to-top');
       if (window.pageYOffset > heroHeight) {
-    button.style.display = 'block';
-    button.style.opacity = 1;
-  } else {
-    button.style.display = 'none';
-    button.style.opacity = 0;
-  }
+        button.style.display = 'block';
+        button.style.opacity = 1;
+      } else {
+        button.style.display = 'none';
+        button.style.opacity = 0;
+      }
     });
   </script>
 
