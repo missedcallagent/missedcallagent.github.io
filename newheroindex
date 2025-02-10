@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shelf Shifter – AI‑Powered Store Optimization</title>
+  
+  <style>
+    /* Color & Typography Variables */
+    :root {
+      --primary-accent: #FF7E5F;
+      --secondary-accent: #FEB47B;
+      --header-gradient: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent));
+      --background: #FFF8F0;
+      --text-dark: #333333;
+    }
+    /* Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: sans-serif;
+      background-color: var(--background);
+      color: var(--text-dark);
+    }
+    
+    /* Hero Section */
+    .hero {
+      position: relative;
+      display: flex;
+      align-items: center;
+      min-height: 100vh;
+      padding: 40px 15px;
+      overflow: hidden;
+    }
+    .hero-text {
+      position: relative;
+      z-index: 2;
+      flex: 1;
+      padding: 20px;
+    }
+    .hero-text .hero-kicker {
+      font-size: 1rem;
+      color: var(--primary-accent);
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+    .hero-text h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+    .hero-text p {
+      font-size: 1.125rem;
+      margin-bottom: 30px;
+    }
+    .cta-buttons {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background-color: var(--primary-accent);
+      color: white;
+      border: none;
+    }
+    .btn-primary:hover {
+      opacity: 0.9;
+    }
+    .btn-secondary {
+      background-color: transparent;
+      border: 2px solid var(--primary-accent);
+      color: var(--primary-accent);
+    }
+    .btn-secondary:hover {
+      background-color: var(--primary-accent);
+      color: white;
+    }
+    
+    /* Video Container: Positioned on the right with a left fade-out */
+    .hero-video-container {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 50%;  /* Occupies the right half */
+      overflow: hidden;
+    }
+    .hero-video-container video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      /* Apply a gradient mask so the left side fades out to transparency */
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 40%, black 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 40%, black 100%);
+    }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .hero {
+        flex-direction: column;
+        min-height: auto;
+      }
+      .hero-video-container {
+        position: relative;
+        left: 0;
+        width: 100%;
+        height: 300px; /* Fixed height on mobile */
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header (if needed) -->
+  <header>
+    <!-- Your header content here -->
+  </header>
+  
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-text">
+      <p class="hero-kicker">Trusted by 100+ Retailers</p>
+      <h1>Boost Your In‑Store Sales with AI‑Driven Shelf Optimization</h1>
+      <p>
+        Shelf Shifter harnesses your POS data to optimize product placement—turning every inch of your store into a revenue‑generating opportunity.
+      </p>
+      <div class="cta-buttons">
+        <a href="#" id="tryDemoButton" class="btn btn-primary">Try Demo</a>
+        <a href="#plan-comparison" class="btn btn-secondary">Compare Plans</a>
+      </div>
+    </div>
+    
+    <!-- Video playing on autoplay with a left-side gradient fade -->
+    <div class="hero-video-container">
+      <video autoplay loop muted playsinline>
+        <source src="Herovideo.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </section>
+  
+  <!-- Additional page content goes here -->
+  
+  <script>
+    // You can add your JavaScript here (e.g., smooth scrolling, CTA event handlers)
+  </script>
+</body>
+</html>
