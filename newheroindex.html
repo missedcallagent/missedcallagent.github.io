@@ -827,7 +827,7 @@
         </div>
       </div>
     </div>
-     <!-- New Interactive Demo Button (Centered) -->
+    <!-- New Interactive Demo Button (Centered) -->
     <div class="interactive-demo-container">
       <a href="#" id="tryDemoButton" class="btn btn-primary">Try Our Interactive Demo</a>
     </div>
@@ -983,98 +983,105 @@
   
   <!-- JavaScript -->
   <script>
-    // Smooth scroll for CTA links
-    document.querySelectorAll('.cta-scroll').forEach(function(link) {
-      link.addEventListener('click', function(e) {
+    document.addEventListener("DOMContentLoaded", function() {
+      // Smooth scroll for CTA links
+      document.querySelectorAll('.cta-scroll').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          var target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+          // Collapse mobile nav if open
+          var mobileNav = document.getElementById('mobile-nav');
+          if (mobileNav.classList.contains('active')) {
+            mobileNav.classList.remove('active');
+          }
+        });
+      });
+      
+      // Login link events
+      document.getElementById('login-link').addEventListener('click', function(e) {
         e.preventDefault();
-        var target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth' });
-        }
-        // Collapse mobile nav if open
+        setTimeout(function(){ window.location.href = 'login.html'; }, 500);
+      });
+      document.getElementById('mobile-login-link').addEventListener('click', function(e) {
+        e.preventDefault();
+        setTimeout(function(){ window.location.href = 'login.html'; }, 500);
+      });
+      
+      // Mobile menu toggle
+      document.getElementById('menu-toggle').addEventListener('click', function() {
         var mobileNav = document.getElementById('mobile-nav');
-        if (mobileNav.classList.contains('active')) {
-          mobileNav.classList.remove('active');
+        mobileNav.classList.toggle('active');
+      });
+      
+      // Pricing Popup Logic for email signup modal
+      let selectedPlan = "Basic"; // default plan
+      function openSignupPopup(plan) {
+        selectedPlan = plan;
+        document.getElementById('plan').value = plan;
+        document.getElementById('signup-modal').style.display = "flex";
+      }
+      document.getElementById('close-modal').addEventListener('click', function() {
+        document.getElementById('signup-modal').style.display = "none";
+      });
+      window.addEventListener('click', function(e) {
+        if (e.target === document.getElementById('signup-modal')) {
+          document.getElementById('signup-modal').style.display = "none";
         }
       });
-    });
-    
-    // Login link events
-    document.getElementById('login-link').addEventListener('click', function(e) {
-      e.preventDefault();
-      setTimeout(function(){ window.location.href = 'login.html'; }, 500);
-    });
-    document.getElementById('mobile-login-link').addEventListener('click', function(e) {
-      e.preventDefault();
-      setTimeout(function(){ window.location.href = 'login.html'; }, 500);
-    });
-    
-    // Mobile menu toggle
-    document.getElementById('menu-toggle').addEventListener('click', function() {
-      var mobileNav = document.getElementById('mobile-nav');
-      mobileNav.classList.toggle('active');
-    });
-    
-    // Pricing Popup Logic for email signup modal
-    let selectedPlan = "Basic"; // default plan
-    function openSignupPopup(plan) {
-      selectedPlan = plan;
-      document.getElementById('plan').value = plan;
-      document.getElementById('signup-modal').style.display = "flex";
-    }
-    document.getElementById('close-modal').addEventListener('click', function() {
-      document.getElementById('signup-modal').style.display = "none";
-    });
-    window.addEventListener('click', function(e) {
-      if (e.target === document.getElementById('signup-modal')) {
-        document.getElementById('signup-modal').style.display = "none";
-      }
-    });
-    
-    // Demo Button: Reveal the Demo iframe section
-    document.getElementById('tryDemoButton').addEventListener('click', function(e) {
-      e.preventDefault();
-      var demoContainer = document.getElementById('demo-container');
-      demoContainer.style.display = 'block';
-      setTimeout(function() {
-        demoContainer.style.opacity = 1;
-      }, 10);
-      demoContainer.scrollIntoView({ behavior: 'smooth' });
-    });
-    
-    // You can add an event for the "Try Interactive Demo" button if needed:
-    document.getElementById('tryInteractiveDemoButton').addEventListener('click', function(e) {
-      e.preventDefault();
-      // Insert your interactive demo logic here, for example:
-      alert("Interactive Demo coming soon!");
-    });
-    
-    // Return-to-Top functionality
-    function scrollToTop() {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
+      
+      // Demo Button: Reveal the Demo iframe section
+      document.getElementById('tryDemoButton').addEventListener('click', function(e) {
+        e.preventDefault();
+        var demoContainer = document.getElementById('demo-container');
+        demoContainer.style.display = 'block';
+        setTimeout(function() {
+          demoContainer.style.opacity = 1;
+        }, 10);
+        demoContainer.scrollIntoView({ behavior: 'smooth' });
       });
-    }
-    window.addEventListener('scroll', function() {
-      const heroHeight = document.querySelector('.hero').offsetHeight; //Get hero height
-      const button = document.getElementById('return-to-top');
-      if (window.pageYOffset > heroHeight) {
-        button.style.display = 'block';
-        button.style.opacity = 1;
-      } else {
-        button.style.display = 'none';
-        button.style.opacity = 0;
+      
+      // "Try Interactive Demo" button event (if needed)
+      if(document.getElementById('tryInteractiveDemoButton')){
+        document.getElementById('tryInteractiveDemoButton').addEventListener('click', function(e) {
+          e.preventDefault();
+          // Insert your interactive demo logic here
+          alert("Interactive Demo coming soon!");
+        });
       }
+      
+      // Return-to-Top functionality
+      function scrollToTop() {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }
+      window.addEventListener('scroll', function() {
+        const hero = document.querySelector('.hero');
+        if (!hero) return;
+        const heroHeight = hero.offsetHeight; // Get hero height
+        const button = document.getElementById('return-to-top');
+        if (window.pageYOffset > heroHeight) {
+          button.style.display = 'block';
+          button.style.opacity = 1;
+        } else {
+          button.style.display = 'none';
+          button.style.opacity = 0;
+        }
+      });
+      
+      // Attach scrollToTop to the button (if not using inline onclick)
+      document.getElementById('return-to-top').addEventListener('click', scrollToTop);
     });
   </script>
-
-
-  <!-- Return-to-Top Button -->
-<button id="return-to-top" onclick="scrollToTop()">
-  <i class="fas fa-arrow-up"></i>
-</button>
-
+  
+  <!-- Return-to-Top Button (only one instance) -->
+  <button id="return-to-top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
   
 </body>
 </html>
