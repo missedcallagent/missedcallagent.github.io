@@ -180,22 +180,51 @@
       color: var(--text-dark);
       margin-bottom: 30px;
     }
-    /* Desktop: Image Container occupies right half with left gradient mask */
-    .hero-image-container {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 50%;
-      overflow: hidden;
+    /* Desktop: Image Container occupies right half with left gradient mask.
+       The container now starts at 45% so its faded edge overlaps the hero container. */
+    @media (min-width: 769px) {
+      .hero-image-container {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 45%;
+        overflow: hidden;
+        /* Optional: force a 16:9 aspect ratio if needed:
+        aspect-ratio: 16/9; */
+      }
+      .hero-image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        -webkit-mask-image: linear-gradient(to right, transparent 0%, black 40%, black 100%);
+        mask-image: linear-gradient(to right, transparent 0%, black 40%, black 100%);
+      }
     }
-    .hero-image-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      /* Desktop gradient: left edge fades out */
-      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 40%, black 100%);
-      mask-image: linear-gradient(to right, transparent 0%, black 40%, black 100%);
+    /* Mobile: Hero text takes full width; image container below text uses 9:16 aspect ratio 
+       and a negative top margin so the faded top overlaps the hero container. */
+    @media (max-width: 768px) {
+      .hero {
+        flex-direction: column;
+      }
+      .hero-text {
+        width: 100%;
+        text-align: left;
+      }
+      .hero-image-container {
+        position: relative;
+        left: 0;
+        width: 100%;
+        aspect-ratio: 9/16;
+        margin-top: -30px;
+      }
+      .hero-image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 40%, black 100%);
+        mask-image: linear-gradient(to bottom, transparent 0%, black 40%, black 100%);
+      }
     }
     /* Features Section */
     .features {
@@ -391,6 +420,11 @@
     .signup-btn:hover {
       background: #e0664d;
     }
+    /* New Interactive Demo Button Container */
+    .interactive-demo-container {
+      text-align: center;
+      margin: 40px 0;
+    }
     /* Modal Popup for Email Signup */
     .modal-overlay {
       display: none;
@@ -538,6 +572,7 @@
         left: 0;
         width: 100%;
         aspect-ratio: 9/16;
+        margin-top: -30px;
       }
       .hero-image-container img {
         width: 100%;
@@ -627,7 +662,7 @@
           Shelf Shifter harnesses your POS data to optimize product placement—turning every inch of your store into a revenue‑generating opportunity.
         </p>
         <div class="cta-buttons">
-          <!-- <a href="#" id="tryDemoButton" class="btn btn-primary">Try Demo</a> -->
+          <!-- The primary Free Trial button -->
           <a href="#plan-selection" class="btn btn-primary cta-scroll">Free Trial</a>
         </div>
       </div>
@@ -793,6 +828,11 @@
       </div>
     </div>
   </section>
+  
+  <!-- New Interactive Demo Button (Centered) -->
+  <div class="interactive-demo-container">
+    <a href="#" id="tryInteractiveDemoButton" class="btn btn-primary">Try Interactive Demo</a>
+  </div>
   
   <!-- Plan Comparison Chart Section -->
   <section id="plan-comparison" class="plan-comparison">
@@ -1006,6 +1046,13 @@
         demoContainer.style.opacity = 1;
       }, 10);
       demoContainer.scrollIntoView({ behavior: 'smooth' });
+    });
+    
+    // You can add an event for the "Try Interactive Demo" button if needed:
+    document.getElementById('tryInteractiveDemoButton').addEventListener('click', function(e) {
+      e.preventDefault();
+      // Insert your interactive demo logic here, for example:
+      alert("Interactive Demo coming soon!");
     });
     
     // Return-to-Top functionality
