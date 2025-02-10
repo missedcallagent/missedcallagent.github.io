@@ -4,31 +4,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <!-- SEO Improvements -->
+  <!-- SEO & Social Meta Tags -->
   <meta name="description" content="Shelf Shifter: AI-powered store optimization tool that helps retailers maximize sales through intelligent product placement and analytics">
   <meta name="keywords" content="retail, AI, store optimization, merchandising, sales analytics">
-  
-  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.shelfshifter.com/">
-  <meta property="og:title" content="Shelf Shifter – AI-Powered Store Optimization">
+  <meta property="og:title" content="Shelf Shifter – AI‑Powered Store Optimization">
   <meta property="og:description" content="Revolutionize your store layout with AI-driven product placement insights">
   <meta property="og:image" content="https://www.shelfshifter.com/og-image.png">
-
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://www.shelfshifter.com/">
-  <meta name="twitter:title" content="Shelf Shifter – AI-Powered Store Optimization">
+  <meta name="twitter:title" content="Shelf Shifter – AI‑Powered Store Optimization">
   <meta name="twitter:description" content="Revolutionize your store layout with AI-driven product placement insights">
   <meta name="twitter:image" content="https://www.shelfshifter.com/twitter-image.png">
-
+  
   <title>Shelf Shifter – AI‑Powered Store Optimization</title>
   
-  <!-- Performance Optimization -->
+  <!-- Preload & Styles -->
   <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" as="style">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-  
-  <!-- Favicon -->
   <link rel="icon" type="image/png" href="/favicon.png">
   
   <style>
@@ -123,7 +117,8 @@
       display: flex;
       gap: 20px;
       flex-wrap: wrap;
-      justify-content: center;
+      /* Left justify the CTA buttons */
+      justify-content: flex-start;
     }
     .btn {
       display: inline-flex;
@@ -152,28 +147,87 @@
       background: var(--primary-accent);
       color: white;
     }
-    /* Hero Section */
+    /* Updated Hero Section with JPG Images */
     .hero {
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 20px 15px;
-      text-align: center;
+      position: relative;
+      display: flex;
+      align-items: center;
+      min-height: 100vh;
+      padding: 40px 15px;
+      overflow: hidden;
     }
-    .hero h1 {
+    /* Restrict text container to the left half on desktop */
+    .hero-text {
+      position: relative;
+      z-index: 2;
+      width: 50%;
+      padding: 20px;
+      text-align: left;
+    }
+    .hero-text .hero-kicker {
+      font-size: 1rem;
+      color: var(--primary-accent);
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+    .hero-text h1 {
       font-size: 2.5rem;
       margin-bottom: 20px;
       color: var(--text-dark);
     }
-    .hero p {
+    .hero-text p {
       font-size: 1.125rem;
       color: var(--text-dark);
       margin-bottom: 30px;
     }
-    .hero-video {
-      margin: 20px auto;
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
+    /* Desktop: Image Container occupies right half with left gradient mask.
+       The container now starts at 45% so its faded edge overlaps the hero container. */
+    @media (min-width: 769px) {
+      .hero-image-container {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 45%;
+        overflow: hidden;
+        /* Optional: force a 16:9 aspect ratio if needed:
+        aspect-ratio: 16/9; */
+      }
+      .hero-image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        -webkit-mask-image: linear-gradient(to right, transparent 0%, black 40%, black 100%);
+        mask-image: linear-gradient(to right, transparent 0%, black 40%, black 100%);
+      }
+    }
+    /* Mobile: Hero text takes full width; image container below text uses 9:16 aspect ratio 
+       and a negative top margin so the faded top overlaps the hero container. */
+    @media (max-width: 768px) {
+      .hero {
+        flex-direction: column;
+      }
+      .hero-text {
+        width: 100%;
+        text-align: left;
+      }
+      .hero-subtext {
+        display: none;
+      }
+      .hero-image-container {
+        position: relative;
+        left: 0;
+        width: 100%;
+        aspect-ratio: 9/16;
+        margin-top: -400px;
+      }
+      .hero-image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 40%, black 100%);
+        mask-image: linear-gradient(to bottom, transparent 0%, black 40%, black 100%);
+      }
     }
     /* Features Section */
     .features {
@@ -252,6 +306,11 @@
       100% { transform: translateX(-2380px); }
     }
     /* Plan Comparison Chart Section */
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
     .plan-comparison {
       padding: 60px 15px;
       background-color: var(--background);
@@ -295,7 +354,17 @@
       color: #ef4444;
       font-size: 1.2rem;
     }
-    /* Pricing Section (Plan Selection Popup) */
+    .plan-comparison button.signup-btn {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    /* Pricing Section */
     .pricing {
       background-color: var(--light-gray);
       padding: 80px 0;
@@ -306,7 +375,6 @@
       color: var(--primary-accent);
       font-size: 2rem;
     }
-    /* Centering and Uniform Sizing for Pricing Cards */
     .pricing-cards {
       display: flex;
       flex-wrap: wrap;
@@ -317,7 +385,7 @@
     .pricing-card {
       flex: 1 1 300px;
       max-width: 300px;
-      min-height: 400px; /* Adjust this value as needed */
+      min-height: 400px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.05);
       border-radius: 12px;
       background: white;
@@ -353,20 +421,14 @@
       transition: background 0.3s ease;
     }
     .signup-btn:hover {
-      background: var(--primary-dark);
+      background: #e0664d;
     }
-    /* Ensure Plan Comparison Buttons are Consistent */
-    .plan-comparison button.signup-btn {
-      width: 100%;
-      box-sizing: border-box;
-      padding: 0.75rem 1.5rem;
-      font-size: 1rem;
-      border: none;
-      border-radius: 0.5rem;
-      cursor: pointer;
-      transition: background 0.3s ease;
+    /* New Interactive Demo Button Container */
+    .interactive-demo-container {
+      text-align: center;
+      margin: 40px 0;
     }
-    /* Popup Modal for Email Signup */
+    /* Modal Popup for Email Signup */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -404,7 +466,6 @@
       cursor: pointer;
       color: var(--text-dark);
     }
-    /* Updated Form Styles */
     .form-input {
       width: 100%;
       padding: 0.75rem;
@@ -420,7 +481,7 @@
     .form-group {
       margin-bottom: 1rem;
     }
-    /* Sign Up Page (Dedicated) */
+    /* Sign Up Page */
     .signup-content {
       text-align: center;
       padding: 3rem 1rem;
@@ -459,7 +520,7 @@
       transition: background 0.3s ease;
     }
     .signup-btn-dedicated:hover {
-      background: var(--primary-dark);
+      background: #e0664d;
     }
     /* Footer */
     footer {
@@ -500,26 +561,28 @@
       .mobile-nav.active {
         display: flex;
       }
-      .hero h1 {
-        font-size: 2rem;
-      }
-      .features-grid {
-        grid-template-columns: 1fr;
-      }
-      .pricing-card {
-        margin: 20px auto;
-      }
-      .carousel-track {
-        width: auto;
-        animation: none;
-        gap: 10px;
-        overflow-x: auto;
-      }
-      .plan-comparison table {
-        font-size: 0.8rem;
-      }
-      .pricing-cards {
+      /* On mobile, stack hero content and set text container to full width */
+      .hero {
         flex-direction: column;
+      }
+      .hero-text {
+        width: 100%;
+        text-align: left;
+      }
+      /* Mobile: Image container fills width below text with top fade-out and 9:16 aspect ratio */
+      .hero-image-container {
+        position: relative;
+        left: 0;
+        width: 100%;
+        aspect-ratio: 9/16;
+        margin-top: -30px;
+      }
+      .hero-image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 40%, black 100%);
+        mask-image: linear-gradient(to bottom, transparent 0%, black 40%, black 100%);
       }
     }
     @media (min-width: 769px) {
@@ -527,12 +590,46 @@
         display: none !important;
       }
     }
+    /* Demo Container Styles */
+    #demo-container {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      padding: 40px 15px;
+      background-color: var(--background);
+    }
+    #demo-container iframe {
+      width: 100%;
+      height: 600px;
+      border: none;
+      border-radius: 8px;
+    }
+    /* Return-to-Top Button Styles */
+    #return-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: var(--primary-accent);
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 1000;
+      font-size: 1.25rem;
+      display: none; /* Hidden by Default */
+    }
+    #return-to-top:hover {
+      opacity: 1;
+    }
   </style>
 </head>
 <body>
-  <!-- Hidden iframe for form submission -->
+  <!-- Hidden iframe for form submission on the website sign-up form -->
   <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
-
+  
   <!-- Header -->
   <header>
     <div class="logo">
@@ -556,22 +653,32 @@
       <a href="#" id="mobile-login-link">Log In</a>
     </div>
   </header>
-
-  <!-- Hero Section -->
+  
+  <!-- Updated Hero Section with JPG Images -->
   <section class="hero">
-    <div class="container">
-      <h1>Revolutionize Your Store Layout with AI</h1>
-      <p>
-        Boost your store’s sales with smart product placement. Shelf Shifter uses your POS data to fine‑tune your shelf layout and merchandising—just like retail giants—to help you make every inch count.
-      </p>
-      <div class="cta-buttons">
-        <a href="#plan-comparison" class="btn btn-primary cta-scroll">View Plans</a>
+    <div class="container hero-content">
+      <!-- Text Column -->
+      <div class="hero-text">
+        <p class="hero-kicker">Trusted by 100+ Retailers</p>
+        <h1>Boost In‑Store Sales with AI‑Driven Shelf Optimization</h1>
+        <p class="hero-subtext">
+          Harness your POS data to optimize product placement and turn every inch into a revenue‑generator.
+        </p>
+        <div class="cta-buttons">
+          <!-- The primary Free Trial button -->
+          <a href="#plan-selection" class="btn btn-primary cta-scroll">Free Trial</a>
+        </div>
       </div>
-      <!-- Video/GIF Placeholder (responsive) -->
-      <img src="ShelfShifterDemo.gif" alt="Product Demo" class="hero-video">
+      <!-- Image Container using <picture> for desktop/mobile JPGs -->
+      <div class="hero-image-container">
+        <picture>
+          <source media="(max-width: 768px)" srcset="Heroimage_mobile.jpg">
+          <img src="heroimage.jpg" alt="Hero Image">
+        </picture>
+      </div>
     </div>
   </section>
-
+  
   <!-- Features Section -->
   <section id="features" class="features">
     <div class="container">
@@ -607,13 +714,12 @@
       </div>
     </div>
   </section>
-
+  
   <!-- Social Proof Carousel -->
   <section class="social-proof">
     <div class="container">
       <h2 class="social-proof-header">What Clients Say</h2>
       <div class="carousel-track">
-        <!-- 10 Unique Testimonials -->
         <div class="carousel-item">
           <p>"Shelf Shifter completely transformed my store layout and boosted my sales!"</p>
           <span>- Emily R.</span>
@@ -654,7 +760,7 @@
           <p>"A game changer for managing store layout and increasing efficiency."</p>
           <span>- Robert S.</span>
         </div>
-        <!-- Duplicate for seamless loop -->
+        <!-- Duplicate items for seamless loop -->
         <div class="carousel-item">
           <p>"Shelf Shifter completely transformed my store layout and boosted my sales!"</p>
           <span>- Emily R.</span>
@@ -698,8 +804,8 @@
       </div>
     </div>
   </section>
-
-  <!-- Pricing Section (Plan Selection with Popup Email Form) -->
+  
+  <!-- Pricing Section (Plan Selection) -->
   <section id="plan-selection" class="pricing">
     <div class="container">
       <h2>Choose Your Plan</h2>
@@ -719,109 +825,122 @@
         <div class="pricing-card">
           <h3>Pro</h3>
           <p class="price">$299<span style="font-size: 1rem; font-weight: normal;">/mo</span></p>
-          <p>Unlimited Locations<br>Advanced AI + Full Predictive Analytics<br>Custom Branding & White-labeling</p>
+          <p>Unlimited Locations<br>Advanced AI + Full Predictive Analytics<br>Custom Branding &amp; White-labeling</p>
           <button class="signup-btn" onclick="openSignupPopup('Pro')">Select Pro</button>
         </div>
       </div>
     </div>
+    <h5 style="padding-top: 10px;">14 Day Free Trial - No Credit Card Required</h5>
+    <!-- New Interactive Demo Button (Centered) -->
+    <div class="interactive-demo-container">
+      <a href="#" id="tryDemoButton" class="btn btn-primary">Try Our Interactive Demo</a>
+    </div>
   </section>
-
+  
   <!-- Plan Comparison Chart Section -->
   <section id="plan-comparison" class="plan-comparison">
     <h2>Compare Our Plans</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Feature</th>
-          <th>Basic</th>
-          <th>Plus</th>
-          <th>Pro</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="feature">Price</td>
-          <td>$49/month</td>
-          <td>$99/month</td>
-          <td>$299/month</td>
-        </tr>
-        <tr>
-          <td class="feature">Number of Locations</td>
-          <td>1</td>
-          <td>Up to 3</td>
-          <td>Unlimited</td>
-        </tr>
-        <tr>
-          <td class="feature">Store Layout Management</td>
-          <td>Manual drag‑and‑drop<br>Single layout</td>
-          <td>Manual drag‑and‑drop<br>Multi‑Location layout</td>
-          <td>Advanced layouts &amp; AI‑powered<br>Unlimited layout builder</td>
-        </tr>
-        <tr>
-          <td class="feature">Task &amp; Checklist Management</td>
-          <td><span class="checkmark">&#10003;</span></td>
-          <td><span class="checkmark">&#10003;</span></td>
-          <td><span class="checkmark">&#10003;</span></td>
-        </tr>
-        <tr>
-          <td class="feature">Analytics</td>
-          <td>Basic</td>
-          <td>Enhanced AI<br>Limited Predictive Analytics</td>
-          <td>Advanced AI<br>Full Predictive Analytics</td>
-        </tr>
-        <tr>
-          <td class="feature">Inventory Management</td>
-          <td>Single-location inventory</td>
-          <td>Comprehensive multi‑location inventory</td>
-          <td>Comprehensive multi‑location inventory</td>
-        </tr>
-        <tr>
-          <td class="feature">POS Integration Support</td>
-          <td><span class="checkmark">&#10003;</span></td>
-          <td><span class="checkmark">&#10003;</span></td>
-          <td><span class="checkmark">&#10003;</span></td>
-        </tr>
-        <tr>
-          <td class="feature">User &amp; Account Management</td>
-          <td>Single‑user</td>
-          <td>Multi‑user (up to 5 users)</td>
-          <td>Advanced role‑based access</td>
-        </tr>
-        <tr>
-          <td class="feature">Data Exporting</td>
-          <td>Basic export (PDF/CSV)</td>
-          <td>Scheduled reports &amp; export</td>
-          <td>Custom reports &amp; API export</td>
-        </tr>
-        <tr>
-          <td class="feature">Custom Branding / White‑Labeling</td>
-          <td class="dash">&#8212;</td>
-          <td class="dash">&#8212;</td>
-          <td><span class="checkmark">&#10003;</span></td>
-        </tr>
-        <tr>
-          <td class="feature">AI Usage</td>
-          <td>Basic Limited AI queries</td>
-          <td>Limited AI queries</td>
-          <td>Unlimited AI queries</td>
-        </tr>
-        <tr>
-          <td class="feature">Security &amp; Compliance</td>
-          <td><span class="checkmark">&#10003;</span></td>
-          <td><span class="checkmark">&#10003;</span></td>
-          <td><span class="checkmark">&#10003;</span></td>
-        </tr>
-        <!-- New Bottom Row with Signup Buttons -->
-        <tr>
-          <td></td>
-          <td><button class="signup-btn" onclick="openSignupPopup('Basic')">Select Basic</button></td>
-          <td><button class="signup-btn" onclick="openSignupPopup('Plus')">Select Plus</button></td>
-          <td><button class="signup-btn" onclick="openSignupPopup('Pro')">Select Pro</button></td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Basic</th>
+            <th>Plus</th>
+            <th>Pro</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="feature">Price</td>
+            <td>$49/month</td>
+            <td>$99/month</td>
+            <td>$299/month</td>
+          </tr>
+          <tr>
+            <td class="feature">Number of Locations</td>
+            <td>1</td>
+            <td>Up to 3</td>
+            <td>Unlimited</td>
+          </tr>
+          <tr>
+            <td class="feature">Store Layout Management</td>
+            <td>Manual drag‑and‑drop<br>Single layout</td>
+            <td>Manual drag‑and‑drop<br>Multi‑Location layout</td>
+            <td>Advanced layouts &amp; AI‑powered<br>Unlimited layout builder</td>
+          </tr>
+          <tr>
+            <td class="feature">Task &amp; Checklist Management</td>
+            <td><span class="checkmark">&#10003;</span></td>
+            <td><span class="checkmark">&#10003;</span></td>
+            <td><span class="checkmark">&#10003;</span></td>
+          </tr>
+          <tr>
+            <td class="feature">Analytics</td>
+            <td>Basic</td>
+            <td>Enhanced AI<br>Limited Predictive Analytics</td>
+            <td>Advanced AI<br>Full Predictive Analytics</td>
+          </tr>
+          <tr>
+            <td class="feature">Inventory Management</td>
+            <td>Single-location inventory</td>
+            <td>Comprehensive multi‑location inventory</td>
+            <td>Comprehensive multi‑location inventory</td>
+          </tr>
+          <tr>
+            <td class="feature">POS Integration Support</td>
+            <td><span class="checkmark">&#10003;</span></td>
+            <td><span class="checkmark">&#10003;</span></td>
+            <td><span class="checkmark">&#10003;</span></td>
+          </tr>
+          <tr>
+            <td class="feature">User &amp; Account Management</td>
+            <td>Single‑user</td>
+            <td>Multi‑user (up to 5 users)</td>
+            <td>Advanced role‑based access</td>
+          </tr>
+          <tr>
+            <td class="feature">Data Exporting</td>
+            <td>Basic export (PDF/CSV)</td>
+            <td>Scheduled reports &amp; export</td>
+            <td>Custom reports &amp; API export</td>
+          </tr>
+          <tr>
+            <td class="feature">Custom Branding / White‑Labeling</td>
+            <td class="dash">&#8212;</td>
+            <td class="dash">&#8212;</td>
+            <td><span class="checkmark">&#10003;</span></td>
+          </tr>
+          <tr>
+            <td class="feature">AI Usage</td>
+            <td>Basic Limited AI queries</td>
+            <td>Limited AI queries</td>
+            <td>Unlimited AI queries</td>
+          </tr>
+          <tr>
+            <td class="feature">Security &amp; Compliance</td>
+            <td><span class="checkmark">&#10003;</span></td>
+            <td><span class="checkmark">&#10003;</span></td>
+            <td><span class="checkmark">&#10003;</span></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><button class="signup-btn" onclick="openSignupPopup('Basic Compare')">Select Basic</button></td>
+            <td><button class="signup-btn" onclick="openSignupPopup('Plus Compare')">Select Plus</button></td>
+            <td><button class="signup-btn" onclick="openSignupPopup('Pro Compare')">Select Pro</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </section>
-
+  
+  <!-- Demo Section -->
+  <div id="demo-container" class="container">
+    <h2 style="text-align:center; margin-bottom: 20px;">Try the Shelf Shifter Demo</h2>
+    <iframe src="iframedemo.html" title="Shelf Shifter Demo"></iframe>
+    <a href="#plan-selection" class="btn btn-primary cta-scroll">Start Free Trial</a>
+  </div>
+  
   <!-- Popup Modal for Email Signup -->
   <div class="modal-overlay" id="signup-modal">
     <div class="modal">
@@ -829,23 +948,22 @@
       <h2>Start Your 14-Day Free Trial</h2>
       <form
         id="signupForm"
-          method="POST"
-          action="https://script.google.com/macros/s/AKfycbwfICumV-Q3h2IXQ4V7P1w8RN-daeNiH3r95a3nRGUUL6jNAIsoAf-ZPBt4DjluQl8LxQ/exec"
-          target="hidden_iframe"
-          onsubmit="
-              if (typeof gtag !== 'undefined') {
-                gtag('event','Form_Submission',{event_category:'Lead',event_label:'Early Access'});
-              }
-              if (typeof fbq !== 'undefined') {
-                fbq('track','CompleteRegistration');
-              }
-              document.getElementById('timestamp').value = new Date().toISOString();
-              setTimeout(function() { window.location.href = 'signupconfirmed.html'; }, 500);
-              submitted = true;">
+        method="POST"
+        action="https://script.google.com/macros/s/AKfycbwfICumV-Q3h2IXQ4V7P1w8RN-daeNiH3r95a3nRGUUL6jNAIsoAf-ZPBt4DjluQl8LxQ/exec"
+        target="hidden_iframe"
+        onsubmit="
+          if (typeof gtag !== 'undefined') {
+            gtag('event','Form_Submission',{event_category:'Lead',event_label:'Early Access'});
+          }
+          if (typeof fbq !== 'undefined') {
+            fbq('track','CompleteRegistration');
+          }
+          document.getElementById('timestamp').value = new Date().toISOString();
+          setTimeout(function() { window.location.href = 'signupconfirmed.html'; }, 500);
+          submitted = true;">
         <div class="form-group">
           <input type="email" class="form-input" name="Email" placeholder="Email*" required>
         </div>
-        <!-- Hidden input to capture the selected plan -->
         <input type="hidden" name="Plan" id="plan" value="">
         <input type="hidden" id="timestamp" name="Timestamp">
         <button type="submit" class="btn btn-primary">
@@ -854,7 +972,7 @@
       </form>
     </div>
   </div>
-
+  
   <!-- Footer -->
   <footer id="contact">
     <div class="container">
@@ -866,59 +984,108 @@
       </p>
     </div>
   </footer>
-
+  
   <!-- JavaScript -->
   <script>
-    // Smooth scroll for CTA links (features, plans, sign up)
-    document.querySelectorAll('.cta-scroll').forEach(function(link) {
-      link.addEventListener('click', function(e) {
+    document.addEventListener("DOMContentLoaded", function() {
+      // Smooth scroll for CTA links
+      document.querySelectorAll('.cta-scroll').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          var target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+          // Collapse mobile nav if open
+          var mobileNav = document.getElementById('mobile-nav');
+          if (mobileNav.classList.contains('active')) {
+            mobileNav.classList.remove('active');
+          }
+        });
+      });
+      
+      // Login link events
+      document.getElementById('login-link').addEventListener('click', function(e) {
         e.preventDefault();
-        var target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth' });
-        }
-        // Collapse mobile nav if it's open
+        setTimeout(function(){ window.location.href = 'login.html'; }, 500);
+      });
+      document.getElementById('mobile-login-link').addEventListener('click', function(e) {
+        e.preventDefault();
+        setTimeout(function(){ window.location.href = 'login.html'; }, 500);
+      });
+      
+      // Mobile menu toggle
+      document.getElementById('menu-toggle').addEventListener('click', function() {
         var mobileNav = document.getElementById('mobile-nav');
-        if (mobileNav.classList.contains('active')) {
-          mobileNav.classList.remove('active');
+        mobileNav.classList.toggle('active');
+      });
+      
+      // Pricing Popup Logic for email signup modal
+      let selectedPlan = "Basic"; // default plan
+      window.openSignupPopup = function(plan) {
+        selectedPlan = plan;
+        document.getElementById('plan').value = plan;
+        document.getElementById('signup-modal').style.display = "flex";
+      }
+      document.getElementById('close-modal').addEventListener('click', function() {
+        document.getElementById('signup-modal').style.display = "none";
+      });
+      window.addEventListener('click', function(e) {
+        if (e.target === document.getElementById('signup-modal')) {
+          document.getElementById('signup-modal').style.display = "none";
         }
       });
-    });
-
-    // Login link event: redirect to login.html after 0.5 second
-    document.getElementById('login-link').addEventListener('click', function(e) {
-      e.preventDefault();
-      setTimeout(function(){ window.location.href = 'login.html'; }, 500);
-    });
-    document.getElementById('mobile-login-link').addEventListener('click', function(e) {
-      e.preventDefault();
-      setTimeout(function(){ window.location.href = 'login.html'; }, 500);
-    });
-
-    // Mobile menu toggle
-    document.getElementById('menu-toggle').addEventListener('click', function() {
-      var mobileNav = document.getElementById('mobile-nav');
-      mobileNav.classList.toggle('active');
-    });
-
-    // Pricing Popup Logic
-    let selectedPlan = "Basic"; // default plan
-    function openSignupPopup(plan) {
-      selectedPlan = plan;
-      // Set the hidden input value so the plan is sent with the form
-      document.getElementById('plan').value = plan;
-      // Open the modal popup
-      document.getElementById('signup-modal').style.display = "flex";
-    }
-    document.getElementById('close-modal').addEventListener('click', function() {
-      document.getElementById('signup-modal').style.display = "none";
-    });
-    // Close modal if click outside the modal content
-    window.addEventListener('click', function(e) {
-      if (e.target === document.getElementById('signup-modal')) {
-        document.getElementById('signup-modal').style.display = "none";
+      
+      // Demo Button: Reveal the Demo iframe section
+      document.getElementById('tryDemoButton').addEventListener('click', function(e) {
+        e.preventDefault();
+        var demoContainer = document.getElementById('demo-container');
+        demoContainer.style.display = 'block';
+        setTimeout(function() {
+          demoContainer.style.opacity = 1;
+        }, 10);
+        demoContainer.scrollIntoView({ behavior: 'smooth' });
+      });
+      
+      // "Try Interactive Demo" button event (if needed)
+      if(document.getElementById('tryInteractiveDemoButton')){
+        document.getElementById('tryInteractiveDemoButton').addEventListener('click', function(e) {
+          e.preventDefault();
+          // Insert your interactive demo logic here
+          alert("Interactive Demo coming soon!");
+        });
       }
+      
+      // Return-to-Top functionality
+      function scrollToTop() {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }
+      window.addEventListener('scroll', function() {
+        const hero = document.querySelector('.hero');
+        if (!hero) return;
+        const heroHeight = hero.offsetHeight; // Get hero height
+        const button = document.getElementById('return-to-top');
+        if (window.pageYOffset > heroHeight) {
+          button.style.display = 'block';
+          button.style.opacity = 1;
+        } else {
+          button.style.display = 'none';
+          button.style.opacity = 0;
+        }
+      });
+      
+      // Attach scrollToTop to the button (if not using inline onclick)
+      document.getElementById('return-to-top').addEventListener('click', scrollToTop);
     });
   </script>
+  
+  <!-- Return-to-Top Button (only one instance) -->
+  <button id="return-to-top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+  
 </body>
 </html>
