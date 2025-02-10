@@ -612,11 +612,11 @@
       padding: 10px;
       border-radius: 50%;
       cursor: pointer;
-      opacity: 0.7;
+      opacity: 0;
       transition: opacity 0.3s ease;
       z-index: 1000;
       font-size: 1.25rem;
-      display: none;
+      display: none; /* Hidden by Default */
     }
     #return-to-top:hover {
       opacity: 1;
@@ -1063,12 +1063,22 @@
     }
     window.addEventListener('scroll', function() {
       const button = document.getElementById('return-to-top');
-      if (window.pageYOffset > 300) {
-        button.style.display = 'block';
-      } else {
-        button.style.display = 'none';
-      }
+      if (window.pageYOffset > heroHeight) {
+    button.style.display = 'block';
+    button.style.opacity = 1;
+  } else {
+    button.style.display = 'none';
+    button.style.opacity = 0;
+  }
     });
   </script>
+
+
+  <!-- Return-to-Top Button -->
+<button id="return-to-top" onclick="scrollToTop()">
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+  
 </body>
 </html>
