@@ -155,11 +155,11 @@
       padding: 40px 15px;
       overflow: hidden;
     }
+    /* Restrict text container to the left half on desktop */
     .hero-text {
       position: relative;
       z-index: 2;
       width: 50%;
-      flex: 1;
       padding: 20px;
       text-align: left;
     }
@@ -523,25 +523,25 @@
       .mobile-nav.active {
         display: flex;
       }
-      /* On mobile, stack hero content (column layout) and top-justify text */
+      /* On mobile, stack hero content and set text container to full width */
       .hero {
         flex-direction: column;
       }
       .hero-text {
+        width: 100%;
         text-align: left;
       }
-      /* Mobile: Image container fills width, placed below text, with top fade-out */
+      /* Mobile: Image container fills width below text with top fade-out */
       .hero-image-container {
         position: relative;
         left: 0;
         width: 100%;
-        height: 300px; /* Fixed height for mobile image */
+        height: 300px;
       }
       .hero-image-container img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        /* Mobile gradient: top edge fades out */
         -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 40%, black 100%);
         mask-image: linear-gradient(to bottom, transparent 0%, black 40%, black 100%);
       }
