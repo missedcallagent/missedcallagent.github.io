@@ -310,15 +310,17 @@
         font-size: 1.75rem;
       }
       .close-modal {
-        position: fixed;
-        top: 0.5rem;
-        right: 0.5rem;
+        position: fixed; /* Fixed relative to the viewport */
+        top: 1rem;
+        right: 1rem;
+        z-index: 101; /* Ensure it's on top of other elements */
         background: transparent;
         border: none;
         font-size: 1.5rem;
         cursor: pointer;
         color: var(--text-dark);
       }
+
       /* Subscription Modal */
       .subscribe-modal .modal {
         max-width: 500px;
