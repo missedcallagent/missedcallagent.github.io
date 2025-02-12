@@ -1,0 +1,1289 @@
+<!-- Declare the document type as HTML5 -->
+<!DOCTYPE html>
+<!-- Begin the HTML document with the language set to English -->
+<html lang="en">
+  <!-- Begin the head section containing meta-information, links, and styles -->
+  <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MWPXEM172T"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-MWPXEM172T');
+    </script>
+    <!-- Meta/Facebook Domain Verification -->
+    <meta name="facebook-domain-verification" content="og44rbed7cbqw5u31hqtb3xf55eg8b" />
+    <!-- Set the character encoding for the document to UTF-8 -->
+    <meta charset="UTF-8" />
+    <!-- Set the viewport properties for responsive design on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- SEO & Social Meta Tags -->
+    <!-- Provide a description of the website for search engines -->
+    <meta name="description" content="Shelf Shifter: AI-powered store optimization tool that helps retailers maximize sales through intelligent product placement and analytics">
+    <!-- Provide keywords for search engine optimization -->
+    <meta name="keywords" content="retail, AI, store optimization, merchandising, sales analytics">
+    <!-- Define the type of content for social sharing via Open Graph -->
+    <meta property="og:type" content="website">
+    <!-- Set the canonical URL for the page (used in social media previews) -->
+    <meta property="og:url" content="https://www.shelfshifter.com/">
+    <!-- Set the title for social media previews using Open Graph -->
+    <meta property="og:title" content="Shelf Shifter – AI‑Powered Store Optimization">
+    <!-- Set the description for social media previews using Open Graph -->
+    <meta property="og:description" content="Revolutionize your store layout with AI-driven product placement insights">
+    <!-- Set the image that will be used for social media previews via Open Graph -->
+    <meta property="og:image" content="https://www.shelfshifter.com/og-image.png">
+    <!-- Define the type of Twitter card to use (a large summary image) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- Set the URL for Twitter card previews -->
+    <meta name="twitter:url" content="https://www.shelfshifter.com/">
+    <!-- Set the title for Twitter card previews -->
+    <meta name="twitter:title" content="Shelf Shifter – AI‑Powered Store Optimization">
+    <!-- Set the description for Twitter card previews -->
+    <meta name="twitter:description" content="Revolutionize your store layout with AI-driven product placement insights">
+    <!-- Set the image for Twitter card previews -->
+    <meta name="twitter:image" content="https://www.shelfshifter.com/twitter-image.png">
+    
+    <!-- Set the title of the webpage shown in browser tabs -->
+    <title>Shelf Shifter – AI‑Powered Store Optimization</title>
+    
+    <!-- Preload & Styles -->
+    <!-- Preload the Font Awesome CSS to speed up its loading -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" as="style">
+    <!-- Link to the Font Awesome stylesheet for icon fonts -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Link to the favicon image displayed in the browser tab -->
+    <link rel="icon" type="image/svg+xml" href="shelfshifterlogo.svg">
+    
+    <!-- Begin inline CSS styles -->
+    <style>
+      /* Color & Typography Variables */
+      :root {
+        --primary-accent: #FF7E5F; /* Primary accent color used throughout the site */
+        --secondary-accent: #FEB47B; /* Secondary accent color */
+        --header-gradient: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent)); /* Gradient used for header backgrounds */
+        --background: #FFF8F0; /* Background color for the page */
+        --light-gray: #F7ECE1; /* Light gray color for section backgrounds */
+        --text-dark: #333333; /* Dark text color for readability */
+        --text-light: #777777; /* Lighter text color for secondary text */
+        --footer-bg: #FF7E5F; /* Footer background color */
+      }
+      /* Reset & Base Styles */
+      * {
+        margin: 0; /* Remove default margin from all elements */
+        padding: 0; /* Remove default padding from all elements */
+        box-sizing: border-box; /* Set box-sizing to include padding and border in element's total width and height */
+      }
+      body {
+        /* Use a font stack with fallbacks for cross-platform compatibility */
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        line-height: 1.6; /* Set a base line height for text readability */
+        color: var(--text-dark); /* Default text color */
+        background-color: var(--background); /* Set the background color of the page */
+      }
+      .container {
+        max-width: 1200px; /* Limit container width */
+        margin: 0 auto; /* Center the container horizontally */
+        padding: 0 15px; /* Add horizontal padding inside the container */
+      }
+      /* Header */
+      header {
+        background: var(--header-gradient); /* Apply the header gradient background */
+        color: white; /* Set text color to white for contrast */
+        padding: 20px; /* Add padding inside the header */
+        display: flex; /* Use flexbox for layout */
+        align-items: center; /* Vertically center items in the header */
+        justify-content: space-between; /* Distribute space between header items */
+        position: relative; /* Establish a positioning context for child elements */
+        transition: all 0.3s ease; /* Smooth transition for any changes (like hover effects) */
+      }
+      .logo {
+        display: flex; /* Use flexbox for logo elements */
+        align-items: center; /* Vertically center items within the logo */
+      }
+      .logo i {
+        font-size: 2rem; /* Set the icon size for the logo */
+        margin-right: 10px; /* Add spacing between the icon and the text */
+      }
+      .logo-img {
+        width: 50px;      /* Adjust as needed */
+        height: auto;     /* Maintain aspect ratio */
+        margin-right: 10px; /* Optional spacing between the logo and the text */
+      }
+
+      nav {
+        display: flex; /* Use flexbox for the navigation menu */
+      }
+      nav ul {
+        list-style: none; /* Remove bullet points from the list */
+        display: flex; /* Use flexbox for list items */
+        gap: 20px; /* Set spacing between navigation items */
+        align-items: center; /* Vertically center the navigation links */
+      }
+      nav ul li a {
+        color: white; /* Set link text color to white */
+        text-decoration: none; /* Remove default underline from links */
+        font-weight: 600; /* Make link text slightly bolder */
+      }
+      /* Hamburger Menu (Mobile Only) */
+      #menu-toggle {
+        display: none; /* Hide the hamburger button by default (only visible on mobile) */
+        background: none; /* No background styling */
+        border: none; /* Remove any default border */
+        color: white; /* White color for the hamburger icon */
+        font-size: 1.5rem; /* Size the hamburger icon appropriately */
+      }
+      /* Mobile Navigation */
+      .mobile-nav {
+        display: none; /* Hide mobile navigation by default */
+        flex-direction: column; /* Stack mobile navigation links vertically */
+        background: var(--header-gradient); /* Use the same gradient as the header */
+        position: absolute; /* Position it absolutely relative to the header */
+        top: 60px; /* Place it just below the header */
+        right: 0; /* Align to the right edge */
+        left: 0; /* Align to the left edge */
+        padding: 20px; /* Add padding inside the mobile nav */
+      }
+      .mobile-nav a {
+        padding: 10px 0; /* Vertical padding for each mobile nav link */
+        border-bottom: 1px solid rgba(255,255,255,0.3); /* Add a subtle border under each link */
+        color: white; /* Set link text color to white */
+        text-decoration: none; /* Remove underline from links */
+      }
+      /* Button Styles */
+      .cta-buttons {
+        display: flex; /* Use flexbox to arrange call-to-action buttons */
+        gap: 20px; /* Set spacing between buttons */
+        flex-wrap: wrap; /* Allow buttons to wrap to a new line on smaller screens */
+        /* Left justify the CTA buttons */
+        justify-content: flex-start; /* Align buttons to the left */
+      }
+      .btn {
+        display: inline-flex; /* Use inline-flex so that the button flows with text but still uses flexbox layout */
+        align-items: center; /* Center items vertically within the button */
+        padding: 12px 24px; /* Set padding for the button */
+        border-radius: 8px; /* Round the corners of the button */
+        text-decoration: none; /* Remove underline from button text */
+        font-weight: 600; /* Use a semi-bold font weight */
+        transition: all 0.3s ease; /* Smooth transition on state changes (like hover) */
+        cursor: pointer; /* Change cursor to pointer on hover */
+      }
+      .btn-primary {
+        background-color: var(--primary-accent); /* Set background color using the primary accent */
+        color: white; /* Set text color to white */
+        border: none; /* Remove any border */
+      }
+      .btn-primary:hover {
+        opacity: 0.9; /* Slightly reduce opacity on hover for visual feedback */
+      }
+      .btn-secondary {
+        background-color: transparent; /* Transparent background */
+        border: 2px solid var(--primary-accent); /* Border in the primary accent color */
+        color: var(--primary-accent); /* Text in the primary accent color */
+      }
+      .btn-secondary:hover {
+        background: var(--primary-accent); /* Fill background on hover */
+        color: white; /* Change text color to white on hover */
+      }
+      /* Updated Hero Section with JPG Images */
+      .hero {
+        position: relative; /* Relative positioning to allow absolute positioning of child elements */
+        display: flex; /* Use flexbox for layout */
+        align-items: center; /* Vertically center hero content */
+        min-height: 100vh; /* Make the hero section at least as tall as the viewport */
+        padding: 40px 15px; /* Add padding inside the hero section */
+        overflow: hidden; /* Hide any overflowing elements */
+      }
+      /* Restrict text container to the left half on desktop */
+      .hero-text {
+        position: relative; /* Relative positioning for proper layering */
+        z-index: 2; /* Ensure the text appears above background images */
+        width: 50%; /* Use half the width on larger screens */
+        padding: 20px; /* Add padding inside the text container */
+        text-align: left; /* Left-align the text */
+      }
+      .hero-text .hero-kicker {
+        font-size: 1rem; /* Set a small font size for the kicker text */
+        color: var(--primary-accent); /* Color the kicker text with the primary accent */
+        margin-bottom: 10px; /* Add space below the kicker text */
+        font-weight: 600; /* Use a semi-bold font weight */
+      }
+      .hero-text h1 {
+        font-size: 2.5rem; /* Set a large font size for the main headline */
+        margin-bottom: 20px; /* Add space below the headline */
+        color: var(--text-dark); /* Use dark text for the headline */
+      }
+      .hero-text p {
+        font-size: 1.125rem; /* Set a moderately large font size for the paragraph */
+        color: var(--text-dark); /* Use dark text color for readability */
+        margin-bottom: 30px; /* Add space below the paragraph */
+      }
+      /* Desktop: Image Container occupies right half with left gradient mask.
+         The container now starts at 45% so its faded edge overlaps the hero container. */
+      @media (min-width: 769px) {
+        .hero-image-container {
+          position: absolute; /* Absolutely position the image container within the hero */
+          top: 0; /* Align to the top */
+          right: 0; /* Align to the right */
+          bottom: 0; /* Stretch to the bottom */
+          left: 25%; /* Start the container at 45% of the hero width */
+          overflow: hidden; /* Hide any overflow */
+          /* Optional: force a 16:9 aspect ratio if needed:
+          aspect-ratio: 16/9; */
+        }
+        .hero-image-container img {
+          width: 100%; /* Make the image fill the container's width */
+          height: 100%; /* Make the image fill the container's height */
+          object-fit: cover; /* Ensure the image covers the container while maintaining aspect ratio */
+          -webkit-mask-image: linear-gradient(to right, transparent 0%, black 40%, black 100%); /* Apply a gradient mask for a fade effect in Webkit browsers */
+          mask-image: linear-gradient(to right, transparent 0%, black 40%, black 100%); /* Apply a standard gradient mask */
+        }
+
+      }
+      /* Mobile: Hero text takes full width; image container below text uses 9:16 aspect ratio 
+         and a negative top margin so the faded top overlaps the hero container. */
+      @media (max-width: 768px) {
+        .hero {
+          position: relative;
+          flex-direction: column; /* Stack hero content vertically on mobile */
+        }
+        .hero-text {
+          position: relative;
+          z-index: 2;
+          width: 100%; /* Allow hero text to take full width on mobile */
+          text-align: left; /* Keep text left-aligned */
+          min-height: 200px;
+        }
+        .hero-subtext {
+          display: none; /* Hide additional subtext on mobile for clarity */
+        }
+        .hero-image-container {
+          position: absolute; /* Position image container normally */
+          top: -100px;
+          left: 0; /* Align image container to the left */
+          width: 100%; /* Make the image container full width */
+          z-index: 1;
+          /* aspect-ratio: 9/16; /* Maintain a 9:16 aspect ratio for the container */
+          /*margin-top: 0; /* Use negative margin to overlap the hero section */
+        }
+        .hero-image-container img {
+          width: 100%; /* Full width image */
+          height: auto; /* Full height image */
+          object-fit: cover; /* Ensure the image covers the container */
+          -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 40%, black 100%); /* Vertical gradient mask for mobile in Webkit browsers */
+          mask-image: linear-gradient(to bottom, transparent 0%, black 40%, black 100%); /* Standard vertical gradient mask */
+        }
+      }
+      /* Features Section */
+      .features {
+        background-color: var(--light-gray); /* Set a light gray background for the features section */
+        padding: 80px 0; /* Add vertical padding for spacing */
+      }
+      .features-grid {
+        display: grid; /* Use CSS Grid for layout of feature cards */
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Create responsive columns */
+        gap: 30px; /* Gap between grid items */
+        padding: 0 15px; /* Horizontal padding for the grid */
+      }
+      .feature-card {
+        background: white; /* White background for each feature card */
+        padding: 30px; /* Padding inside the feature card */
+        border-radius: 12px; /* Rounded corners for the card */
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05); /* Subtle shadow for a raised effect */
+        text-align: center; /* Center-align the text inside the card */
+        transition: transform 0.3s ease; /* Smooth transition for hover effects */
+      }
+      .feature-card:hover {
+        transform: translateY(-10px); /* Slightly lift the card when hovered */
+      }
+      .feature-card i {
+        font-size: 3rem; /* Large icon size for feature representation */
+        color: var(--primary-accent); /* Color the icon with the primary accent */
+        margin-bottom: 20px; /* Space below the icon */
+      }
+      .feature-card h3 {
+        margin-bottom: 15px; /* Space below the feature title */
+        color: var(--text-dark); /* Use dark text for the title */
+      }
+      .feature-card p {
+        color: var(--text-light); /* Use lighter text for the description */
+      }
+      /* Social Proof Carousel */
+      .social-proof {
+        position: relative; /* Relative positioning for the carousel container */
+        overflow: hidden; /* Hide overflowing carousel items */
+        padding: 40px 0; /* Vertical padding for the carousel section */
+        background-color: var(--background); /* Set background color matching the page */
+      }
+      .social-proof-header {
+        text-align: center; /* Center the header text */
+        font-size: 2rem; /* Large font size for the header */
+        color: var(--primary-accent); /* Use the primary accent color for the header */
+        margin-bottom: 20px; /* Space below the header */
+        font-weight: bold; /* Bold font for emphasis */
+      }
+      .carousel-track {
+        display: flex; /* Use flexbox for the carousel items */
+        gap: 20px; /* Space between carousel items */
+        padding: 0 10px; /* Horizontal padding for the track */
+        animation: slide 40s linear infinite; /* Apply a continuous sliding animation */
+      }
+      .carousel-item {
+        flex: 0 0 220px; /* Fix each carousel item’s width */
+        padding: 20px; /* Padding inside each carousel item */
+        background: white; /* White background for carousel items */
+        border-radius: 8px; /* Rounded corners for the carousel items */
+        box-shadow: 0 4px 8px rgba(0,0,0,0.05); /* Subtle shadow for depth */
+        text-align: center; /* Center the text inside each carousel item */
+      }
+      .carousel-item p {
+        font-style: italic; /* Italicize testimonial text */
+        margin-bottom: 10px; /* Space below the testimonial text */
+        font-size: 0.95rem; /* Slightly smaller text size */
+      }
+      .carousel-item span {
+        display: block; /* Force the span to display as a block element */
+        font-weight: bold; /* Bold the client name */
+        font-size: 0.9rem; /* Slightly smaller font size for the name */
+      }
+      @keyframes slide {
+        0% { transform: translateX(0); } /* Start at the initial position */
+        100% { transform: translateX(-2380px); } /* End position for the sliding effect */
+      }
+      /* Plan Comparison Chart Section */
+      .table-responsive {
+        width: 100%; /* Allow the table to take full width */
+        overflow-x: auto; /* Enable horizontal scrolling on smaller screens */
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling on touch devices */
+      }
+      .plan-comparison {
+        padding: 60px 15px; /* Add padding around the plan comparison section */
+        background-color: var(--background); /* Set the background color matching the page */
+      }
+      .plan-comparison h2 {
+        text-align: center; /* Center the section heading */
+        color: var(--primary-accent); /* Use the primary accent color for the heading */
+        margin-bottom: 1.5rem; /* Space below the heading */
+        font-size: 2rem; /* Font size for the heading */
+      }
+      .plan-comparison table {
+        width: 100%; /* Make the table full-width */
+        border-collapse: collapse; /* Collapse cell borders */
+        margin: 0 auto; /* Center the table */
+        max-width: 900px; /* Set a maximum width for the table */
+        overflow-x: auto; /* Allow horizontal scrolling if needed */
+      }
+      .plan-comparison th, .plan-comparison td {
+        border: 1px solid #cbd5e1; /* Set a border for table cells */
+        padding: 1rem; /* Padding within cells */
+        text-align: center; /* Center-align text within cells */
+        font-size: 0.9rem; /* Smaller font size for table text */
+      }
+      .plan-comparison th {
+        background-color: #F7ECE1; /* Light background for table headers */
+        color: #333333; /* Dark text for table headers */
+      }
+      .plan-comparison tr:nth-child(even) {
+        background-color: #f9f9f9; /* Zebra-striping for even rows */
+      }
+      .plan-comparison .feature {
+        text-align: left; /* Left-align feature description cells */
+        font-weight: 600; /* Bold text for feature names */
+        background-color: #e2e8f0; /* Distinct background for feature cells */
+      }
+      .plan-comparison .checkmark {
+        color: #22c55e; /* Green color for checkmarks */
+        font-size: 1.2rem; /* Increase font size for checkmarks */
+      }
+      .plan-comparison .dash {
+        color: #ef4444; /* Red color for dash symbols indicating absence */
+        font-size: 1.2rem; /* Increase font size for dash symbols */
+      }
+      .plan-comparison button.signup-btn {
+        width: 100%; /* Make the button fill the table cell width */
+        box-sizing: border-box; /* Include padding and border in the button's width */
+        padding: 0.75rem 1.5rem; /* Padding inside the button */
+        font-size: 1rem; /* Font size for button text */
+        border: none; /* No border for the button */
+        border-radius: 0.5rem; /* Slightly rounded corners */
+        cursor: pointer; /* Change the cursor on hover */
+        transition: background 0.3s ease; /* Smooth transition when hovering */
+      }
+      /* Pricing Section */
+      .pricing {
+        background-color: var(--light-gray); /* Light gray background for the pricing section */
+        padding: 80px 0; /* Vertical padding for spacing */
+        text-align: center; /* Center all text in the pricing section */
+      }
+      .pricing h2 {
+        margin-bottom: 2rem; /* Space below the pricing heading */
+        color: var(--primary-accent); /* Use the primary accent color for the heading */
+        font-size: 2rem; /* Font size for the pricing heading */
+      }
+      .pricing-cards {
+        display: flex; /* Use flexbox for the pricing cards */
+        flex-wrap: wrap; /* Allow cards to wrap on smaller screens */
+        justify-content: center; /* Center the pricing cards horizontally */
+        align-items: stretch; /* Ensure cards stretch to similar heights */
+        gap: 20px; /* Gap between pricing cards */
+      }
+      .pricing-card {
+        flex: 1 1 300px; /* Allow cards to be responsive */
+        max-width: 300px; /* Maximum width for each card */
+        min-height: 400px; /* Minimum height to maintain consistent card sizes */
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05); /* Subtle shadow for depth */
+        border-radius: 12px; /* Rounded corners for the card */
+        background: white; /* White background for the card */
+        padding: 30px; /* Padding inside the card */
+        text-align: center; /* Center-align text within the card */
+        margin: 0 auto; /* Center the card horizontally */
+      }
+      .pricing-card h3 {
+        font-size: 1.5rem; /* Font size for the plan name */
+        color: var(--primary-accent); /* Use the primary accent color for the plan name */
+        margin-bottom: 10px; /* Space below the plan name */
+      }
+      .pricing-card .price {
+        font-size: 2rem; /* Large font size for the price */
+        font-weight: 700; /* Bold font for the price */
+        color: var(--primary-accent); /* Color the price with the primary accent */
+        margin-bottom: 10px; /* Space below the price */
+      }
+      .pricing-card p {
+        font-size: 0.9rem; /* Smaller font size for plan details */
+        color: var(--text-dark); /* Dark text for plan details */
+        margin-bottom: 15px; /* Space below the plan details */
+        line-height: 1.4; /* Line height for readability */
+      }
+      .signup-btn {
+        padding: 0.75rem 1.5rem; /* Padding for the signup button */
+        background: var(--primary-accent); /* Background color from primary accent */
+        color: white; /* White text for the button */
+        border: none; /* No border */
+        border-radius: 0.5rem; /* Rounded corners */
+        cursor: pointer; /* Pointer cursor on hover */
+        font-size: 1rem; /* Font size for button text */
+        transition: background 0.3s ease; /* Smooth background transition on hover */
+      }
+      .signup-btn:hover {
+        background: #e0664d; /* Change background color when hovered */
+      }
+      /* New Interactive Demo Button Container */
+      .interactive-demo-container {
+        text-align: center; /* Center the demo button container */
+        margin: 40px 0; /* Add vertical margin around the container */
+      }
+      /* Modal Popup for Email Signup */
+      .modal-overlay {
+        display: none; /* Hide the modal overlay by default */
+        position: fixed; /* Fix the overlay to cover the entire viewport */
+        top: 0; /* Align to the top of the viewport */
+        left: 0; /* Align to the left of the viewport */
+        width: 100%; /* Full width overlay */
+        height: 100%; /* Full height overlay */
+        background: rgba(0,0,0,0.5); /* Semi-transparent black background */
+        z-index: 200; /* High z-index to overlay all other elements */
+        justify-content: center; /* Center the modal horizontally */
+        align-items: center; /* Center the modal vertically */
+      }
+      .modal {
+        background: white; /* White background for the modal content */
+        padding: 2rem; /* Padding inside the modal */
+        border-radius: 8px; /* Rounded corners for the modal */
+        max-width: 400px; /* Maximum width for the modal */
+        width: 90%; /* Modal width relative to viewport */
+        text-align: center; /* Center the text inside the modal */
+        position: relative; /* Establish a positioning context for the close button */
+        box-shadow: 0 4px 10px rgba(0,0,0,0.25); /* Add a shadow for depth */
+      }
+      .modal h2 {
+        margin-bottom: 1rem; /* Space below the modal heading */
+        color: var(--primary-accent); /* Color the heading with the primary accent */
+        font-size: 1.5rem; /* Font size for the modal heading */
+      }
+      .modal .close-modal {
+        position: absolute; /* Absolutely position the close button within the modal */
+        top: 0.5rem; /* Position it near the top */
+        right: 0.5rem; /* Position it near the right */
+        background: transparent; /* Transparent background for the button */
+        border: none; /* Remove border from the button */
+        font-size: 1.5rem; /* Font size for the close icon */
+        cursor: pointer; /* Pointer cursor when hovering over the close button */
+        color: var(--text-dark); /* Color the close icon with the dark text color */
+      }
+      .form-input {
+        width: 100%; /* Input takes full width of its container */
+        padding: 0.75rem; /* Padding for the input field */
+        border: 2px solid; /* Border thickness for the input */
+        border-radius: 0.5rem; /* Rounded corners for the input */
+        font-size: 1rem; /* Font size for the input text */
+        transition: border-color 0.2s; /* Smooth transition for border color when focused */
+      }
+      .form-input:focus {
+        border-color: var(--primary-accent); /* Change border color on focus */
+        outline: none; /* Remove default outline on focus */
+      }
+      .form-group {
+        margin-bottom: 1rem; /* Space below each form group */
+      }
+      /* Sign Up Page */
+      .signup-content {
+        text-align: center; /* Center the signup page content */
+        padding: 3rem 1rem; /* Padding around the signup content */
+      }
+      .signup-content h1 {
+        font-size: 2rem; /* Font size for the signup heading */
+        margin-bottom: 1rem; /* Space below the signup heading */
+        color: var(--primary-accent); /* Color the signup heading with the primary accent */
+      }
+      .signup-content p {
+        font-size: 1.1rem; /* Font size for the signup paragraph */
+        margin-bottom: 1.5rem; /* Space below the signup paragraph */
+        color: var(--text-dark); /* Use dark text color */
+      }
+      .signup-features {
+        margin: 2rem 0; /* Vertical margin for the features list */
+        display: flex; /* Use flexbox for layout */
+        flex-direction: column; /* Stack features vertically */
+        gap: 1rem; /* Gap between each feature */
+        align-items: center; /* Center features horizontally */
+      }
+      .signup-features div {
+        max-width: 600px; /* Maximum width for each feature description */
+        font-size: 1rem; /* Font size for feature text */
+        color: var(--text-dark); /* Dark text color */
+        text-align: left; /* Left-align the feature text */
+      }
+      .signup-btn-dedicated {
+        padding: 0.75rem 1.5rem; /* Padding for the dedicated signup button */
+        background: var(--primary-accent); /* Background color from primary accent */
+        color: white; /* White text color */
+        border: none; /* No border */
+        border-radius: 0.5rem; /* Rounded corners */
+        cursor: pointer; /* Pointer cursor on hover */
+        font-size: 1rem; /* Font size for the button */
+        transition: background 0.3s ease; /* Smooth background transition on hover */
+      }
+      .signup-btn-dedicated:hover {
+        background: #e0664d; /* Darken background on hover */
+      }
+      /* Footer */
+      footer {
+        background-color: var(--footer-bg); /* Footer background color */
+        color: white; /* White text color for footer */
+        padding: 40px 0; /* Vertical padding for footer spacing */
+        text-align: center; /* Center-align footer content */
+      }
+      footer a {
+        color: white; /* White text for footer links */
+        text-decoration: none; /* Remove underline from footer links */
+        margin: 0 10px; /* Spacing between footer links */
+      }
+      /* Mobile Responsiveness */
+      @media (max-width: 768px) {
+        header {
+          flex-wrap: wrap; /* Allow header items to wrap on small screens */
+          justify-content: space-between; /* Ensure space between header items */
+          position: fixed; /* Fix header position on mobile */
+          top: 0; /* Align header to top of viewport */
+          left: 0; /* Align header to left edge */
+          right: 0; /* Align header to right edge */
+          z-index: 1000; /* High z-index to overlay content */
+        }
+        body {
+          padding-top: 80px; /* Add top padding to prevent content from being hidden behind the fixed header */
+        }
+        nav {
+          display: none; /* Hide the desktop navigation on mobile */
+        }
+        #menu-toggle {
+          display: block; /* Display the hamburger menu button on mobile */
+        }
+        .mobile-nav {
+          display: none; /* Keep mobile nav hidden by default */
+          flex-direction: column; /* Stack mobile nav items vertically */
+        }
+        .mobile-nav.active {
+          display: flex; /* Show mobile nav when active */
+        }
+        /* On mobile, stack hero content and set text container to full width */
+        .hero {
+          flex-direction: column; /* Stack hero elements vertically */
+        }
+        .hero-text {
+          width: 100%; /* Allow hero text to span full width on mobile */
+          text-align: left; /* Keep text left-aligned */
+        }
+        /* Mobile: Image container fills width below text with top fade-out and 9:16 aspect ratio */
+        .hero-image-container {
+          position: relative; /* Use relative positioning on mobile */
+          left: 0; /* Align container to the left */
+          width: 100%; /* Full width container */
+          aspect-ratio: 9/16; /* Maintain a 9:16 aspect ratio */
+          margin-top: -30px; /* Negative margin for overlapping effect */
+        }
+        .hero-image-container img {
+          width: 100%; /* Make image fill container width */
+          height: 100%; /* Make image fill container height */
+          object-fit: cover; /* Ensure image covers container area */
+          -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 40%, black 100%); /* Apply vertical gradient mask for mobile in Webkit */
+          mask-image: linear-gradient(to bottom, transparent 0%, black 40%, black 100%); /* Standard vertical gradient mask */
+        }
+      }
+      @media (min-width: 769px) {
+        .mobile-nav {
+          display: none !important; /* Ensure mobile nav remains hidden on desktop */
+        }
+      }
+      /* Demo Container Styles */
+      #demo-container {
+        display: none; /* Hide the demo container by default */
+        opacity: 0; /* Start with the demo container transparent */
+        transition: opacity 0.5s ease; /* Smooth fade-in transition when shown */
+        padding: 40px 15px; /* Padding for the demo container */
+        background-color: var(--background); /* Background color matching the page */
+      }
+      #demo-container iframe {
+        width: 100%; /* Iframe takes full width */
+        height: 600px; /* Fixed height for the demo iframe */
+        border: none; /* Remove border around the iframe */
+        border-radius: 8px; /* Rounded corners for the iframe */
+      }
+      /* Return-to-Top Button Styles */
+      #return-to-top {
+        position: fixed; /* Fix the button on the viewport */
+        bottom: 20px; /* Place it 20px from the bottom */
+        right: 20px; /* Place it 20px from the right */
+        background-color: var(--primary-accent); /* Background color from primary accent */
+        color: white; /* White color for the icon */
+        border: none; /* No border */
+        padding: 10px; /* Padding inside the button */
+        border-radius: 50%; /* Make the button circular */
+        cursor: pointer; /* Pointer cursor on hover */
+        opacity: 0; /* Initially invisible */
+        transition: opacity 0.3s ease; /* Smooth transition for opacity changes */
+        z-index: 1000; /* Ensure the button appears above other content */
+        font-size: 1.25rem; /* Size the arrow icon */
+        display: none; /* Hide by default */
+      }
+      #return-to-top:hover {
+        opacity: 1; /* Fully visible on hover */
+      }
+    </style>
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1504567227616292');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1504567227616292&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+  </head>
+      <!-- Begin the body of the document -->
+  <body>
+    <!-- Hidden iframe used for form submissions (prevents page reload) -->
+    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+    
+    <!-- Header Section -->
+    <header>
+      <!-- Logo container including icon and site name -->
+      <div class="logo">
+        <!-- Icon for the logo using Font Awesome 
+        <i class="fas fa-layer-group"></i> -->
+        <img src="ShelfShifterLogo.svg" alt=Shelf Shifter Logo" class="logo-img">
+        <!-- Site name -->
+        <h1>Shelf Shifter</h1>
+      </div>
+      <!-- Hamburger menu button for mobile navigation -->
+      <button id="menu-toggle" aria-label="Toggle navigation"><i class="fas fa-bars"></i></button>
+      <!-- Desktop navigation menu -->
+      <nav>
+        <ul>
+          <!-- Navigation link to the Features section -->
+          <li><a href="#features" class="cta-scroll">Features</a></li>
+          <!-- Navigation link to the Plans section -->
+          <li><a href="#plan-comparison" class="cta-scroll">Plans</a></li>
+          <!-- Navigation link to the Sign Up section -->
+          <li><a href="#plan-selection" class="cta-scroll">Sign Up</a></li>
+          <!-- Navigation link to the Interactive Demo section -->
+          <li><a href="#" class="cta-scroll try-demo-button">Try Demo</a></li>
+          <!-- Navigation link to the Log In page -->
+          <li><a href="login.html" id="login-link">Log In</a></li>
+        </ul>
+      </nav>
+      <!-- Mobile Navigation Menu (displayed when toggled) -->
+      <div class="mobile-nav" id="mobile-nav">
+        <!-- Mobile nav link to Features section -->
+        <a href="#features" class="cta-scroll">Features</a>
+        <!-- Mobile nav link to Plans section -->
+        <a href="#plan-comparison" class="cta-scroll">Plans</a>
+        <!-- Mobile nav link to Sign Up section -->
+        <a href="#plan-selection" class="cta-scroll">Sign Up</a>
+        <!-- Navigation link to the Interactive Demo section -->
+        <a href="#" class="cta-scroll try-demo-button">Try Demo</a>
+        <!-- Mobile nav link to Log In page -->
+        <a href="#" id="mobile-login-link">Log In</a>
+      </div>
+    </header>
+    
+    <!-- Hero Section with image and text -->
+    <section class="hero">
+      <!-- Container for hero content -->
+      <div class="container hero-content">
+        <!-- Text column in the hero section -->
+        <div class="hero-text">
+          <!-- Kicker text showing trust by retailers -->
+          <p class="hero-kicker">Trusted by 100+ Retailers</p>
+          <!-- Main headline in the hero section -->
+          <h1>
+            Boost In-Store Sales with AI-Driven Shelf Optimization
+          </h1>
+          <!-- Subtext describing the product benefits -->
+          <p class="hero-subtext">
+            Harness your POS data to optimize product placement and turn every inch into a revenue‑generator.
+          </p>
+          <!-- Container for call-to-action buttons -->
+          <div class="cta-buttons">
+            <!-- Primary button linking to the sign-up section -->
+            <a href="#plan-selection" class="btn btn-primary cta-scroll">Start Free Trial</a>
+          </div>
+        </div>
+        <!-- Image container using a picture element for responsive images -->
+        <div class="hero-image-container">
+          <picture>
+            <!-- Source for mobile devices: if screen width is 768px or less -->
+            <source media="(max-width: 768px)" srcset="Heroimage_mobile.jpg">
+            <!-- Default image for desktop/larger screens -->
+            <img src="heroimage_desktop_new.jpg" alt="Hero Image">
+          </picture>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Features Section showcasing product benefits -->
+    <section id="features" class="features">
+      <!-- Container for features -->
+      <div class="container">
+        <!-- Grid layout for feature cards -->
+        <div class="features-grid">
+          <!-- Feature Card: Intelligent Shelf Optimization -->
+          <div class="feature-card">
+            <!-- Icon representing the feature -->
+            <i class="fas fa-brain"></i>
+            <!-- Feature title -->
+            <h3>Intelligent Shelf Optimization</h3>
+            <!-- Description of the feature -->
+            <p>
+              Rearrange your products for maximum sales. Our tool leverages your POS data, sales trends, seasonal patterns and market insights to recommend the optimal placement and layout. 
+            </p>
+          </div>
+          <!-- Feature Card: Data Integration & Enrichment -->
+          <div class="feature-card">
+            <!-- Icon representing the feature -->
+            <i class="fas fa-database"></i>
+            <!-- Feature title -->
+            <h3>Data Integration &amp; Enrichment</h3>
+            <!-- Description of the feature -->
+            <p>
+              Seamlessly connect with POS providers like Clover, Square, and Lightspeed to pull rich data for an easy setup.
+            </p>
+          </div>
+          <!-- Feature Card: Real‑Time Dashboard -->
+          <div class="feature-card">
+            <!-- Icon representing the feature -->
+            <i class="fas fa-tachometer-alt"></i>
+            <!-- Feature title -->
+            <h3>Real‑Time Dashboard</h3>
+            <!-- Description of the feature -->
+            <p>
+              Monitor key metrics while harnessing AI predictions for actionable Tasks-all in one intuitive dashboard. 
+            </p>
+          </div>
+          <!-- Feature Card: 14‑Day Free Trial -->
+          <div class="feature-card">
+            <!-- Icon representing the feature -->
+            <i class="fas fa-gift"></i>
+            <!-- Feature title -->
+            <h3>14‑Day Free Trial</h3>
+            <!-- Description of the feature -->
+            <p>
+              Experience full access risk‑free and discover how Shelf Shifter transforms your merchandising—no credit card required.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Social Proof Carousel Section -->
+    <section class="social-proof">
+      <!-- Container for social proof content -->
+      <div class="container">
+        <!-- Header for the social proof section -->
+        <h2 class="social-proof-header">What Clients Say</h2>
+        <!-- Carousel track that slides through client testimonials -->
+        <div class="carousel-track">
+          <!-- Carousel Item with a client testimonial -->
+          <div class="carousel-item">
+            <p>"Shelf Shifter completely transformed my store layout and boosted my sales!"</p>
+            <span>- Emily R.</span>
+          </div>
+          <!-- Carousel Item with a client testimonial -->
+          <div class="carousel-item">
+            <p>"I never knew how much a smart shelf arrangement could impact revenue until I used this tool."</p>
+            <span>- Michael T.</span>
+          </div>
+          <!-- Carousel Item with a client testimonial -->
+          <div class="carousel-item">
+            <p>"Easy to use and incredibly effective. My store's performance has improved drastically."</p>
+            <span>- Sarah K.</span>
+          </div>
+          <!-- Carousel Item with a client testimonial -->
+          <div class="carousel-item">
+            <p>"The insights provided are invaluable for any retail business looking to optimize their space."</p>
+            <span>- James L.</span>
+          </div>
+          <!-- Carousel Item with a client testimonial -->
+          <div class="carousel-item">
+            <p>"I love how simple it is to optimize my displays with real‑time data!"</p>
+            <span>- Olivia M.</span>
+          </div>
+          <!-- Carousel Item with a client testimonial -->
+          <div class="carousel-item">
+            <p>"Our revenue has soared since we started using Shelf Shifter for our in‑store layout."</p>
+            <span>- David P.</span>
+          </div>
+          <!-- Carousel Item with a client testimonial -->
+          <div class="carousel-item">
+            <p>"A must‑have tool for any retailer serious about optimizing every square inch."</p>
+            <span>- Karen B.</span>
+          </div>
+          <!-- Carousel Item with a client testimonial -->
+          <div class="carousel-item">
+            <p>"The data insights are clear and actionable – it’s like having a retail consultant on call."</p>
+            <span>- Steven W.</span>
+          </div>
+          <!-- Carousel Item with a client testimonial -->
+          <div class="carousel-item">
+            <p>"Our customers notice the difference. Our sales numbers prove it."</p>
+            <span>- Amanda F.</span>
+          </div>
+          <!-- Carousel Item with a client testimonial -->
+          <div class="carousel-item">
+            <p>"A game changer for managing store layout and increasing efficiency."</p>
+            <span>- Robert S.</span>
+          </div>
+          <!-- Duplicate Carousel Items for seamless looping of testimonials -->
+          <div class="carousel-item">
+            <p>"Shelf Shifter completely transformed my store layout and boosted my sales!"</p>
+            <span>- Emily R.</span>
+          </div>
+          <div class="carousel-item">
+            <p>"I never knew how much a smart shelf arrangement could impact revenue until I used this tool."</p>
+            <span>- Michael T.</span>
+          </div>
+          <div class="carousel-item">
+            <p>"Easy to use and incredibly effective. My store's performance has improved drastically."</p>
+            <span>- Sarah K.</span>
+          </div>
+          <div class="carousel-item">
+            <p>"The insights provided are invaluable for any retail business looking to optimize their space."</p>
+            <span>- James L.</span>
+          </div>
+          <div class="carousel-item">
+            <p>"I love how simple it is to optimize my displays with real‑time data!"</p>
+            <span>- Olivia M.</span>
+          </div>
+          <div class="carousel-item">
+            <p>"Our revenue has soared since we started using Shelf Shifter for our in‑store layout."</p>
+            <span>- David P.</span>
+          </div>
+          <div class="carousel-item">
+            <p>"A must‑have tool for any retailer serious about optimizing every square inch."</p>
+            <span>- Karen B.</span>
+          </div>
+          <div class="carousel-item">
+            <p>"The data insights are clear and actionable – it’s like having a retail consultant on call."</p>
+            <span>- Steven W.</span>
+          </div>
+          <div class="carousel-item">
+            <p>"Our customers notice the difference. Our sales numbers prove it."</p>
+            <span>- Amanda F.</span>
+          </div>
+          <div class="carousel-item">
+            <p>"A game changer for managing store layout and increasing efficiency."</p>
+            <span>- Robert S.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Pricing Section (Plan Selection) -->
+    <section id="plan-selection" class="pricing">
+      <!-- Container for pricing cards and plan details -->
+      <div class="container">
+        <!-- Section heading for choosing a plan -->
+        <h2>Choose Your Plan</h2>
+        <!-- Additional note regarding the free trial -->
+        <h5 style="padding-bottom: 20px;">14-Day Free Trial Included - No Credit Card Required</h5>
+        <!-- Container for the pricing cards -->
+        <div class="pricing-cards">
+          <!-- Pricing Card for Basic Plan -->
+          <div class="pricing-card">
+            <!-- Plan name -->
+            <h3>Basic</h3>
+            <!-- Price display with monthly rate -->
+            <p class="price">$49<span style="font-size: 1rem; font-weight: normal;">/mo</span></p>
+            <!-- List of features for the Basic plan -->
+            <p>1 Location<br>Manual drag‑and‑drop layout<br>Basic Analytics</p>
+            <!-- Button to select the Basic plan which opens the signup modal -->
+            <button class="signup-btn" onclick="openSignupPopup('Basic')">Select Basic</button>
+          </div>
+          <!-- Pricing Card for Plus Plan -->
+          <div class="pricing-card">
+            <!-- Plan name -->
+            <h3>Plus</h3>
+            <!-- Price display with monthly rate -->
+            <p class="price">$99<span style="font-size: 1rem; font-weight: normal;">/mo</span></p>
+            <!-- List of features for the Plus plan -->
+            <p>Up to 3 Locations<br>Enhanced AI + Limited Predictive Analytics</p>
+            <!-- Button to select the Plus plan which opens the signup modal -->
+            <button class="signup-btn" onclick="openSignupPopup('Plus')">Select Plus</button>
+          </div>
+          <!-- Pricing Card for Pro Plan -->
+          <div class="pricing-card">
+            <!-- Plan name -->
+            <h3>Pro</h3>
+            <!-- Price display with monthly rate -->
+            <p class="price">$299<span style="font-size: 1rem; font-weight: normal;">/mo</span></p>
+            <!-- List of features for the Pro plan -->
+            <p>Unlimited Locations<br>Advanced AI + Full Predictive Analytics<br>Custom Branding &amp; White-labeling</p>
+            <!-- Button to select the Pro plan which opens the signup modal -->
+            <button class="signup-btn" onclick="openSignupPopup('Pro')">Select Pro</button>
+          </div>
+        </div>
+      </div>
+      <!-- New Interactive Demo Button (centered) -->
+      <div class="interactive-demo-container">
+        <!-- Button to trigger the interactive demo view -->
+        <a href="#" id="tryDemoButton" class="btn btn-primary try-demo-button">Try Our Interactive Demo</a>
+      </div>
+    </section>
+    
+    <!-- Plan Comparison Chart Section -->
+    <section id="plan-comparison" class="plan-comparison">
+      <!-- Section heading for comparing plans -->
+      <h2>Compare Our Plans</h2>
+      <!-- Responsive table container for plan comparison -->
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <!-- Table header for the feature column -->
+              <th>Feature</th>
+              <!-- Table header for the Basic plan -->
+              <th>Basic</th>
+              <!-- Table header for the Plus plan -->
+              <th>Plus</th>
+              <!-- Table header for the Pro plan -->
+              <th>Pro</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <!-- Feature: Price -->
+              <td class="feature">Price</td>
+              <td>$49/month</td>
+              <td>$99/month</td>
+              <td>$299/month</td>
+            </tr>
+            <tr>
+              <!-- Feature: Number of Locations -->
+              <td class="feature">Number of Locations</td>
+              <td>1</td>
+              <td>Up to 3</td>
+              <td>Unlimited</td>
+            </tr>
+            <tr>
+              <!-- Feature: Store Layout Management -->
+              <td class="feature">Store Layout Management</td>
+              <td>Manual drag‑and‑drop<br>Single layout</td>
+              <td>Manual drag‑and‑drop<br>Multi‑Location layout</td>
+              <td>Advanced layouts &amp; AI‑powered<br>Unlimited layout builder</td>
+            </tr>
+            <tr>
+              <!-- Feature: Task &amp; Checklist Management -->
+              <td class="feature">Task &amp; Checklist Management</td>
+              <td><span class="checkmark">&#10003;</span></td>
+              <td><span class="checkmark">&#10003;</span></td>
+              <td><span class="checkmark">&#10003;</span></td>
+            </tr>
+            <tr>
+              <!-- Feature: Analytics -->
+              <td class="feature">Analytics</td>
+              <td>Basic</td>
+              <td>Enhanced AI<br>Limited Predictive Analytics</td>
+              <td>Advanced AI<br>Full Predictive Analytics</td>
+            </tr>
+            <tr>
+              <!-- Feature: Inventory Management -->
+              <td class="feature">Inventory Management</td>
+              <td>Single-location inventory</td>
+              <td>Comprehensive multi‑location inventory</td>
+              <td>Comprehensive multi‑location inventory</td>
+            </tr>
+            <tr>
+              <!-- Feature: POS Integration Support -->
+              <td class="feature">POS Integration Support</td>
+              <td><span class="checkmark">&#10003;</span></td>
+              <td><span class="checkmark">&#10003;</span></td>
+              <td><span class="checkmark">&#10003;</span></td>
+            </tr>
+            <tr>
+              <!-- Feature: User &amp; Account Management -->
+              <td class="feature">User &amp; Account Management</td>
+              <td>Single‑user</td>
+              <td>Multi‑user (up to 5 users)</td>
+              <td>Advanced role‑based access</td>
+            </tr>
+            <tr>
+              <!-- Feature: Data Exporting -->
+              <td class="feature">Data Exporting</td>
+              <td>Basic export (PDF/CSV)</td>
+              <td>Scheduled reports &amp; export</td>
+              <td>Custom reports &amp; API export</td>
+            </tr>
+            <tr>
+              <!-- Feature: Custom Branding / White‑Labeling -->
+              <td class="feature">Custom Branding / White‑Labeling</td>
+              <td class="dash">&#8212;</td>
+              <td class="dash">&#8212;</td>
+              <td><span class="checkmark">&#10003;</span></td>
+            </tr>
+            <tr>
+              <!-- Feature: AI Usage -->
+              <td class="feature">AI Usage</td>
+              <td>Basic Limited AI queries</td>
+              <td>Limited AI queries</td>
+              <td>Unlimited AI queries</td>
+            </tr>
+            <tr>
+              <!-- Feature: Security &amp; Compliance -->
+              <td class="feature">Security &amp; Compliance</td>
+              <td><span class="checkmark">&#10003;</span></td>
+              <td><span class="checkmark">&#10003;</span></td>
+              <td><span class="checkmark">&#10003;</span></td>
+            </tr>
+            <tr>
+              <!-- Empty cell for layout; buttons in subsequent cells -->
+              <td></td>
+              <!-- Button to select Basic plan from the comparison chart -->
+              <td><button class="signup-btn" onclick="openSignupPopup('Basic Compare')">Select Basic</button></td>
+              <!-- Button to select Plus plan from the comparison chart -->
+              <td><button class="signup-btn" onclick="openSignupPopup('Plus Compare')">Select Plus</button></td>
+              <!-- Button to select Pro plan from the comparison chart -->
+              <td><button class="signup-btn" onclick="openSignupPopup('Pro Compare')">Select Pro</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    
+    <!-- Demo Section: Contains an interactive demo iframe and a button to start the free trial -->
+    <div id="demo-container" class="container">
+      <!-- Heading for the demo section -->
+      <h2 style="text-align:center; margin-bottom: 20px;">Try the Shelf Shifter Demo</h2>
+      <!-- Iframe that loads the demo page -->
+      <iframe src="iframedemo.html" title="Shelf Shifter Demo"></iframe>
+      <!-- Button linking to the free trial sign-up section -->
+      <a href="#plan-selection" class="btn btn-primary cta-scroll">Start Free Trial</a>
+    </div>
+    
+    <!-- Popup Modal for Email Signup -->
+    <div class="modal-overlay" id="signup-modal">
+      <!-- Modal container -->
+      <div class="modal">
+        <!-- Button to close the modal -->
+        <button class="close-modal" id="close-modal">&times;</button>
+        <!-- Modal heading -->
+        <h2>Start Your 14-Day Free Trial</h2>
+        <!-- Signup form with POST method and target to the hidden iframe -->
+        <form
+          id="signupForm"
+          method="POST"
+          action="https://script.google.com/macros/s/AKfycbwfICumV-Q3h2IXQ4V7P1w8RN-daeNiH3r95a3nRGUUL6jNAIsoAf-ZPBt4DjluQl8LxQ/exec"
+          target="hidden_iframe"
+          onsubmit="
+            if (typeof gtag !== 'undefined') {
+              gtag('event','Form_Submission',{event_category:'Lead',event_label:'Early Access'});
+            }
+            if (typeof fbq !== 'undefined') {
+              fbq('track','CompleteRegistration');
+            }
+            document.getElementById('timestamp').value = new Date().toISOString();
+            setTimeout(function() { window.location.href = 'signupconfirmed.html'; }, 500);
+            submitted = true;">
+          <!-- Form group for the email input field -->
+          <div class="form-group">
+            <!-- Email input field (required) -->
+            <input type="email" class="form-input" name="Email" placeholder="Email*" required>
+          </div>
+          <!-- Hidden input to store the selected plan -->
+          <input type="hidden" name="Plan" id="plan" value="">
+          <!-- Hidden input to store the timestamp -->
+          <input type="hidden" id="timestamp" name="Timestamp">
+          <!-- Submit button to start the free trial -->
+          <button type="submit" class="btn btn-primary">
+            <span>Submit</span>
+          </button>
+        </form>
+      </div>
+    </div>
+    
+    <!-- Footer Section -->
+    <footer id="contact">
+      <!-- Container for footer content -->
+      <div class="container">
+        <!-- Copyright notice -->
+        <p>&copy; 2025 Shelf Shifter. All rights reserved.</p>
+        <!-- Footer links to Privacy Policy, Terms of Service, and Contact Us pages -->
+        <p>
+          <a href="privacypolicy.html">Privacy Policy</a>
+          <a href="termsofservice.html">Terms of Service</a>
+          <a href="contactus.html">Contact Us</a>
+        </p>
+      </div>
+    </footer>
+    
+    <!-- JavaScript Section -->
+    <script>
+      // Wait for the DOM to be fully loaded before executing scripts
+      document.addEventListener("DOMContentLoaded", function() {
+        // Implement smooth scrolling for elements with the 'cta-scroll' class
+        document.querySelectorAll('.cta-scroll').forEach(function(link) {
+          link.addEventListener('click', function(e) {
+            e.preventDefault(); // Prevent default link behavior
+            var target = document.querySelector(this.getAttribute('href')); // Get the target element from the href
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth' }); // Smoothly scroll to the target element
+            }
+            // Collapse mobile navigation if it is open
+            var mobileNav = document.getElementById('mobile-nav');
+            if (mobileNav.classList.contains('active')) {
+              mobileNav.classList.remove('active');
+            }
+          });
+        });
+        
+        // Add event listener for the desktop login link to delay redirection
+        document.getElementById('login-link').addEventListener('click', function(e) {
+          e.preventDefault();
+          setTimeout(function(){ window.location.href = 'login.html'; }, 500);
+        });
+        // Add event listener for the mobile login link to delay redirection
+        document.getElementById('mobile-login-link').addEventListener('click', function(e) {
+          e.preventDefault();
+          setTimeout(function(){ window.location.href = 'login.html'; }, 500);
+        });
+        
+        // Toggle mobile navigation visibility when the hamburger menu is clicked
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+          var mobileNav = document.getElementById('mobile-nav');
+          mobileNav.classList.toggle('active');
+        });
+        
+        // Pricing Popup Logic for email signup modal
+        let selectedPlan = "Basic"; // Default selected plan is "Basic"
+        window.openSignupPopup = function(plan) {
+          selectedPlan = plan; // Update selected plan variable
+          document.getElementById('plan').value = plan; // Set the hidden plan input to the selected plan
+          document.getElementById('signup-modal').style.display = "flex"; // Display the signup modal overlay
+        }
+        // Close the signup modal when the close button is clicked
+        document.getElementById('close-modal').addEventListener('click', function() {
+          document.getElementById('signup-modal').style.display = "none";
+        });
+        // Close the modal if the user clicks outside the modal content
+        window.addEventListener('click', function(e) {
+          if (e.target === document.getElementById('signup-modal')) {
+            document.getElementById('signup-modal').style.display = "none";
+          }
+        });
+        
+        // Demo Button: Reveal the Demo iframe section when clicked
+        document.querySelectorAll('.try-demo-button').forEach(function(button) {
+            button.addEventListener('click', function(e) {
+              e.preventDefault();
+              
+              // Close the mobile navigation menu if it is open
+              var mobileNav = document.getElementById('mobile-nav');
+              if (mobileNav && mobileNav.classList.contains('active')) {
+                mobileNav.classList.remove('active');
+              }
+              
+              // Reveal the demo container and scroll to it
+              var demoContainer = document.getElementById('demo-container');
+              demoContainer.style.display = 'block'; // Make the demo container visible
+              setTimeout(function() {
+                demoContainer.style.opacity = 1; // Fade in the demo container
+              }, 10);
+              demoContainer.scrollIntoView({ behavior: 'smooth' });
+            });
+          });
+
+
+        
+        // Optional "Try Interactive Demo" button event handler
+        if(document.getElementById('tryInteractiveDemoButton')){
+          document.getElementById('tryInteractiveDemoButton').addEventListener('click', function(e) {
+            e.preventDefault();
+            // Placeholder for interactive demo logic
+            alert("Interactive Demo coming soon!");
+          });
+        }
+        
+        // "Return-to-Top" functionality: scroll smoothly to the top of the page
+        function scrollToTop() {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        }
+        // Show or hide the "Return-to-Top" button based on the scroll position
+        window.addEventListener('scroll', function() {
+          const hero = document.querySelector('.hero');
+          if (!hero) return;
+          const heroHeight = hero.offsetHeight; // Get the height of the hero section
+          const button = document.getElementById('return-to-top');
+          if (window.pageYOffset > heroHeight) {
+            button.style.display = 'block'; // Display the button if scrolled past the hero
+            button.style.opacity = 1; // Set full opacity
+          } else {
+            button.style.display = 'none'; // Hide the button if near the top
+            button.style.opacity = 0;
+          }
+        });
+        
+        // Attach the scroll-to-top function to the "Return-to-Top" button
+        document.getElementById('return-to-top').addEventListener('click', scrollToTop);
+      });
+    </script>
+    
+    <!-- Return-to-Top Button: Clicking this button scrolls the page back to the top -->
+    <button id="return-to-top">
+      <!-- Icon for the return-to-top button -->
+      <i class="fas fa-arrow-up"></i>
+    </button>
+  </body>
+</html>
