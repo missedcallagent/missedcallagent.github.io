@@ -356,6 +356,25 @@
         opacity: 1;
       }
     </style>
+    
+    <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1504567227616292');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1504567227616292&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+    
   </head>
   <body>
     <!-- Hidden iframe for form submissions -->
@@ -363,19 +382,19 @@
     
     <!-- Header Section -->
     <header>
-      <div class="logo">
+      <div href="index.html" class="logo">
         <img src="ShelfShifterLogo.svg" alt="Shelf Shifter Logo" class="logo-img">
         <h1>Shelf Shifter</h1>
       </div>
       <button id="menu-toggle" aria-label="Toggle navigation"><i class="fas fa-bars"></i></button>
       <nav>
         <ul>
-          <li><a href="index.html" class="cta-scroll">Home</a></li>
+          <li><a href="index.html">Home</a></li>
           <li><a href="login.html" id="login-link">Log In</a></li>
         </ul>
       </nav>
       <div class="mobile-nav" id="mobile-nav">
-        <a href="index.html" class="cta-scroll">Home</a>
+        <a href="index.html">Home</a>
         <a href="#" id="mobile-login-link">Log In</a>
       </div>
     </header>
