@@ -276,6 +276,7 @@
           width: 100%;
           text-align: left;
           min-height: 200px;
+          z-index: 2;
         }
         .hero-subtext {
           display: none; /* hidden on mobile */
@@ -283,10 +284,12 @@
         .hero-image-container {
           position: relative;
           width: 100%;
-          margin-top: 0;
+          top: -100px;
+          left: 0;
           /* Crop the image so it's not too tall */
           max-height: 400px;
           overflow: hidden;
+          z-index: 1;
         }
         .hero-image-container img {
           width: 100%;
