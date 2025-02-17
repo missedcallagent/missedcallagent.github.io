@@ -148,6 +148,12 @@
         flex-wrap: wrap;
         justify-content: flex-start;
       }
+      .hero-cta-buttons {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+      }
 
       .btn {
         display: inline-flex;
@@ -298,6 +304,9 @@
           -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 40%, black 100%);
           mask-image: linear-gradient(to bottom, transparent 0%, black 40%, black 100%);
         }
+        .hero-cta-buttons {
+        display: none;
+      }
       }
 
       /* ------------------------------------------------------
@@ -747,7 +756,7 @@
           <p class="hero-subtext">
             Harness your POS data to optimize product placement and turn every inch into a revenue‑generator.
           </p>
-          <div class="cta-buttons">
+          <div class="hero-cta-buttons">
             <a href="#plan-selection" class="btn btn-primary cta-scroll">Start Free Trial</a>
           </div>
         </div>
